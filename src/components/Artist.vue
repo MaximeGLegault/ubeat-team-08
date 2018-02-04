@@ -1,65 +1,5 @@
 <template>
-  <!DOCTYPE html>
-  <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Ubeat - Home</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script src="main.js"></script>
-    <!--Materialize-->
-    <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
-    <script type = "text/javascript" src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js">
-    </script>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!--font Bungee-->
-    <link href="https://fonts.googleapis.com/css?family=Bungee+Inline" rel="stylesheet">
-
-  </head>
-  <body>
-  <header>
-    <div id="menuSm"><a id="logoButton" class="waves-effect waves-light btn"><img id="logoSm" src="logo/logo_Ubeat4.png" alt="Ubeat"></a></div>
-    <nav id="menu">
-      <img id="logo" src="logo/logo_Ubeat4.png" alt="Ubeat">
-      <div id="menuNavLg" class="nav-wrapper">
-        <ul>
-          <li> <a href="home.html">Home <i class="material-icons iconSearch">home</i></a></li>
-          <li> <a href="playlist.html">Playlist <i class="material-icons iconSearch">queue_music</i></a></li>
-          <li><a href="artist.html">Artist <i class="material-icons iconSearch">group</i></a></li>
-          <li><a href="album.html">Album <i class="material-icons iconSearch">album</i></a></li>
-        </ul>
-      </div>
-      <div id="menuNavMd">
-        <ul>
-          <li> <a href="home.html"><i class="material-icons iconSearch">home</i></a></li>
-          <li> <a href="playlist.html"><i class="material-icons iconSearch">queue_music</i></a></li>
-          <li><a href="artist.html"><i class="material-icons iconSearch">group</i></a></li>
-          <li><a href="album.html"><i class="material-icons iconSearch">album</i></a></li>
-        </ul>
-      </div>
-      <div id="menuRight">
-        <div id="menuUser">
-          <a class='dropdown-button btn-floating deep-purple accent-3' href='#' data-activates='dropdown1'><i class="material-icons">person</i></a>
-          <ul id='dropdown1' class='dropdown-content'>
-            <li><a href="#">profil</a></li>
-            <li class="divider"></li>
-            <li><a href="#">parameter</a></li>
-            <li class="divider"></li>
-            <li><a href="#">log out</a></li>
-          </ul>
-          <h7 id="userName">user_name</h7>
-        </div>
-        <div id="menuSearch">
-          <label id="searchIcon" class="label-icon" for="search"><i class="material-icons iconSearch">search</i></label>
-          <input id="search" class="inputSearch"  type="search" >
-          <i class="material-icons">close</i>
-          <div class="indicator indigo darken-4" style="z-index:1"></div>
-        </div>
-      </div>
-    </nav>
-  </header>
+<div>
   <div id="artist">
     <h1>Metallica</h1>
     <p>Genre : Rock</p>
@@ -351,12 +291,11 @@
       </div>
     </div>
   </div>
-  </body>
-  </html>
-
+</div>
 </template>
 
 <style>
+
   html{
     font-size:  14px;
   }
@@ -375,18 +314,23 @@
 
   }
   #listAlbums{
-    width: 90vw;
+    margin: auto;
+    width: 90%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    align-items: center;
+    align-items: flex-start;
     align-content: flex-start;
+
   }
   .album{
+    margin: auto;
+    min-height: 350px;
+    width: 300px;
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
-    align-items: center;
+    align-items: flex-start;
     align-content: flex-start;
     flex-grow: 1;
     flex-shrink: 1;
@@ -394,13 +338,15 @@
     align-self: auto;
   }
   .albumJacket{
+    width: 268px;
 
   }
   .albumTitle{
+    width: 268px;
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
-    align-items: center;
+    align-items: flex;
     align-content: flex-start;
     flex-grow: 1;
     flex-shrink: 1;
@@ -408,15 +354,37 @@
     align-self: auto;
   }
   .title{
-    width: 100vw;
+    width: 100%;
     font-size: 1rem;
     text-align: left;
   }
   .year{
-    width: 100vw;
-    color: whitesmoke;
+    width: 100%;
+    color: gray();
     font-size: 0.8rem;
     text-align: left;
+  }
+
+  @media only screen
+  and (orientation: portrait){
+    #listAlbums{
+      display: block;
+
+    }
+    .album{
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+    img{
+      max-width: 100px;
+    }
+  }
+
+  @media only screen
+  and (orientation: landscape){
+    img{
+      max-width: 150px;
+    }
   }
 
 </style>
