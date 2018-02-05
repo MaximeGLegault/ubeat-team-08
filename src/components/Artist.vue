@@ -409,7 +409,7 @@
     }
   }
 
-  @media only screen and (min-device-width : 480px) and (max-device-width : 813px)
+  @media only screen and (min-device-width : 568px) and (max-device-width : 853px)
   and (orientation: landscape){
     .album{
       flex-direction: row;
@@ -432,5 +432,4 @@
       font-size: 1.15rem;
     }
   }
-
 </style>
