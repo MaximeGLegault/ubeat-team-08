@@ -5,7 +5,7 @@
     <p>Genre : Rock</p>
     <div id="itunes">
       <a href="https://itunes.apple.com/ca/artist/metallica/3996865?l=en">
-        <img src="https://notyouraveragetype.files.wordpress.com/2015/07/itunes-logo-transparent-background-i81.png">
+        <img src="//notyouraveragetype.files.wordpress.com/2015/07/itunes-logo-transparent-background-i81.png" class="itunesLogo">
       </a>
     </div>
   </div>
@@ -295,40 +295,45 @@
 </template>
 
 <style>
-
-  html{
-    font-size:  14px;
-    color: white;
-    background-color: black;
-  }
   h1{
     text-transform: uppercase;
     font-size: 3rem;
     font-weight: bold;
+    margin: 20px 20px 0px 20px;
   }
   p{
     font-size: 1rem;
+    margin: 0px 20px 10px 20px;
   }
+
   #artist{
     text-align: center;
+    margin: 20px 20px 10px 20px;
+    width: 100vw;
   }
-  #itunes{
-
+  #itunes {
+    margin: 0 0 0 0;
+    max-height: 70px;
+  }
+  .itunesLogo {
+    height: 70px;
+    margin: ;
   }
   #listAlbums{
     margin: auto;
-    width: 90%;
+    width: 90vw;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     align-items: flex-start;
     align-content: flex-start;
+    text-align: center;
+    justify-content: center;
 
   }
   .album{
-    margin: auto;
-    min-height: 350px;
-    width: 300px;
+    margin: 20px 15px 15px 15px;
+    max-width: 268px;
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
@@ -344,11 +349,11 @@
 
   }
   .albumTitle{
+    margin: 0 auto;
     width: 268px;
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
-    align-items: flex;
     align-content: flex-start;
     flex-grow: 1;
     flex-shrink: 1;
@@ -362,30 +367,69 @@
   }
   .year{
     width: 100%;
-    color: whitesmoke();
+    color: #e5e5e5;
     font-size: 0.8rem;
     text-align: left;
   }
+  img {
+    object-fit: contain;
+  }
 
-  @media only screen
+  @media only screen and (min-device-width : 320px) and (max-device-width : 480px)
   and (orientation: portrait){
     #listAlbums{
       display: block;
-
     }
     .album{
       flex-direction: row;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
+      width: 100%;
+      margin: 20px auto;
+      justify-content: center;
+      max-width: unset;
     }
-    img{
-      max-width: 100px;
+    .albumJacket {
+      width: 268px;
+      margin-right: 20px;
+    }
+    .albumTitle {
+      /*max-width: 50%;*/
+    }
+    .title {
+      font-size: 2rem;
+    }
+    .year {
+      font-size: 1.5rem;
+    }
+    h1 {
+      font-size: 4rem;
+    }
+    p {
+      font-size: 1.6rem;
     }
   }
 
-  @media only screen
+  @media only screen and (min-device-width : 480px) and (max-device-width : 813px)
   and (orientation: landscape){
-    img{
+    .album{
+      flex-direction: row;
+      flex-wrap: nowrap;
+      width: 50%;
+      margin: 20px auto;
+      justify-content: center;
+      max-width: unset;
+    }
+    .albumJacket {
+      width: 200px;
+    }
+    img {
       max-width: 150px;
+    }
+    .title {
+      font-size: 1.5rem;
+    }
+    .year {
+      font-size: 1.15rem;
     }
   }
 
