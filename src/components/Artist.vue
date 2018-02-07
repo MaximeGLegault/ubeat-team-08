@@ -364,6 +364,8 @@
     width: 100%;
     font-size: 1rem;
     text-align: left;
+    color: white;
+    margin: 0;
   }
   .year{
     width: 100%;
