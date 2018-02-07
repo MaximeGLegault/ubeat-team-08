@@ -136,7 +136,7 @@
     font-weight: normal;
 
   }
-  .title{
+  #menu .title{
     display: flex;
     justify-content: center;
     align-items: baseline;
