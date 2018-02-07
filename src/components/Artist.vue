@@ -1,5 +1,5 @@
 <template>
-<div>
+<div id="bodyArtist">
   <div id="artist">
     <h1>Metallica</h1>
     <p>Genre : Rock</p>
@@ -295,13 +295,13 @@
 </template>
 
 <style>
-  h1{
+  #bodyArtist h1{
     text-transform: uppercase;
     font-size: 3rem;
     font-weight: bold;
     margin: 20px 20px 0px 20px;
   }
-  p{
+  #bodyArtist p{
     font-size: 1rem;
     margin: 0px 20px 10px 20px;
   }
@@ -309,7 +309,7 @@
   #artist{
     text-align: center;
     margin: 20px 20px 10px 20px;
-    width: 100vw;
+
   }
   #itunes {
     margin: 0 0 0 0;
@@ -360,7 +360,7 @@
     flex-basis: auto;
     align-self: auto;
   }
-  .title{
+  #bodyArtist .title{
     width: 100%;
     font-size: 1rem;
     text-align: left;
@@ -371,7 +371,7 @@
     font-size: 0.8rem;
     text-align: left;
   }
-  img {
+  #bodyArtist img {
     object-fit: contain;
   }
 
@@ -395,16 +395,16 @@
     .albumTitle {
       /*max-width: 50%;*/
     }
-    .title {
+    #bodyArtist .title {
       font-size: 2rem;
     }
     .year {
       font-size: 1.5rem;
     }
-    h1 {
+    #bodyArtist h1 {
       font-size: 4rem;
     }
-    p {
+    #bodyArtist p {
       font-size: 1.6rem;
     }
   }
@@ -422,10 +422,10 @@
     .albumJacket {
       width: 200px;
     }
-    img {
+    #bodyArtist img {
       max-width: 150px;
     }
-    .title {
+    #bodyArtist .title {
       font-size: 1.5rem;
     }
     .year {
