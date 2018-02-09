@@ -91,7 +91,6 @@
       </div>
     </nav>
 </template>
-
 <style>
   /* GENERAL */
   body{
@@ -307,10 +306,9 @@
   i.iconPurple{
     color: #651fff;
   }
-  #menuSmDropDown{
+  #menuSmDropDown {
     display: none;
   }
-
 
   /* MEDIA SCREEN */
   @media screen and (max-width: 1100px){
@@ -328,9 +326,6 @@
     #menu{
       display: none;
     }
-    #menuSmDropDown{
-      display: unset;
-    }
   }
   @media only screen and (min-device-width : 320px) and (max-device-width : 480px)
   and (orientation: portrait){
@@ -347,9 +342,6 @@
     #menuSmBtn i{
       font-size: 5em;
       line-height: 80px;
-    }
-    #menuSmDropDown{
-      display: unset;
     }
     .title{
       margin: 10px 0;

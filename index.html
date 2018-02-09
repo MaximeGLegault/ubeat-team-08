@@ -17,3 +17,16 @@
     <!-- built files will be auto injected -->
   </body>
 </html>
+<script>
+
+  const buttonMenu = document.getElementById('btnDropdown');
+  const menu = document.getElementById('menuSmDropDown');
+  buttonMenu.addEventListener('click', () => {
+    if (menu.style.display === 'none' || menu.style.display === '') {
+      menu.style.display = 'unset';
+    } else {
+      menu.style.display = 'none';
+    }
+  });
+
+</script>
