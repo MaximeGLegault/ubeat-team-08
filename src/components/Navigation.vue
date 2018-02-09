@@ -1,12 +1,9 @@
 <template>
-
     <nav >
-
         <div id="menu">
           <div class="title">
             <p>U<span class="titlecolor">Beat</span></p>
           </div>
-
           <div id="menuNavLg">
             <ul>
               <li>
@@ -43,7 +40,7 @@
                 <li class="divider"></li>
                 <li><a href="#">log out</a></li>
               </ul>
-              <h7 id="userName">user_name</h7>
+              <h6 id="userName">user_name</h6>
             </div>
             <div id="menuSearch">
               <label id="searchIcon" class="label-icon" for="search"><i class="material-icons iconSearch">search</i></label>
@@ -57,7 +54,6 @@
         <div id="menuSmDropDown">
           <div class="title">
             <p>U<span class="titlecolor">Beat</span></p>
-
           </div>
           <div id="ulSmList">
             <ul>
@@ -85,27 +81,19 @@
                 <i class="material-icons ">person</i>
               </a>
               <ul>
-                <li><a class="btn-floating btn-large white "><i class="material-icons iconPurple fa fa-sign-out"></i></a></li>
-                <li><a class="btn-floating btn-large deep-purple accent-3"><i class="material-icons">settings_applications</i></a></li>
-                <li><a class="btn-floating btn-large white"><i class="material-icons iconPurple">assignment_ind</i></a></li>
+                <li><a class="btn-floating btn white"><i class="material-icons iconPurple fa fa-sign-out"></i></a></li>
+                <li><a class="btn-floating btn deep-purple accent-3"><i class="material-icons">settings_applications</i></a></li>
+                <li><a class="btn-floating btn white"><i class="material-icons iconPurple">assignment_ind</i></a></li>
               </ul>
             </div>
-
-
         </div>
         <div id="menuSmBtn"><a id="btnDropdown" class="btn btn-floating btn-large pulse deep-purple accent-3 "><i class="material-icons">fingerprint</i></a></div>
-
       </div>
-
-
-
-
     </nav>
 </template>
 
 <style>
-
-
+  /* GENERAL */
   body{
     background-color: black;
     color: #fff;
@@ -115,6 +103,7 @@
   nav{
     background-color: black;
   }
+  /* MENU */
   #menu{
     position: fixed;
     display: flex;
@@ -126,7 +115,6 @@
     border-bottom: solid 7px #111;
     height: 60px;
     width: 100%;
-
   }
   .titlecolor{
     font-family: 'Black Ops One', cursive;
@@ -134,7 +122,6 @@
     margin-left: 2px;
     font-size: 44px;
     font-weight: normal;
-
   }
   .title{
     display: flex;
@@ -144,7 +131,6 @@
     font-family: 'Black Ops One', cursive;
     margin-left: 20px;
     color: #651fff;
-
   }
   .title p{
     font-size: 45px;
@@ -160,18 +146,69 @@
     justify-content:center;
     padding: 0 5px;
     align-items: center;
-
   }
-
   #menuNavLg li:hover a{
     color: #651fff;
-    font-size: 1.3em;
-    font-weight: bold;
   }
   #menuNavLg li:hover i{
     color: #651fff;
   }
-
+  #menuRight{
+    display: flex;
+    flex-direction: row;
+  }
+  #menuSearch{
+    display: flex;
+    align-items: center;
+    width: 250px;
+    border: solid 1px;
+    border-radius: 10px;
+    height: 40px;
+    padding: 0 10px;
+    margin-top: 8px;
+    margin-right: 20px;
+  }
+  #menuSearch:hover{
+    border-color: #651fff;
+  }
+  #search{
+    height: 30px;
+    align-self: center;
+    margin-top: 15px;
+  }
+  #search:focus{
+    border-bottom: 1px solid #fff;
+    -webkit-box-shadow: 0 1px 0 0 #fff;
+    -moz-box-shadow: 0 1px 0 0 #fff;
+    box-shadow: 0 1px 0 0 #fff;
+  }
+  .iconSearch{
+    align-self: center;
+    color: #fff;
+  }
+  #menu #dropdown1{
+    background-color: #1e1e1e;
+  }
+  #menu #dropdown1 a{
+    color: #fff;
+  }
+  #menuUser{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0 10px;
+  }
+  #userName{
+    padding-right: 10px;
+    padding-left: 8px;
+  }
+  #menuUser i{
+    line-height: unset;
+  }
+  /* MEDIUM MENU */
+  #menuNavMd ul{
+    display: flex;
+  }
   #menuNavMd i{
     display: flex;
     width: 40px;
@@ -186,75 +223,17 @@
   #menuNavMd{
     display: none;
   }
-
-  #search{
-    height: 30px;
-    align-self: center;
-    margin-top: 15px;
-  }
-  #search:focus{
-    border-bottom: 1px solid #fff;
-    -webkit-box-shadow: 0 1px 0 0 #fff;
-    -moz-box-shadow: 0 1px 0 0 #fff;
-    box-shadow: 0 1px 0 0 #fff;
-  }
-
-  .iconSearch{
-    align-self: center;
-    color: #fff;
-  }
-  #menuRight{
-    display: flex;
-    flex-direction: row;
-  }
-  #menuSearch{
-    display: flex;
-    align-items: baseline;
-    width: 250px;
-    border: solid 2px;
-    border-radius: 10px;
-    height: 50px;
-    padding: 0 10px;
-    margin-top: 8px;
-    margin-right: 20px;
-  }
-  #menuSearch:hover{
-    border-color: #651fff;
-  }
-  #menu #dropdown1{
-    background-color: #1e1e1e;
-  }
-  #menu #dropdown1 a{
-    color: #fff;
-  }
-  #menuUser{
-    margin: 0 10px;
-  }
-  #menuUser i{
-
-    line-height: unset;
-  }
-
-  #userName{
-    padding-right: 10px;
-  }
-
-
+  /* SMALL MENU */
   #menuSmBtn{
     display: none;
-
     justify-content: center;
-
     background-color: #1e1e1e;
     border-bottom: solid 7px #111;
     height: 25px;
     width: 100%;
-
   }
   #menuSmBtn i{
     font-size: 3em;
-  }
-  #menuSmBtn a:hover {
   }
   #menuSm{
     position: fixed;
@@ -268,15 +247,11 @@
     display: flex;
     justify-content: center;
   }
-
   #ulSmList li{
-
     display: flex;
     align-items: center;
     justify-content: center;
-
   }
-
   #menuSm li{
     width: 80px;
   }
@@ -291,7 +266,6 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
-
   }
   #menuSmUser{
     display: flex;
@@ -305,14 +279,11 @@
   }
   #menuSmUser li{
    width: 60px;
-
   }
-
   .fixed-action-btn{
     right: 0;
     bottom: 0;
   }
-
   #menuSmSearch{
     display: flex;
     flex-direction: row;
@@ -325,7 +296,7 @@
     display: flex;
   }
   #menuSmSearch form input{
-    width: 300px;
+    width: 270px;
   }
   #menuSmSearch form input:focus{
     border-bottom: 1px solid #fff;
@@ -341,22 +312,16 @@
   }
 
 
-
-  /*  MEDIA  */
+  /* MEDIA SCREEN */
   @media screen and (max-width: 1100px){
-
     #menuNavLg{
       display: none;
     }
     #menuNavMd{
       display: flex;
-
-    }
-    #userName{
-      display: none;
     }
   }
-  @media screen and (max-width: 730px){
+  @media screen and (max-width: 798px){
     #menuSmBtn{
       display: flex;
     }
@@ -366,11 +331,7 @@
     #menuSmDropDown{
       display: unset;
     }
-
-
-
   }
-  /* MOBILE  */
   @media only screen and (min-device-width : 320px) and (max-device-width : 480px)
   and (orientation: portrait){
     #menuSmBtn{
@@ -382,14 +343,10 @@
     #menuSmBtn a{
       height: 80px;
       width: 80px;
-
-
     }
     #menuSmBtn i{
       font-size: 5em;
-
       line-height: 80px;
-
     }
     #menuSmDropDown{
       display: unset;
@@ -418,13 +375,14 @@
     #ulSmList li{
       width: 200px;
     }
+    #menuSmUser a{
+      width: 50px;
+      height: 50px;
+    }
     #menuSmUser i.material-icons{
       font-size: 40px;
-
-
+      line-height: 50px;
     }
-
-
-
   }
 </style>
+

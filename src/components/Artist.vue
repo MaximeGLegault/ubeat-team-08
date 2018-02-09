@@ -299,11 +299,11 @@
     text-transform: uppercase;
     font-size: 3rem;
     font-weight: bold;
-    margin: 20px 20px 0px 20px;
+    margin: 20px 20px 0 20px;
   }
   #bodyArtist p{
     font-size: 1rem;
-    margin: 0px 20px 10px 20px;
+    margin: 0 20px 10px 20px;
   }
 
   #artist{
@@ -317,7 +317,6 @@
   }
   .itunesLogo {
     height: 70px;
-    margin: ;
   }
   #listAlbums{
     margin: auto;
