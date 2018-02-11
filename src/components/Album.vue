@@ -138,6 +138,7 @@
     align-self: auto;
     margin: 0 auto 5vh;
     width: 60vw;
+    /*width: 80vw;*/ /*Suggestion à 80 vw*/
   }
 
   #song_list_table {
@@ -196,4 +197,31 @@
       width: auto;
     }
   }
+
+  /*Suggestion de media query, mais ça entre en conflit avec */
+  /*certain de tes media query actuel concerant l'image de la pochette et le texte*/
+  /*@media only screen and (min-device-width : 320px) and (max-device-width : 480px)*/
+  /*and (orientation: portrait) {*/
+    /*#song_list_table {*/
+      /*margin: 0 auto auto 0;*/
+      /*font-size: 2rem;*/
+    /*}*/
+
+    /*#album_info {*/
+      /*flex-flow: column wrap;*/
+      /*margin-left: 16px;*/
+      /*width: 75%;*/
+      /*font-size: 1.6rem;*/
+    /*}*/
+
+    /*#title {*/
+      /*font-size: 4rem;*/
+      /*font-weight: bold;*/
+    /*}*/
+
+    /*#artist_name {*/
+      /*font-size: 3rem;*/
+      /*font-weight: bold;*/
+    /*}*/
+  /*}*/
 </style>
