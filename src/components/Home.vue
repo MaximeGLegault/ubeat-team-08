@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div class="container">
-      <h3>Welcome</h3>
-      <p>With UBeat you can listen to your favorite tracks.Create playlist and share it with your friends  </p>
+    <div class="container homeContainer">
+      <h3 class="titleHeader">Welcome</h3>
+      <p class="titleText">With UBeat you can listen to your favorite tracks.Create playlist and share it with your friends  </p>
       <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <!-- Indicators -->
         <ol class="carousel-indicators">
@@ -16,27 +16,27 @@
         <!-- Wrapper for slides -->
         <div class="carousel-inner">
           <div class="item active">
-            <a class=" btn accent-3 bouton">Rap<i class="material-icons">play_arrows</i></a>
+            <a class=" btn accent-3 boutonCarousel">Rap<i class="material-icons">play_arrows</i></a>
             <img src="http://dailychiefers.com/wp-content/media/2015/07/drake-to-the-stage-HD-Wallpaper.jpg" alt="Rap" style="width:100%;">
 
           </div>
 
           <div class="item">
-            <a class=" btn  accent-3 bouton">Rock<i class="material-icons">play_arrows</i></a>
+            <a class=" btn  accent-3 boutonCarousel">Rock<i class="material-icons">play_arrows</i></a>
             <img src="http://www.musiclipse.com/wp-content/uploads/2014/06/amazing_ac_dc_brian_johnson_and_angus_young_wallpaper.jpg" alt="Rock" style="width:100%;">
           </div>
 
           <div class="item">
-            <a class=" btn  accent-3 bouton">Classical<i class="material-icons">play_arrows</i></a>
+            <a class=" btn  accent-3 boutonCarousel">Classical<i class="material-icons">play_arrows</i></a>
             <img src="https://wwwcmuseorg-lvzm5mr0z.stackpathdns.com/wp-content/uploads/2017/04/introduce-classical-music-to-children.jpg" alt="Classical" style="width:100%;">
           </div>
 
           <div class="item">
-            <a class=" btn accent-3 bouton">Pop<i class="material-icons">play_arrows</i></a>
+            <a class=" btn accent-3 boutonCarousel">Pop<i class="material-icons">play_arrows</i></a>
             <img src="https://i.ytimg.com/vi/DsNK8iKEh00/maxresdefault.jpg" alt="Pop" style="width:100%;">
           </div>
           <div class="item">
-            <a class=" btn accent-3 bouton">Electro<i class="material-icons">play_arrows</i></a>
+            <a class=" btn accent-3 boutonCarousel">Electro<i class="material-icons">play_arrows</i></a>
             <img src="https://cdn01.masterstudies.com/element_db/52/5261_Electronics_Music_Production_pic_1.jpg" alt="electro" style="width:100%;">
           </div>
         </div>
@@ -57,23 +57,15 @@
 </template>
 
 <style>
-  *
-  {
-    box-sizing: border-box;
-  }
-  /***/
-  /*{*/
-  /*box-sizing: border-box;*/
-  /*}*/
-  .container
+  .homeContainer
   {
     position: relative;
     z-index: 0;
   }
- .bouton
+ .boutonCarousel
   {
     position: absolute;
-    top: 50%;
+    top: 75%;
     left: 50%;
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
@@ -84,58 +76,31 @@
     border-radius: 100px;
     text-align: center;
   }
- .bouton:hover{
+ .boutonCarousel:hover{
    background-color:#651fff  ;
  }
 
-  h3, p{
+  .titleHeader, .titleText{
     text-align: center;
   }
-  #link{
-    color: white;
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
-    margin-top: 50px;
-  }
-  #link a{
-    width: 150px;
-    display: flex;
-    justify-content:center;
-    padding: 0 5px;
-    align-items: center;
-    color: white;
-    font-size: 20px;
-  }
-  #link li{
-    padding-top: 10px;
-  }
-  #link li:hover a{
-    color: #651fff;
-  }
-  #link li:hover i{
-    color: #651fff;
-  }
-  #link i{
-    padding-left: 5px;
-  }
+
   @media only screen and (max-width: 1100px)
   {
-    .container
+    .homeContainer
     {
 
     }
   }
   @media only screen and (max-width: 798px)
   {
-    .container
+    .homeContainer
     {
 
     }
   }
   @media only screen and (min-device-width : 320px) and (max-device-width : 480px)
   {
-    .container
+    .homeContainer
     {
       margin: 400px 100px;
     }
