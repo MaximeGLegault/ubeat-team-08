@@ -327,6 +327,10 @@
   #menuSmDropDown {
     display: none;
   }
+  /*le menu mobile portrait est effacé en tout temps sauf quand le media query l'active*/
+  #menuSm {
+    display: none;
+  }
 
   /* MEDIA SCREEN */
   @media screen and (max-width: 1100px){
@@ -352,6 +356,10 @@
     }
     #menu{
       display: none;
+    }
+    /*Ici le media query va activer le div du menu pour mobile en mode portrait*/
+    #menuSm {
+      display: block;
     }
     #menuSmBtn a{
       height: 80px;
