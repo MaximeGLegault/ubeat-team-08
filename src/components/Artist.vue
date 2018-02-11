@@ -313,9 +313,6 @@
     margin: 0 0 0 0;
     max-height: 70px;
   }
-  .itunesLogo {
-    height: 70px;
-  }
   #listAlbums{
     margin: auto;
     width: 90vw;
