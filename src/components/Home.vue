@@ -57,14 +57,12 @@
 </template>
 
 <style>
-  *
-  {
-    box-sizing: border-box;
-  }
-  /***/
+  /***/ /* READ THIS, WHEN YOU USE THOSE KIND OF CSS SELECTOR, EVERY OTHER VUE GET CHANGED BY THIS, IT HAS SIDE EFFECT
+  ON MY WORK IN ALBUM.VUE           DO NOT PUT THIS BACK*/
   /*{*/
-  /*box-sizing: border-box;*/
+    /*box-sizing: border-box;*/
   /*}*/
+
   .container
   {
     position: relative;
@@ -88,9 +86,12 @@
    background-color:#651fff  ;
  }
 
-  h3, p{
-    text-align: center;
-  }
+  /***/ /* READ THIS, WHEN YOU USE THOSE KIND OF CSS SELECTOR, EVERY OTHER VUE GET CHANGED BY THIS, IT HAS SIDE EFFECT
+  ON MY WORK IN ALBUM.VUE           DO NOT PUT THIS BACK*/
+  /*h3, p{*/
+    /*text-align: center;*/
+  /*}*/
+  
   #link{
     color: white;
     display: flex;
