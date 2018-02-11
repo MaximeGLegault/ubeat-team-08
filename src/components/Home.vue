@@ -57,10 +57,6 @@
 </template>
 
 <style>
-  /***/
-  /*{*/
-  /*box-sizing: border-box;*/
-  /*}*/
   .homeContainer
   {
     position: relative;

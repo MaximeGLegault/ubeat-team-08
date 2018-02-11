@@ -110,6 +110,7 @@
   #album_info {
     flex-flow: column wrap;
     margin-left: 16px;
+    width: 75%;
     font-size: 1.25rem;
   }
 
