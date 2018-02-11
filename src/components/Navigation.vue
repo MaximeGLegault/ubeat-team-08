@@ -42,10 +42,11 @@
               </ul>
               <h6 id="userName">user_name</h6>
             </div>
-            <div id="menuSearch">
-              <label id="searchIcon" class="label-icon" for="search"><i class="material-icons iconSearch">search</i></label>
-              <input id="search" class="inputSearch"  type="search" >
-              <div class="indicator indigo darken-4" style="z-index:1"></div>
+            <div id="menuSearch" class="menuSmSearch">
+              <form>
+                <input id="search" type="text" placeholder="Search...">
+                <a><i class="material-icons">search</i></a>
+              </form>
             </div>
           </div>
         </div>
@@ -68,7 +69,7 @@
             </ul>
           </div>
           <div id="menuSmUserSearch">
-            <div id="menuSmSearch">
+            <div class="menuSmSearch">
               <form>
                 <input type="text" placeholder="Search...">
                 <a><i class="material-icons">search</i></a>
@@ -152,12 +153,16 @@
     justify-content:center;
     padding: 0 5px;
     align-items: center;
+    font-size: 20px;
   }
   #menuNavLg li:hover a{
     color: #651fff;
   }
   #menuNavLg li:hover i{
     color: #651fff;
+  }
+  #menuNavLg i{
+    padding-left: 5px;
   }
   #menuRight{
     display: flex;
@@ -167,12 +172,15 @@
     display: flex;
     align-items: center;
     width: 250px;
-    border: solid 1px;
-    border-radius: 10px;
     height: 40px;
     padding: 0 10px;
-
     margin-right: 20px;
+  }
+  #menuSearch i{
+    line-height: 45px;
+  }
+  #menuSearch i:hover{
+    color: #651fff;
   }
   #menuSearch:hover{
     border-color: #651fff;
@@ -181,6 +189,7 @@
     height: 30px;
     align-self: center;
     margin-top: 15px;
+    padding-top: 5px;
   }
   #search:focus{
     border-bottom: 1px solid #fff;
@@ -274,6 +283,7 @@
   justify-content: center;
   flex-direction: column;
   }
+
   #menuSmUser{
     display: flex;
     align-items: right;
@@ -291,7 +301,7 @@
     right: 0;
     bottom: 0;
   }
-  #menuSmSearch{
+  .menuSmSearch{
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -299,13 +309,13 @@
     width: 100%;
     padding: 0 0 55px 15px;
   }
-  #menuSmSearch form{
+  .menuSmSearch form{
     display: flex;
   }
-  #menuSmSearch form input{
+  .menuSmSearch form input{
     width: 270px;
   }
-  #menuSmSearch form input:focus{
+  .menuSmSearch form input:focus{
     border-bottom: 1px solid #fff;
     -webkit-box-shadow: 0 1px 0 0 #fff;
     -moz-box-shadow: 0 1px 0 0 #fff;
@@ -366,9 +376,6 @@
     #ulSmList{
       margin: 20px 0;
     }
-    #menuSmSearch{
-      margin: 30px 0;
-    }
     #menuSmSearch form input{
       font-size: 30px;
     }
@@ -382,6 +389,12 @@
     #menuSmUser i.material-icons{
       font-size: 40px;
       line-height: 50px;
+    }
+    .menuSmSearch input[type=text]:not(.browser-default){
+      font-size: 30px;
+    }
+    nav i.material-icons{
+      font-size: 38px;
     }
   }
 </style>
