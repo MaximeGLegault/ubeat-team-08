@@ -110,7 +110,7 @@
   #album_info {
     flex-flow: column wrap;
     margin-left: 16px;
-    width: 75%;
+    width: 60%;
     font-size: 1.25rem;
   }
 
@@ -127,18 +127,15 @@
     align-self: auto;
     display: flex;
     flex-flow: row wrap;
-    width: 75vw;
-    margin-right: 15vw;
-    margin-top: 5vh;
-    margin-left: 15vw;
+    horiz-align: center;
+    margin: 5vh 10% 0;
   }
 
   #song_list {
     align-content: center;
     align-self: auto;
     margin: 0 auto 5vh;
-    width: 60vw;
-    /*width: 80vw;*/ /*Suggestion à 80 vw*/
+    width: 80vw;
   }
 
   #song_list_table {
@@ -149,8 +146,7 @@
   .song_name_column {
     text-align: left;
   }
-
-
+  
   #song_list_table th:not(.song_name_column){
     text-align: center;
   }
@@ -167,18 +163,16 @@
     width: 80px;
   }
 
-
-  tr:nth-child(even) {
+  #song_list_table tr:nth-child(even) {
     background-color: #1e1e1e;
   }
 
-  @media screen and (max-width : 1135px) {
+  @media screen and (max-width : 1100px) {
     #album_card{
       margin: 5vh auto 0;
       display: flex;
       flex-flow: column wrap;
       width: 75%;
-      /*margin-top: 5vh;*/
     }
 
     #album_cover {
@@ -198,30 +192,27 @@
     }
   }
 
-  /*Suggestion de media query, mais ça entre en conflit avec */
-  /*certain de tes media query actuel concerant l'image de la pochette et le texte*/
-  /*@media only screen and (min-device-width : 320px) and (max-device-width : 480px)*/
-  /*and (orientation: portrait) {*/
-    /*#song_list_table {*/
-      /*margin: 0 auto auto 0;*/
-      /*font-size: 2rem;*/
-    /*}*/
+  @media only screen and (min-device-width : 320px) and (max-device-width : 480px)
+  and (orientation: portrait) {
+    #song_list_table {
+      margin: 0 auto auto 0;
+      font-size: 2rem;
+    }
 
-    /*#album_info {*/
-      /*flex-flow: column wrap;*/
-      /*margin-left: 16px;*/
-      /*width: 75%;*/
-      /*font-size: 1.6rem;*/
-    /*}*/
+    #album_info {
+      flex-flow: column wrap;
+      width: 75%;
+      font-size: 1.6rem;
+    }
 
-    /*#title {*/
-      /*font-size: 4rem;*/
-      /*font-weight: bold;*/
-    /*}*/
+    #title {
+      font-size: 4rem;
+      font-weight: bold;
+    }
 
-    /*#artist_name {*/
-      /*font-size: 3rem;*/
-      /*font-weight: bold;*/
-    /*}*/
-  /*}*/
+    #artist_name {
+      font-size: 3rem;
+      font-weight: bold;
+    }
+  }
 </style>
