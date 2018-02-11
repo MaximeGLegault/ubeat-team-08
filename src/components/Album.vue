@@ -7,7 +7,7 @@
         <div id="album_info">
           <h1 id="title">Master of Puppets (Remastered)</h1>
           <p id="artist_name">Metallica</p>
-          <p id="album_description" style="overflow: hidden; width: 50vw;">
+          <p id="album_description">
             Master of Puppets is the third studio album by American heavy metal band Metallica. It was released on March 3, 1986 by Elektra Records. Recorded at the Sweet Silence Studios with producer Flemming Rasmussen, it was the first Metallica album released on a major record label. Master of Puppets was the band's last album to feature bassist Cliff Burton, who died in a bus accident in Sweden during the album's promotional tour. The album peaked at number 29 on the Billboard 200 and became the first thrash metal album to be certified platinum. It was certified 6× platinum by the Recording Industry Association of America in 2003 for shipping six million copies in the United States. The album was eventually certified 6× platinum by Music Canada and gold by the British Phonographic Industry.
 
             Master of Puppets was released to critical acclaim and has been included in several publications' best album lists. Its driving, virtuosic music, and angry political lyrics drew praise from critics outside the metal community. The album is considered the band's strongest effort of the period and is one of the most influential heavy metal albums.
@@ -98,21 +98,23 @@
 
 <style>
   #title {
-    font-size: 2rem;
+    font-size: 3rem;
     font-weight: bold;
   }
 
   #artist_name {
-    font-size: 1rem;
+    font-size: 2rem;
     font-weight: bold;
   }
 
   #album_info {
     flex-flow: column wrap;
     margin-left: 16px;
+    font-size: 1.25rem;
   }
 
   #album_description {
+    flex-shrink: 1;
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 3; /*scary magic*/
@@ -139,6 +141,7 @@
 
   #song_list_table {
     margin: 0 auto auto 0;
+    font-size: 1.5rem;
    }
 
   .song_name_column {
@@ -172,13 +175,13 @@
       margin: 5vh auto 0;
       display: flex;
       flex-flow: column wrap;
-      width: 50%;
+      width: 75%;
       /*margin-top: 5vh;*/
     }
 
     #album_cover {
       display: block;
-      width: 50%;
+      horiz-align: center;
       margin: auto;
     }
 
@@ -186,6 +189,10 @@
       margin:auto;
       justify-content: center;
       text-align: center;
+    }
+
+    #album_description {
+      width: auto;
     }
   }
 </style>
