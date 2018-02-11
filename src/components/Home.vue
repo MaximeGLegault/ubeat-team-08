@@ -60,9 +60,12 @@
 </template>
 
 <style>
+<<<<<<< HEAD
   /*{*/
   /*box-sizing: border-box;*/
   /*}*/
+=======
+>>>>>>> 240fedd3827963b890faf242afccbe639d624121
   .homeContainer
   {
     position: relative;
