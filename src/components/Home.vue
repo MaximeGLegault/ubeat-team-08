@@ -65,18 +65,18 @@
 </template>
 
 <style>
-  *
-  {
-    box-sizing: border-box;
-  }
+  /***/
+  /*{*/
+    /*box-sizing: border-box;*/
+  /*}*/
   .container
   {
     position: relative;
     z-index: 0;
   }
-  h2, p{
-    text-align: center;
-  }
+  /*h2, p{*/
+    /*text-align: center;*/
+  /*}*/
   #link{
     color: white;
     display: flex;
