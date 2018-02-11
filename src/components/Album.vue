@@ -1,4 +1,4 @@
-<template>
+ <template>
     <div>
       <div id="album_card">
         <div id="album_cover">
