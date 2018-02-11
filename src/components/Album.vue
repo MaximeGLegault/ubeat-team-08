@@ -8,11 +8,11 @@
           <h1 id="title">Master of Puppets (Remastered)</h1>
           <p id="artist_name">Metallica</p>
           <p id="album_description" style="overflow: hidden; width: 50vw;">
-            Master of Puppets, sorti le 3 mars 1986, est le troisième album studio du groupe de Thrash metal Metallica. C'est le dernier album du groupe avec le bassiste Cliff Burton, ce dernier décède en effet dans un accident de bus en Suède lors de la tournée de promotion de l'album. Master of Puppets est classé 24ᵉ place sur le Billboard 200 charts. C'est le premier album de thrash metal à être certifié disque de platine, et le 9 juin 2003, il a été certifié six fois disque de platine par le Recording Industry Association of America, et s'est vendu à plus de six millions de copies aux États-Unis.
+            Master of Puppets is the third studio album by American heavy metal band Metallica. It was released on March 3, 1986 by Elektra Records. Recorded at the Sweet Silence Studios with producer Flemming Rasmussen, it was the first Metallica album released on a major record label. Master of Puppets was the band's last album to feature bassist Cliff Burton, who died in a bus accident in Sweden during the album's promotional tour. The album peaked at number 29 on the Billboard 200 and became the first thrash metal album to be certified platinum. It was certified 6× platinum by the Recording Industry Association of America in 2003 for shipping six million copies in the United States. The album was eventually certified 6× platinum by Music Canada and gold by the British Phonographic Industry.
 
-            Master of Puppets a reçu des critiques dithyrambiques par la critique musicale et a été inclus dans les meilleures listes d'albums par certains magazines. Sa puissance, sa virtuosité et ses paroles politiques et colériques ont attiré les éloges de la critique en dehors de la communauté metal. L'album est largement considéré comme le plus gros effort du groupe à l'époque, et devenu l'un des albums de thrash metal les plus influents de tous les temps. Beaucoup de groupes de tous les genres de heavy metal ont repris des chansons de l'album au fil des années, y compris sur les albums-hommage.
+            Master of Puppets was released to critical acclaim and has been included in several publications' best album lists. Its driving, virtuosic music, and angry political lyrics drew praise from critics outside the metal community. The album is considered the band's strongest effort of the period and is one of the most influential heavy metal albums.
           </p>
-          <p>1986 • 8 chansons • 54:44 • Rock</p>
+          <p>1986 • 8 songs • 54:44 • Rock</p>
           <a href="https://geo.itunes.apple.com/ca/album/master-of-puppets-remastered/1275819392?i=1275819878&mt=1&app=music&itscg=30200&itsct=afftoolset_1" style="display:inline-block;overflow:hidden;background:url(https://linkmaker.itunes.apple.com/assets/shared/badges/en-us/music-lrg.svg) no-repeat;width:157px;height:45px;background-size:contain;"></a>
         </div>
       </div>
@@ -22,7 +22,7 @@
             <tr>
               <th class="play_btn_column"></th>
               <th>#</th>
-              <th class="song_name_column">NOM</th>
+              <th class="song_name_column">NAME</th>
               <th>Duration</th>
             </tr>
           </thead>
