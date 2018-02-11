@@ -13,8 +13,7 @@
             Master of Puppets was released to critical acclaim and has been included in several publications' best album lists. Its driving, virtuosic music, and angry political lyrics drew praise from critics outside the metal community. The album is considered the band's strongest effort of the period and is one of the most influential heavy metal albums.
           </p>
           <p>1986 • 8 songs • 54:44 • Rock</p>
-          <a href="https://geo.itunes.apple.com/ca/album/master-of-puppets-remastered/1275819392?i=1275819878&mt=1&app=music&itscg=30200&itsct=afftoolset_1" style="display:inline-block;overflow:hidden;background:url(https://linkmaker.itunes.apple.com/assets/shared/badges/en-us/music-lrg.svg) no-repeat;width:157px;height:45px;background-size:contain;"></a>
-        </div>
+          <a href="https://geo.itunes.apple.com/ca/album/master-of-puppets-remastered/1275600311?mt=1&app=music&itscg=30200&itsct=afftoolset_1" style="display:inline-block;overflow:hidden;background:url(https://linkmaker.itunes.apple.com/assets/shared/badges/en-us/music-lrg.svg) no-repeat;width:157px;height:45px;background-size:contain;"></a>        </div>
       </div>
       <div id="song_list">
         <table id="song_list_table">
