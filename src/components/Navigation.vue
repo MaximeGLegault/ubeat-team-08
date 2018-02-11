@@ -89,6 +89,12 @@
         </div>
         <div id="menuSmBtn"><a id="btnDropdown" class="btn btn-floating btn-large pulse deep-purple accent-3 "><i class="material-icons">fingerprint</i></a></div>
       </div>
+      <div class="fixed-action-btn">
+        <a id="playlistLink" class="btn-floating btn-large deep-purple accent-3 waves-effect waves-light">
+          <i class="large material-icons">playlist_play</i>
+        </a>
+      </div>
+
     </nav>
 </template>
 <style>
@@ -220,6 +226,13 @@
   #menuUser i{
     line-height: unset;
   }
+  #playlistLink{
+    margin-right: 20px;
+    margin-bottom: 20px;
+  }
+  #playlistLink i{
+    font-size: 3em;
+  }
   /* MEDIUM MENU */
   #menuNavMd ul{
     display: flex;
@@ -347,6 +360,9 @@
     }
     #menu{
       display: none;
+    }
+    #menuSm{
+      display: unset;
     }
   }
   @media only screen and (min-device-width : 320px) and (max-device-width : 480px)
