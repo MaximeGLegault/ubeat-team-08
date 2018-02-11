@@ -45,7 +45,6 @@
             <div id="menuSearch">
               <label id="searchIcon" class="label-icon" for="search"><i class="material-icons iconSearch">search</i></label>
               <input id="search" class="inputSearch"  type="search" >
-              <i class="material-icons">close</i>
               <div class="indicator indigo darken-4" style="z-index:1"></div>
             </div>
           </div>
@@ -102,6 +101,13 @@
   nav{
     background-color: black;
   }
+  a:hover{
+    text-decoration: none;
+  }
+  a:focus{
+    text-decoration: none;
+    color: white;
+  }
   /* MENU */
   #menu{
     position: fixed;
@@ -130,6 +136,7 @@
     font-family: 'Black Ops One', cursive;
     margin-left: 20px;
     color: #651fff;
+    margin-top: 10px;
   }
   .title p{
     font-size: 45px;
@@ -164,7 +171,7 @@
     border-radius: 10px;
     height: 40px;
     padding: 0 10px;
-    margin-top: 8px;
+
     margin-right: 20px;
   }
   #menuSearch:hover{
@@ -236,6 +243,7 @@
   }
   #menuSm{
     position: fixed;
+    z-index: 10;
     width: 100%;
     display: flex;
     flex-direction: column;

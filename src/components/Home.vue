@@ -47,6 +47,19 @@
           <span class="sr-only">Next</span>
         </a>
       </div>
+      <div id="link">
+        <ul>
+          <li>
+            <router-link to="/">Home <i class="material-icons iconSearch">home</i></router-link>
+          </li>
+          <li>
+            <router-link to="/album">Album <i class="material-icons iconSearch">album</i></router-link>
+          </li>
+          <li>
+            <router-link to="/artist">Artist <i class="material-icons iconSearch">group</i></router-link>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
@@ -58,10 +71,39 @@
   }
   .container
   {
-    
+    position: relative;
+    z-index: 0;
   }
   h2, p{
     text-align: center;
+  }
+  #link{
+    color: white;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    margin-top: 50px;
+  }
+  #link a{
+    width: 150px;
+    display: flex;
+    justify-content:center;
+    padding: 0 5px;
+    align-items: center;
+    color: white;
+    font-size: 20px;
+  }
+  #link li{
+    padding-top: 10px;
+  }
+  #link li:hover a{
+    color: #651fff;
+  }
+  #link li:hover i{
+    color: #651fff;
+  }
+  #link i{
+    padding-left: 5px;
   }
   @media only screen and (max-width: 1100px)
   {
