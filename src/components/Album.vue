@@ -17,62 +17,78 @@
         </div>
       </div>
       <div id="song_list">
-        <table style="margin: 0 auto auto 0">
+        <table id="song_list_table">
           <thead>
             <tr>
-              <th></th>
+              <th class="play_btn_column"></th>
               <th>#</th>
-              <th>NOM</th>
+              <th class="song_name_column">NOM</th>
               <th>Duration</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>PLAYICON</td>
+              <td class="play_btn_column">
+                <a class=" btn deep-purple accent-3"><i class="material-icons md-48">play_arrow</i></a>
+              </td>
               <td>1</td>
-              <td>Battery (Remastered)</td>
+              <td class="song_name_column">Battery (Remastered)</td>
               <td>5:12</td>
             </tr>
             <tr>
-              <td>PLAYICON</td>
+              <td class="play_btn_column">
+                <a class=" btn deep-purple accent-3"><i class="material-icons md-48">play_arrow</i></a>
+              </td>
               <td>2</td>
-              <td>Master of Puppets (Remastered)</td>
+              <td class="song_name_column">Master of Puppets (Remastered)</td>
               <td>8:35</td>
             </tr>
             <tr>
-              <td>PLAYICON</td>
+              <td class="play_btn_column">
+                <a class=" btn deep-purple accent-3"><i class="material-icons md-48">play_arrow</i></a>
+              </td>
               <td>3</td>
-              <td>The Thing That Should Not Be (Remastered)</td>
+              <td class="song_name_column">The Thing That Should Not Be (Remastered)</td>
               <td>6:36</td>
             </tr>
             <tr>
-              <td>PLAYICON</td>
+              <td class="play_btn_column">
+                <a class=" btn deep-purple accent-3"><i class="material-icons md-48">play_arrow</i></a>
+              </td>
               <td>4</td>
-              <td>Welcome Home (Sanitarium) (Remastered)</td>
+              <td class="song_name_column">Welcome Home (Sanitarium) (Remastered)</td>
               <td>6:27</td>
             </tr>
             <tr>
-              <td>PLAYICON</td>
+              <td class="play_btn_column">
+                <a class=" btn deep-purple accent-3"><i class="material-icons md-48">play_arrow</i></a>
+              </td>
               <td>5</td>
-              <td>Disposable Heroes (Remastered)</td>
+              <td class="song_name_column">Disposable Heroes (Remastered)</td>
               <td>8:16</td>
             </tr>
             <tr>
-              <td>PLAYICON</td>
+              <td class="play_btn_column">
+                <a class=" btn deep-purple accent-3"><i class="material-icons md-48">play_arrow</i></a>
+              </td>
               <td>6</td>
-              <td>Leper Messiah (Remastered)</td>
+              <td class="song_name_column">Leper Messiah (Remastered)</td>
               <td>5:39</td>
             </tr>
             <tr>
-              <td>PLAYICON</td>
+              <td class="play_btn_column">
+                <a class=" btn deep-purple accent-3"><i class="material-icons md-48">play_arrow</i></a>
+              </td>
               <td>7</td>
-              <td>Orion (Remastered)</td>
+              <td class="song_name_column">Orion (Remastered)</td>
               <td>8:27</td>
             </tr>
             <tr>
-              <td>PLAYICON</td>
+              <td class="play_btn_column">
+                <a class=" btn deep-purple accent-3"><i class="material-icons md-48">play_arrow</i></a>
+              </td>
               <td>8</td>
-              <td>Damage, Inc. (Remastered)</td>
+              <td class="song_name_column">Damage, Inc. (Remastered)</td>
               <td>5:32</td>
             </tr>
           </tbody>
@@ -122,6 +138,32 @@
     width: 60vw;
   }
 
+  #song_list_table {
+    margin: 0 auto auto 0;
+   }
+
+  .song_name_column {
+    text-align: left;
+  }
+
+
+  #song_list_table th:not(.song_name_column){
+    text-align: center;
+  }
+
+  #song_list_table td:not(.song_name_column){
+    text-align: center;
+  }
+
+  #song_list .btn{
+    padding: 0 1rem;
+  }
+
+  .play_btn_column {
+    width: 80px;
+  }
+
+
   tr:nth-child(even) {
     background-color: #1e1e1e;
   }
@@ -136,6 +178,7 @@
     }
 
     #album_cover {
+      display: block;
       width: 50%;
       margin: auto;
     }
