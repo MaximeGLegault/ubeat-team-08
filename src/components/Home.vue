@@ -61,6 +61,10 @@
   {
     box-sizing: border-box;
   }
+  /***/
+  /*{*/
+  /*box-sizing: border-box;*/
+  /*}*/
   .container
   {
     position: relative;
