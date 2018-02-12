@@ -340,7 +340,6 @@
   #menuSmDropDown {
     display: none;
   }
-  /*le menu mobile portrait est effacé en tout temps sauf quand le media query l'active*/
   #menuSm {
     display: none;
   }
@@ -373,7 +372,6 @@
     #menu{
       display: none;
     }
-    /*Ici le media query va activer le div du menu pour mobile en mode portrait*/
     #menuSm {
       display: block;
     }
