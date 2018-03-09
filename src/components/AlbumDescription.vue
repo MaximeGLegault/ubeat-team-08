@@ -1,18 +1,13 @@
 <template>
   <div>
-    <div id="album_card">
-      <div id="album_cover">
-        <img :src="description.artworkUrl100">
-      </div>
-      <div id="album_info">
-        <h1 id="title">{{description.collectionName}}</h1>
-        <p id="artist_name">{{description.artistName}}</p>
-        <p id="album_description">
-          Apsem lidum,
-        </p>
-        <p>{{year}} • 8 songs • 54:44 • Rock</p>
-        <!--<a href="https://geo.itunes.apple.com/ca/album/master-of-puppets-remastered/1275600311?mt=1&app=music&itscg=30200&itsct=afftoolset_1" style="display:inline-block;overflow:hidden;background:url(https://linkmaker.itunes.apple.com/assets/shared/badges/en-us/music-lrg.svg) no-repeat;width:157px;height:45px;background-size:contain;"></a>-->
-      </div>
+    <div id="album_cover">
+      <img :src="artwork">
+    </div>
+    <div id="album_info">
+      <h1 id="title">{{description.collectionName}}</h1>
+      <p id="artist_name">{{description.artistName}}</p>
+      <p>{{year}} • {{description.trackCount}} songs • {{length}} • Rock</p>
+      <!--<a href="https://geo.itunes.apple.com/ca/album/master-of-puppets-remastered/1275600311?mt=1&app=music&itscg=30200&itsct=afftoolset_1" style="display:inline-block;overflow:hidden;background:url(https://linkmaker.itunes.apple.com/assets/shared/badges/en-us/music-lrg.svg) no-repeat;width:157px;height:45px;background-size:contain;"></a>-->
     </div>
   </div>
 </template>
@@ -24,6 +19,10 @@
         description: {
           type: Object,
           required: true,
+        },
+        albumLength: {
+          type: Number,
+          required: false,
         }
       },
       computed: {
@@ -33,6 +32,25 @@
             return date.getFullYear();
           }
           return '-';
+        },
+        artwork() {
+          if (this.description.artworkUrl100) {
+            const element = this.description.artworkUrl100.split('/');
+            element[element.length - 1] = element[element.length - 1].replace('100x100', '268x268');
+            return element.join('/');
+          }
+          return '';
+        },
+        length() {
+          if (this.albumLength) {
+            const time = new Date(this.albumLength);
+            const hours = time.getUTCHours();
+            const minutes = time.getUTCMinutes();
+            const seconds = time.getUTCSeconds();
+            const string = `${hours ? `${hours}:` : ''}${hours || minutes ? minutes : ''}:${seconds}`;
+            return string;
+          }
+          return '';
         }
       }
     };
