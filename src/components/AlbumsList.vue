@@ -17,7 +17,7 @@
     name: 'Artist',
     props: {
       albums: {
-        type: Object,
+        type: Array,
         required: true,
       }
     }

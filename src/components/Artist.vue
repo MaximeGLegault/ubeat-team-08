@@ -1,12 +1,9 @@
 <template>
 <div>
-  <div class="artist">
-    <h1>{{this.artist.artistName}}</h1>
-    <p>Genre : {{this.artist.primaryGenreName}}</p>
-    <div class="itunes">
-      <a :href="this.artist.artistLinkUrl"></a>
-    </div>
-  </div>
+  <artistDescription v-if="this.artist"
+          :key="this.artist.artistId"
+          :artist="this.artist"
+  />
   <albumsList v-if="this.albums"
               :key="this.albums.collectionId"
               :albums="this.albums"
@@ -17,14 +14,18 @@
 <script>
   import api from '@/lib/api';
   import AlbumsList from './AlbumsList';
+  import ArtistDescription from './ArtistDescription';
 
   export default {
     name: 'Artist',
-    components: { AlbumsList },
+    components: {
+      AlbumsList,
+      ArtistDescription
+    },
     data() {
       return {
         artist: {},
-        albums: {}
+        albums: []
       };
     },
 
@@ -44,39 +45,5 @@
 </script>
 
 <style scoped>
-  h1{
-    text-transform: uppercase;
-    font-size: 3rem;
-    font-weight: bold;
-    margin: 20px 20px 0 20px;
-  }
-  p{
-    font-size: 1rem;
-    margin: 0 20px 10px 20px;
-  }
-  .artist{
-    text-align: center;
-    margin: 20px 20px 10px 20px;
 
-  }
-  .itunes {
-    margin: 0 0 0 0;
-    max-height: 70px;
-    display: inline-block;
-    overflow: hidden;
-    background: url(https://linkmaker.itunes.apple.com/assets/shared/badges/en-us/music-lrg.svg) no-repeat;
-    width: 157px;
-    height: 45px;
-    background-size: contain;
-  }
-
-  @media only screen and (min-device-width : 320px) and (max-device-width : 480px)
-  and (orientation: portrait){
-    h1 {
-      font-size: 4rem;
-    }
-    p {
-      font-size: 1.6rem;
-    }
-  }
 </style>

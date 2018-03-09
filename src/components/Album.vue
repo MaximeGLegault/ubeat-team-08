@@ -1,8 +1,11 @@
  <template>
-   <albumDescription v-if="this.albumDescription"
-                     :key="this.albumDescription.collectionId"
-                     :description="this.albumDescription"
-                     />
+   <div id="album_card">
+     <albumDescription v-if="this.albumDescription"
+                       :key="this.albumDescription.collectionId"
+                       :description="this.albumDescription"
+                       :albumLength="50000000"
+                       />
+   </div>
 </template>
 
 <script>
@@ -55,14 +58,14 @@
     /*-webkit-box-orient: vertical;*/
   /*}*/
 
-  /*#album_card {*/
-    /*align-content: center;*/
-    /*align-self: auto;*/
-    /*display: flex;*/
-    /*flex-flow: row wrap;*/
-    /*horiz-align: center;*/
-    /*margin: 5vh 10% 0;*/
-  /*}*/
+  #album_card {
+    align-content: center;
+    align-self: auto;
+    display: flex;
+    flex-flow: row wrap;
+    horiz-align: center;
+    margin: 5vh 10% 0;
+  }
 
   /*#song_list {*/
     /*align-content: center;*/
