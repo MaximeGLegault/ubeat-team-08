@@ -1,7 +1,6 @@
 // todo remove the unsecure and add credentials after TP2!
 const baseUrl = 'https://ubeat.herokuapp.com/unsecure/';
 
-
 export default {
   getTracksOfAlbum(collectionId) {
     return fetch(`${baseUrl}albums/${collectionId}/tracks`)
