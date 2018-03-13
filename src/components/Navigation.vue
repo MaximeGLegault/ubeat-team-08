@@ -109,6 +109,7 @@
   }
   nav{
     background-color: black;
+    height: 60px;
   }
   a:hover{
     text-decoration: none;

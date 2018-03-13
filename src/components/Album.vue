@@ -15,79 +15,79 @@
           <p>1986 • 8 songs • 54:44 • Rock</p>
           <a href="https://geo.itunes.apple.com/ca/album/master-of-puppets-remastered/1275600311?mt=1&app=music&itscg=30200&itsct=afftoolset_1" style="display:inline-block;overflow:hidden;background:url(https://linkmaker.itunes.apple.com/assets/shared/badges/en-us/music-lrg.svg) no-repeat;width:157px;height:45px;background-size:contain;"></a>        </div>
       </div>
-      <div id="song_list">
-        <table id="song_list_table">
+      <div id="trackList">
+        <table id="trackListTable">
           <thead>
             <tr>
-              <th class="play_btn_column"></th>
+              <th class="playBtn"></th>
               <th>#</th>
-              <th class="song_name_column">NAME</th>
+              <th class="albumNameCol">NAME</th>
               <th>Duration</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td class="play_btn_column">
+              <td class="playBtn">
                 <a class=" btn deep-purple accent-3"><i class="material-icons md-48">play_arrow</i></a>
               </td>
               <td>1</td>
-              <td class="song_name_column">Battery (Remastered)</td>
+              <td class="albumNameCol">Battery (Remastered)</td>
               <td>5:12</td>
             </tr>
             <tr>
-              <td class="play_btn_column">
+              <td class="playBtn">
                 <a class=" btn deep-purple accent-3"><i class="material-icons md-48">play_arrow</i></a>
               </td>
               <td>2</td>
-              <td class="song_name_column">Master of Puppets (Remastered)</td>
+              <td class="albumNameCol">Master of Puppets (Remastered)</td>
               <td>8:35</td>
             </tr>
             <tr>
-              <td class="play_btn_column">
+              <td class="playBtn">
                 <a class=" btn deep-purple accent-3"><i class="material-icons md-48">play_arrow</i></a>
               </td>
               <td>3</td>
-              <td class="song_name_column">The Thing That Should Not Be (Remastered)</td>
+              <td class="albumNameCol">The Thing That Should Not Be (Remastered)</td>
               <td>6:36</td>
             </tr>
             <tr>
-              <td class="play_btn_column">
+              <td class="playBtn">
                 <a class=" btn deep-purple accent-3"><i class="material-icons md-48">play_arrow</i></a>
               </td>
               <td>4</td>
-              <td class="song_name_column">Welcome Home (Sanitarium) (Remastered)</td>
+              <td class="albumNameCol">Welcome Home (Sanitarium) (Remastered)</td>
               <td>6:27</td>
             </tr>
             <tr>
-              <td class="play_btn_column">
+              <td class="playBtn">
                 <a class=" btn deep-purple accent-3"><i class="material-icons md-48">play_arrow</i></a>
               </td>
               <td>5</td>
-              <td class="song_name_column">Disposable Heroes (Remastered)</td>
+              <td class="albumNameCol">Disposable Heroes (Remastered)</td>
               <td>8:16</td>
             </tr>
             <tr>
-              <td class="play_btn_column">
+              <td class="playBtn">
                 <a class=" btn deep-purple accent-3"><i class="material-icons md-48">play_arrow</i></a>
               </td>
               <td>6</td>
-              <td class="song_name_column">Leper Messiah (Remastered)</td>
+              <td class="albumNameCol">Leper Messiah (Remastered)</td>
               <td>5:39</td>
             </tr>
             <tr>
-              <td class="play_btn_column">
+              <td class="playBtn">
                 <a class=" btn deep-purple accent-3"><i class="material-icons md-48">play_arrow</i></a>
               </td>
               <td>7</td>
-              <td class="song_name_column">Orion (Remastered)</td>
+              <td class="albumNameCol">Orion (Remastered)</td>
               <td>8:27</td>
             </tr>
             <tr>
-              <td class="play_btn_column">
+              <td class="playBtn">
                 <a class=" btn deep-purple accent-3"><i class="material-icons md-48">play_arrow</i></a>
               </td>
               <td>8</td>
-              <td class="song_name_column">Damage, Inc. (Remastered)</td>
+              <td class="albumNameCol">Damage, Inc. (Remastered)</td>
               <td>5:32</td>
             </tr>
           </tbody>
@@ -96,7 +96,7 @@
     </div>
 </template>
 
-<style>
+<style scoped>
   #title {
     font-size: 3rem;
     font-weight: bold;
@@ -131,39 +131,39 @@
     margin: 5vh 10% 0;
   }
 
-  #song_list {
+  #trackList {
     align-content: center;
     align-self: auto;
     margin: 0 auto 5vh;
     width: 80vw;
   }
 
-  #song_list_table {
+  #trackListTable {
     margin: 0 auto auto 0;
     font-size: 1.5rem;
    }
 
-  .song_name_column {
+  .albumNameCol {
     text-align: left;
   }
-  
-  #song_list_table th:not(.song_name_column){
+
+  #trackListTable th:not(.albumNameCol){
     text-align: center;
   }
 
-  #song_list_table td:not(.song_name_column){
+  #trackListTable td:not(.albumNameCol){
     text-align: center;
   }
 
-  #song_list .btn{
+  #trackList .btn{
     padding: 0 1rem;
   }
 
-  .play_btn_column {
+  .playBtn {
     width: 80px;
   }
 
-  #song_list_table tr:nth-child(even) {
+  #trackListTable tr:nth-child(even) {
     background-color: #1e1e1e;
   }
 
@@ -194,7 +194,7 @@
 
   @media only screen and (min-device-width : 320px) and (max-device-width : 480px)
   and (orientation: portrait) {
-    #song_list_table {
+    #trackListTable {
       margin: 0 auto auto 0;
       font-size: 2rem;
     }
