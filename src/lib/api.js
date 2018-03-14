@@ -18,5 +18,6 @@ export default {
     return fetch(`${baseUnsecureUrl}artists/${artistId}`) // TODO switch to baseUrl after TP2
       .then(value => value.json());
   }
+
 // other things
 };

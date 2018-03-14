@@ -13,47 +13,47 @@
 </template>
 
 <script>
-    export default {
-      name: 'albumDescription',
-      props: {
-        description: {
-          type: Object,
-          required: true,
-        },
-        albumLength: {
-          type: Number,
-          required: false,
-        }
+  import util from '@/lib/util';
+
+  export default {
+    name: 'albumDescription',
+    props: {
+      description: {
+        type: Object,
+        required: true,
       },
-      computed: {
-        year() {
-          if (this.description.releaseDate) {
-            const date = new Date(this.description.releaseDate);
-            return date.getFullYear();
-          }
-          return '-';
-        },
-        artwork() {
-          if (this.description.artworkUrl100) {
-            const element = this.description.artworkUrl100.split('/');
-            element[element.length - 1] = element[element.length - 1].replace('100x100', '268x268');
-            return element.join('/');
-          }
-          return '';
-        },
-        length() {
-          if (this.albumLength) {
-            const time = new Date(this.albumLength);
-            const hours = time.getUTCHours();
-            const minutes = time.getUTCMinutes();
-            const seconds = time.getUTCSeconds();
-            const string = `${hours ? `${hours}:` : ''}${hours || minutes ? minutes : ''}:${seconds}`;
-            return string;
-          }
-          return '';
-        }
+      albumLength: {
+        type: Number,
+        required: false,
       }
-    };
+    },
+    computed: {
+      year() {
+        if (this.description.releaseDate) {
+          const date = new Date(this.description.releaseDate);
+          return date.getFullYear();
+        }
+        return '-';
+      },
+      artwork() {
+        if (this.description.artworkUrl100) {
+          return util.getUrlOfBiggerAlbumArtwork(this.description.artworkUrl100, 268);
+        }
+        return '';
+      },
+      length() {
+        if (this.albumLength) {
+          const time = new Date(this.albumLength);
+          const hours = time.getUTCHours();
+          const minutes = time.getUTCMinutes();
+          const seconds = time.getUTCSeconds();
+          const string = `${hours ? `${hours}:` : ''}${hours || minutes ? minutes : ''}:${seconds}`;
+          return string;
+        }
+        return '';
+      }
+    }
+  };
 </script>
 
 <style scoped>

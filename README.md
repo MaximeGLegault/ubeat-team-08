@@ -32,6 +32,12 @@ npm start
 Faites vos modifications aux fichiers `Album.vue`, `Artists.vue`, `Home.vue` et `Navigation.vue`. Ajoutez votre HTML dans la balise `<template>` et votre CSS dans la balise `<style>` de chacun des components.
 
 ## Livrable 2-3
+énoncé de travail:
+https://github.com/GLO3102/UBeat/blob/master/Enonce.md
+
+grille de correction:
+https://docs.google.com/spreadsheets/d/1tAZorseSEgRE_G6VGlfba9N1hrv_egVkyU62bvNgHF8/edit?usp=sharing
+
 Libre à vous de modifier la structure des fichiers.
 
 
