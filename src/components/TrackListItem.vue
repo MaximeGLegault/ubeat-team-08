@@ -24,7 +24,7 @@
       duration() {
         return util.getLengthFromMilliseconds(this.track.trackTimeMillis);
       }
-    }
+    },
   };
 </script>
 

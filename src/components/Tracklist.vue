@@ -10,7 +10,8 @@
     </thead>
     <tbody v-if="tracks.length">
       <trackListItem v-for="track in tracks"
-                     :track="track"/>
+                     :track="track"
+                     :key="track.trackId"/>
     </tbody>
   </table>
 </template>
