@@ -10,11 +10,8 @@
     </thead>
     <tbody v-if="tracks.length">
       <trackListItem v-for="track in tracks"
-             :key="track.trackNumber"
-             :id="track.trackId"
-             :name="track.trackName"
-             :duration="track.trackTimeMillis"
-             :trackNumber="track.number"/>
+                     :track="track"
+                     :key="track.trackId"/>
     </tbody>
   </table>
 </template>
@@ -28,8 +25,11 @@
     component: {
       trackListItem,
     },
-    data: {
-      trackListItems: []
+    props: {
+      tracks: {
+        type: Array,
+        required: true
+      },
     },
   };
 </script>

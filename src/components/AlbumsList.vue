@@ -2,7 +2,10 @@
   <div class="listAlbums">
     <div class="album" v-for="album of albums">
       <div class="albumJacket">
-        <img :src="album.artworkUrl100"/>
+        <router-link :to="{ name : 'Album', params: { collectionId: album.collectionId }}"><img :src="artwork(album.artworkUrl100)"/></router-link>
+      </div>
+      <div class="albumJacketMobile">
+        <router-link :to="{ name : 'Album', params: { collectionId: album.collectionId }}"><img :src="artwork(album.artworkUrl100)"/></router-link>
       </div>
       <div class="albumTitle">
         <div class="diskTitle">{{album.collectionName}}</div>
@@ -13,12 +16,19 @@
 </template>
 
 <script>
+  import util from '@/lib/util';
+
   export default {
     name: 'Artist',
     props: {
       albums: {
         type: Array,
         required: true,
+      }
+    },
+    methods: {
+      artwork(artworkUrl) {
+        return util.getUrlOfBiggerAlbumArtwork(artworkUrl, 250);
       }
     }
   };
@@ -39,7 +49,7 @@
   }
   .album{
     margin: 20px 15px 15px 15px;
-    max-width: 200px;
+    max-width: 250px;
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
@@ -52,9 +62,12 @@
   }
   .albumJacket{
   }
+  .albumJacketMobile{
+    margin-right: 20px;
+    display: none;
+  }
   .albumTitle{
     margin: 0 auto;
-    width: 200px;
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
@@ -80,8 +93,8 @@
   }
   img {
     object-fit: contain;
-    width: 200px;
-    height: 200px;
+    width: 250px;
+    height: 250px;
   }
 
   @media only screen and (min-device-width : 320px) and (max-device-width : 480px)
@@ -89,7 +102,7 @@
     .listAlbums{
       display: block;
     }
-    .album{
+    .album {
       flex-direction: row;
       flex-wrap: nowrap;
       width: 100%;
@@ -98,9 +111,10 @@
       max-width: unset;
     }
     .albumJacket {
-      width: auto;
-      margin-right: 20px;
-      height: auto;
+      display: none;
+    }
+    .albumJacketMobile{
+      display: block;
     }
     .albumTitle {
       /*max-width: 50%;*/
@@ -128,7 +142,10 @@
       max-width: unset;
     }
     .albumJacket {
-      margin-right: 10px;
+      display: none;
+    }
+    .albumJacketMobile{
+      display: block;
     }
     img {
       width: 150px;

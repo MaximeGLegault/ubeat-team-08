@@ -1,32 +1,43 @@
  <template>
    <div id="album_card">
-     <albumDescription v-if="this.albumDescription"
-                       :key="this.albumDescription.collectionId"
-                       :description="this.albumDescription"
+     <albumDescription v-if="albumDescription"
+                       :key="albumDescription.collectionId"
+                       :description="albumDescription"
                        :albumLength="50000000"
-                       />
+     /><!-- TODO the album length -->
+     <trackList :tracks="trackList"
+     />
    </div>
 </template>
 
 <script>
   import api from '@/lib/api';
   import AlbumDescription from './AlbumDescription';
-  // import TrackList from './Tracklist';
+  import TrackList from './Tracklist';
 
 
   export default {
     name: 'album',
-    components: { AlbumDescription },
+    components: {
+      AlbumDescription,
+      TrackList
+    },
+
     data() {
       return {
         albumDescription: {},
-        trackList: {}
+        trackList: []
       };
     },
+
     created() {
-      api.getAlbum(1125488753)
+      api.getAlbum(this.$route.params.collectionId)
         .then((value) => {
           this.albumDescription = value.results[0];
+        });
+      api.getTracksOfAlbum(1125488753)
+        .then((value) => {
+          this.trackList = value.results;
         });
     }
   };
