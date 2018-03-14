@@ -35,7 +35,7 @@
         .then((value) => {
           this.albumDescription = value.results[0];
         });
-      api.getTracksOfAlbum(1125488753)
+      api.getTracksOfAlbum(this.$route.params.collectionId)
         .then((value) => {
           this.trackList = value.results;
         });

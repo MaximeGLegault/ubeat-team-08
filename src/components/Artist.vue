@@ -30,11 +30,11 @@
     },
 
     async created() {
-      await api.getArtist(3996865)
+      await api.getArtist(this.$route.params.artistId)
         .then((value) => {
           this.artist = value.results[0];
         });
-      await api.getAlbums(3996865)
+      await api.getAlbums(this.$route.params.artistId)
         .then((value) => {
           this.albums = value.results;
           this.albums.sort((album1, album2) =>

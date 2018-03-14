@@ -13,7 +13,7 @@
                 <router-link to="/album">Album <i class="material-icons iconSearch">album</i></router-link>
               </li>
               <li>
-                <router-link to="/artist">Artist <i class="material-icons iconSearch">group</i></router-link>
+                <router-link :to="{ name : 'Artist', params: { artistId : 3996865 }}">Artist <i class="material-icons iconSearch">group</i></router-link>
               </li>
             </ul>
           </div>

@@ -4,9 +4,6 @@
       <div class="albumJacket">
         <router-link :to="{ name : 'Album', params: { collectionId: album.collectionId }}"><img :src="artwork(album.artworkUrl100)"/></router-link>
       </div>
-      <div class="albumJacketMobile">
-        <router-link :to="{ name : 'Album', params: { collectionId: album.collectionId }}"><img :src="artwork(album.artworkUrl100)"/></router-link>
-      </div>
       <div class="albumTitle">
         <div class="diskTitle">{{album.collectionName}}</div>
         <div class="year">{{album.releaseDate.slice(0,4)}}</div>
@@ -62,10 +59,6 @@
   }
   .albumJacket{
   }
-  .albumJacketMobile{
-    margin-right: 20px;
-    display: none;
-  }
   .albumTitle{
     margin: 0 auto;
     display: flex;
@@ -111,13 +104,7 @@
       max-width: unset;
     }
     .albumJacket {
-      display: none;
-    }
-    .albumJacketMobile{
-      display: block;
-    }
-    .albumTitle {
-      /*max-width: 50%;*/
+      margin-right: 10px
     }
     .diskTitle {
       font-size: 2rem;
@@ -142,10 +129,7 @@
       max-width: unset;
     }
     .albumJacket {
-      display: none;
-    }
-    .albumJacketMobile{
-      display: block;
+      margin-right: 20px;
     }
     img {
       width: 150px;
