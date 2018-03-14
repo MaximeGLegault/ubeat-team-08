@@ -12,11 +12,13 @@
 <script>
   export default {
     name: 'trackListItem',
-    data: {
-      id: 0,
-      name: '',
-      duration: 0,
-      tracknumber: 0,
+    data() {
+      return {
+        id: 0,
+        name: '',
+        duration: 0,
+        tracknumber: 0,
+      };
     },
   };
 </script>
