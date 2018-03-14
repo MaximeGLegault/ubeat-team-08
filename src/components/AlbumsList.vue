@@ -2,10 +2,10 @@
   <div class="listAlbums">
     <div class="album" v-for="album of albums">
       <div class="albumJacket">
-        <router-link :to="{ name : 'Album', params: { collectionId: album.collectionId }}"><img :src="artwork(album.artworkUrl100, bigArtworkDimension)"/></router-link>
+        <router-link :to="{ name : 'Album', params: { collectionId: album.collectionId }}"><img :src="artwork(album.artworkUrl100)"/></router-link>
       </div>
       <div class="albumJacketMobile">
-        <router-link :to="{ name : 'Album', params: { collectionId: album.collectionId }}"><img :src="artwork(album.artworkUrl100, smallArtworkDimension)"/></router-link>
+        <router-link :to="{ name : 'Album', params: { collectionId: album.collectionId }}"><img :src="artwork(album.artworkUrl100)"/></router-link>
       </div>
       <div class="albumTitle">
         <div class="diskTitle">{{album.collectionName}}</div>
