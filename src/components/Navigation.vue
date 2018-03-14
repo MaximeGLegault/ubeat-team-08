@@ -90,9 +90,11 @@
         <div id="menuSmBtn"><a id="btnDropdown" class="btn btn-floating btn-large pulse deep-purple accent-3 "><i class="material-icons">fingerprint</i></a></div>
       </div>
       <div class="fixed-action-btn">
-        <a id="playlistLink" class="btn-floating btn-large deep-purple accent-3 waves-effect waves-light">
-          <i class="large material-icons">playlist_play</i>
-        </a>
+        <router-link to="/playlist">
+          <a id="playlistLink" class="btn-floating btn-large deep-purple accent-3 waves-effect waves-light">
+            <i class="large material-icons">playlist_play</i>
+          </a>
+        </router-link>
       </div>
 
     </nav>
@@ -107,6 +109,7 @@
   }
   nav{
     background-color: black;
+    height: 60px;
   }
   a:hover{
     text-decoration: none;
