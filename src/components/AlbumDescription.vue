@@ -43,12 +43,7 @@
       },
       length() {
         if (this.albumLength) {
-          const time = new Date(this.albumLength);
-          const hours = time.getUTCHours();
-          const minutes = time.getUTCMinutes();
-          const seconds = time.getUTCSeconds();
-          const string = `${hours ? `${hours}:` : ''}${hours || minutes ? minutes : ''}:${seconds}`;
-          return string;
+          return util.getLengthFromMilliseconds(this.albumLength);
         }
         return '';
       }
