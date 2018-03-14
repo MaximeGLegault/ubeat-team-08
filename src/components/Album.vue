@@ -30,12 +30,12 @@
       };
     },
 
-    created() {
-      api.getAlbum(this.$route.params.collectionId)
+    async created() {
+      await api.getAlbum(this.$route.params.collectionId)
         .then((value) => {
           this.albumDescription = value.results[0];
         });
-      api.getTracksOfAlbum(this.$route.params.collectionId)
+      await api.getTracksOfAlbum(this.$route.params.collectionId)
         .then((value) => {
           this.trackList = value.results;
         });

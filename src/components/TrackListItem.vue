@@ -1,11 +1,12 @@
 <template>
-  <tr>
-    <td class="play_btn_column">
+  <tr id="song_list_table">
+    <td id="play_btn_column">
       <a class=" btn deep-purple accent-3"><i class="material-icons md-48">play_arrow</i></a>
     </td>
     <td>{{track.trackNumber}}</td>
-    <td class="song_name_column">{{track.trackName}}</td>
-    <td>{{duration}}</td>
+    <td id="song_name_column">{{track.trackName}}</td>
+    <td id="duration_column">{{duration}}</td>
+    <td></td>
   </tr>
 </template>
 
@@ -29,10 +30,23 @@
 </script>
 
 <style scoped>
-  .play_btn_column {
+  #play_btn_column {
     width: 80px;
   }
-  .song_name_column {
+  #song_name_column {
     text-align: left;
   }
+
+  #song_list_table {
+    text-align: center;
+  }
+
+  td {
+    text-align: center;
+  }
+
+  #duration_column {
+    width: 5em;
+  }
+
 </style>

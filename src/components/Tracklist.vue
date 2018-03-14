@@ -6,6 +6,7 @@
       <th>#</th>
       <th id="song_name_column">NAME</th>
       <th>Duration</th>
+      <th></th>
     </tr>
     </thead>
     <tbody v-if="tracks.length">
@@ -40,7 +41,7 @@
     font-size: 1.5rem;
   }
 
-  #song_list_table th:not(#song_name_column){
+  #song_list_table {
     text-align: center;
   }
 
@@ -52,7 +53,7 @@
     background-color: #1e1e1e;
   }
 
-  #song_name_column {
-    text-align: left;
+  th {
+    text-align: center;
   }
 </style>
