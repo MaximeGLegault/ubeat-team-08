@@ -1,4 +1,10 @@
 export default {
+  bigArtworkDimension() {
+    return 250;
+  },
+  smallArtworkDimension() {
+    return 150;
+  },
   getUrlOfBiggerAlbumArtwork(url, albumDimension) {
     const elements = url.split('/');
     const newDimension = `${albumDimension}x${albumDimension}`;
