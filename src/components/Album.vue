@@ -31,7 +31,7 @@
     },
 
     created() {
-      api.getAlbum(1125488753)
+      api.getAlbum(this.$route.params.collectionId)
         .then((value) => {
           this.albumDescription = value.results[0];
         });
