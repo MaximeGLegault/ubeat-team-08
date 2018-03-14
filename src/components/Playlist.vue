@@ -54,12 +54,38 @@
           </tr>
           </tbody>
         </table>
+        <p>create playlist: {{playlists}}</p>
+        <p>list playlist: {{listPlaylists}}</p>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+  import api from '@/lib/api';
+
+  export default {
+    data() {
+      return {
+        playlists: {},
+        test: {},
+        listPlaylists: []
+      };
+    },
+    created() {
+      api.createPlaylist()
+        .then((value) => {
+          this.playlists = value;
+        })
+         .then(value => console.log(value.name));
+      api.getPlaylists()
+        .then((value) => {
+          this.test = value.id;
+          this.listPlaylists.push(value.name);
+        });
+    },
+  };
+
 </script>
 
 <style scoped>
