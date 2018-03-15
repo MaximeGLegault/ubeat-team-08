@@ -1,20 +1,22 @@
 <template>
-  <table id="song_list_table">
-    <thead>
-    <tr>
-      <th id="play_btn_column"></th>
-      <th>#</th>
-      <th id="song_name_column">NAME</th>
-      <th>Duration</th>
-      <th></th>
-    </tr>
-    </thead>
-    <tbody v-if="tracks.length">
-      <trackListItem v-for="track in tracks"
-                     :track="track"
-                     :key="track.trackId"/>
-    </tbody>
-  </table>
+  <div id="song_list">
+    <table id="song_list_table">
+      <thead>
+      <tr>
+        <th id="play_btn_column"></th>
+        <th>#</th>
+        <th id="song_name_column">NAME</th>
+        <th>Duration</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody v-if="tracks.length">
+        <trackListItem v-for="track in tracks"
+                       :track="track"
+                       :key="track.trackId"/>
+      </tbody>
+    </table>
+  </div>
 </template>
 
 <script>
@@ -36,6 +38,13 @@
 </script>
 
 <style scoped>
+  #song_list {
+    align-content: center;
+    align-self: auto;
+    margin: 0 auto 5vh;
+    width: 80vw;
+  }
+
   #song_list_table {
     margin: 0 auto auto 0;
     font-size: 1.5rem;
@@ -55,5 +64,12 @@
 
   th {
     text-align: center;
+  }
+
+  @media only screen and (min-device-width : 320px) and (max-device-width : 480px)
+  and (orientation: portrait) {
+    #song_list_table {
+      font-size: 2rem;
+    }
   }
 </style>

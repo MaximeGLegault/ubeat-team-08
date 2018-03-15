@@ -1,12 +1,14 @@
 <template>
-  <tr id="song_list_table">
+  <tr>
     <td id="play_btn_column">
       <a class=" btn deep-purple accent-3"><i class="material-icons md-48">play_arrow</i></a>
     </td>
     <td>{{track.trackNumber}}</td>
     <td id="song_name_column">{{track.trackName}}</td>
     <td id="duration_column">{{duration}}</td>
-    <td></td>
+    <td id="add_playlist" :click="more">
+      <i class="material-icons md-48">add</i>
+    </td>
   </tr>
 </template>
 
@@ -26,6 +28,11 @@
         return util.getLengthFromMilliseconds(this.track.trackTimeMillis);
       }
     },
+    methods: {
+      more() {
+
+      }
+    }
   };
 </script>
 
@@ -33,12 +40,9 @@
   #play_btn_column {
     width: 80px;
   }
+
   #song_name_column {
     text-align: left;
-  }
-
-  #song_list_table {
-    text-align: center;
   }
 
   td {
@@ -49,4 +53,14 @@
     width: 5em;
   }
 
+  #add_playlist {
+    padding: 0;
+    background-color: Transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    width: auto;
+  }
 </style>
