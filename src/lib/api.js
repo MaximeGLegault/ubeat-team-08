@@ -1,39 +1,36 @@
+import axios from 'axios';
+import querystring from 'querystring';
+
 // const baseUrl = 'https://ubeat.herokuapp.com/'; // TODO switch to baseUrl after TP2
 const baseUnsecureUrl = 'https://ubeat.herokuapp.com/unsecure/';
-const playlistId = '5aa95736297d410004d81559';
-// const postPlaylist = {
-  // method: 'POST'
-// };
 
 export default {
   getTracksOfAlbum(collectionId) {
-    return fetch(`${baseUnsecureUrl}albums/${collectionId}/tracks`) // TODO switch to baseUrl after TP2
-      .then(value => value.json());
+    return axios.get(`${baseUnsecureUrl}albums/${collectionId}/tracks`) // TODO switch to baseUrl after TP2
+      .then(value => value.data);
   },
   getAlbum(collectionId) {
-    return fetch(`${baseUnsecureUrl}albums/${collectionId}`) // TODO switch to baseUrl after TP2
-      .then(value => value.json());
+    return axios.get(`${baseUnsecureUrl}albums/${collectionId}`) // TODO switch to baseUrl after TP2
+      .then(value => value.data);
   },
   getAlbums(artistId) {
-    return fetch(`${baseUnsecureUrl}artists/${artistId}/albums`) // TODO switch to baseUrl after TP2
-      .then(value => value.json());
+    return axios.get(`${baseUnsecureUrl}artists/${artistId}/albums`) // TODO switch to baseUrl after TP2
+      .then(value => value.data);
   },
   getArtist(artistId) {
-    return fetch(`${baseUnsecureUrl}artists/${artistId}`) // TODO switch to baseUrl after TP2
-      .then(value => value.json());
+    return axios.get(`${baseUnsecureUrl}artists/${artistId}`) // TODO switch to baseUrl after TP2
+      .then(value => value.data);
   },
-  getPlaylists() {
-    return fetch(`${baseUnsecureUrl}playlists/${playlistId}`)
-      .then(value => value.json());
-      // .then(value => console.log(value.name));
+  getPlaylists(playlistId) {
+    return axios.get(`${baseUnsecureUrl}playlists/${playlistId}`)
+      .then(value => value.data);
   },
-  createPlaylist() {
-    return fetch(`${baseUnsecureUrl}playlists`, {
-      method: 'POST',
-      body: ({
-        name: 'playlistName' })
-    })
-      .then(value => value.json());
+  createPlaylist(playlistName) {
+    return axios({
+      method: 'post',
+      url: `${baseUnsecureUrl}playlists`,
+      data: querystring.stringify({ name: playlistName })
+    });
   }
 // other things
 };

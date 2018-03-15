@@ -72,13 +72,10 @@
         listPlaylists: []
       };
     },
-    created() {
-      api.createPlaylist()
-        .then((value) => {
-          this.playlists = value;
-        })
-         .then(value => console.log(value.name));
-      api.getPlaylists()
+    async created() {
+      await api.createPlaylist('ahahha')
+        .then((value) => { this.playlists = value.data; });
+      await api.getPlaylists(this.playlists.id)
         .then((value) => {
           this.test = value.id;
           this.listPlaylists.push(value.name);
