@@ -15,6 +15,22 @@ export default {
   },
 
   getLengthFromMilliseconds(milliseconds) {
-    return moment(milliseconds, 'x').format('mm:ss');
+    const duration = moment.duration(milliseconds);
+    let hours = duration.hours();
+    hours = hours ? `${hours}:` : '';
+
+    let minutes = duration.minutes();
+    if (minutes === 0) {
+      minutes = '00:';
+    } else if (minutes < 10) {
+      minutes = `0${minutes}:`;
+    } else {
+      minutes = `${minutes}:`;
+    }
+
+    let seconds = duration.seconds();
+    seconds = seconds < 10 ? `0${seconds}` : `${seconds}`;
+
+    return `${hours}${minutes}${seconds}`;
   }
 };

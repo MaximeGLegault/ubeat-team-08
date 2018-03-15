@@ -10,7 +10,7 @@
                 <router-link to="/">Home <i class="material-icons iconSearch">home</i></router-link>
               </li>
               <li>
-                <router-link to="/album">Album <i class="material-icons iconSearch">album</i></router-link>
+                <router-link :to="{ name: 'Album', params: {collectionId: 1125488753}}">Album <i class="material-icons iconSearch">album</i></router-link>
               </li>
               <li>
                 <router-link :to="{ name : 'Artist', params: { artistId : 3996865 }}">Artist <i class="material-icons iconSearch">group</i></router-link>
@@ -26,7 +26,7 @@
                 <router-link :to="{ name : 'Album', params: { collectionId: 1125488753 }}"><i class="material-icons iconSearch">album</i></router-link>
               </li>
               <li>
-                <router-link to="/artist"> <i class="material-icons iconSearch">group</i></router-link>
+                <router-link :to="{ name : 'Artist', params: { artistId : 3996865 }}"> <i class="material-icons iconSearch">group</i></router-link>
               </li>
             </ul>
           </div>
@@ -61,10 +61,10 @@
                 <router-link to="/"><i class="material-icons iconSearch">home</i></router-link>
               </li>
               <li>
-                <router-link to="/album"><i class="material-icons iconSearch">album</i></router-link>
+                <router-link :to="{ name : 'Album', params: { collectionId: 1125488753 }}"><i class="material-icons iconSearch">album</i></router-link>
               </li>
               <li>
-                <router-link to="/artist"><i class="material-icons iconSearch">group</i></router-link>
+                <router-link :to="{ name : 'Artist', params: { artistId : 3996865 }}"><i class="material-icons iconSearch">group</i></router-link>
               </li>
             </ul>
           </div>
