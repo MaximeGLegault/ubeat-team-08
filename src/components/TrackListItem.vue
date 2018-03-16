@@ -6,7 +6,7 @@
     <td>{{track.trackNumber}}</td>
     <td id="song_name_column">{{track.trackName}}</td>
     <td id="duration_column">{{duration}}</td>
-    <td id="add_playlist" :click="more">
+    <td id="add_playlist" :click="more" title="Add song to current playlist">
       <i class="material-icons md-48">add</i>
     </td>
   </tr>

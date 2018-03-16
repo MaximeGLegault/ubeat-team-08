@@ -101,12 +101,6 @@
 </template>
 <style>
   /* GENERAL */
-  body{
-    background-color: black;
-    color: #fff;
-    padding: 0;
-    margin: 0;
-  }
   nav{
     background-color: black;
     height: 60px;

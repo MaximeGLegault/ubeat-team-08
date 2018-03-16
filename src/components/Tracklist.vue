@@ -7,7 +7,9 @@
         <th>#</th>
         <th id="song_name_column">NAME</th>
         <th>Duration</th>
-        <th></th>
+        <th id="playlist_btn_column">
+          <i class="material-icons md-48" title="Add album to current playlist">playlist_add</i>
+        </th>
       </tr>
       </thead>
       <tbody v-if="tracks.length">
@@ -60,6 +62,17 @@
 
   #song_list_table tr:nth-child(even) {
     background-color: #1e1e1e;
+  }
+
+  #playlist_btn_column {
+    padding: 0;
+    background-color: Transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    width: auto;
   }
 
   th {

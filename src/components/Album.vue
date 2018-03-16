@@ -2,10 +2,8 @@
    <div>
      <albumDescription v-if="albumDescriptionDataObject"
                        :key="albumDescriptionDataObject.collectionId"
-                       :description="albumDescriptionDataObject"
-     />
-     <trackList :tracks="trackList"
-     />
+                       :description="albumDescriptionDataObject"/>
+     <trackList :tracks="trackList"/>
    </div>
 </template>
 
