@@ -124,6 +124,7 @@
     border-bottom: solid 7px #111;
     height: 60px;
     width: 100%;
+    z-index: 10;
   }
   .titlecolor{
     font-family: 'Black Ops One', cursive;
