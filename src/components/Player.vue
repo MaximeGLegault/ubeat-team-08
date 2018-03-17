@@ -4,30 +4,37 @@
         <img :src="current_track.artworkUrl100"/>
       </div>
       <div id="buttons">
-        <div id="slidecontainer">
-          <input type="range" min="0" max="10"/>
-        </div>
+      </div>
+      <div id="audioPlayer">
+        <vue-audio :file="file1" />
       </div>
     </div>
 </template>
 
 <script>
-    export default {
-      name: 'player',
-      props: ['tracks'],
-      data() {
-        return {
-        };
-      },
-      computed: {
-        current_track() {
-          if (this.tracks.length) {
-            return this.tracks[0];
-          }
-          return {};
+  import VueAudio from 'vue-audio';
+
+  export default {
+    data() {
+      return {
+        file1: 'dist/sample.mp3',
+        file2: 'dist/1.mp3'
+      };
+    },
+    components: {
+      'vue-audio': VueAudio
+    },
+    name: 'player',
+    props: ['tracks'],
+    computed: {
+      current_track() {
+        if (this.tracks.length) {
+          return this.tracks[0];
         }
+        return {};
       }
-    };
+    }
+  };
 </script>
 
 <style scoped>
