@@ -45,7 +45,6 @@
 <script>
   import api from '@/lib/api';
   import util from '@/lib/util';
-  import Tracklist from './Tracklist';
 
   const startIdPlayList = '5aad6bcb1a50230004d03911';
 
@@ -96,9 +95,6 @@
       }
     },
     async created() {
-      Tracklist.$on('playRequest', this.changePlaylistToPlayOnlyPlaylistAndPlay);
-      Tracklist.$on('addAlbumToPlaylist', this.addAlbumToPlaylist);
-      Tracklist.$on('addTrackToPlaylist', this.addTrackToPlaylist);
       await api.getPlaylists(`${startIdPlayList}`)
         .then((value) => {
           this.test = value.id;
