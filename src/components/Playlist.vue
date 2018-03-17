@@ -31,11 +31,11 @@
           </tr>
           </tbody>
         </table>
-        <p>create playlist: {{playlists}}</p>
+        <!--<p>create playlist: {{playlists}}</p>
         <p>event: {{test2}}</p>
         <p>current playlist: {{currentPlaylist}}</p>
         <p>list playlist: {{listPlaylists}}</p>
-        <p>current playlist: {{currentPlaylist}}</p>
+        <p>current playlist: {{currentPlaylist}}</p>-->
       </div>
     </div>
   </div>
@@ -60,7 +60,7 @@
     methods: {
       async greet(event) {
         // `this` inside methods points to the Vue instance
-        await api.createPlaylist('newPlaylist')
+        await api.createPlaylist('New Playlist')
           .then((value) => { this.playlists = value.data; });
         await api.getPlaylists(this.playlists.id)
           .then((value) => {
@@ -69,7 +69,7 @@
           });
         // `event` is the native DOM event
         if (event) {
-          alert(event.target.id);
+          console.log(event.target.id);
         }
       },
       duration(time) {
