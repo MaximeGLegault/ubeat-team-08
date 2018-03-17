@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <nav-menu/>
+    <nav-menu v-on:changePlaylistVisibility="toggle"/>
     <player-bar v-if="player_visibility"
                 :tracks="tracks"/>
     <playlist-page v-if="playlist_visibility"/>
@@ -31,9 +31,11 @@
         playlist_visibility: false
       };
     },
-    async toggle() {
-      this.playlist_visibility = true;
-      console.log('toggle2');
+    methods: {
+      toggle() {
+        console.log(this.playlist_visibility);
+        this.playlist_visibility = true;
+      }
     },
     async created() {
       await api.getTracksOfAlbum(1125488753)

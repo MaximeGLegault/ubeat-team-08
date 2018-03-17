@@ -99,12 +99,11 @@
     </nav>
 </template>
 <script>
-  import app from '@/App';
 
   export default {
     methods: {
-      async togglePlaylist() {
-        app.toggle();
+      togglePlaylist() {
+        this.$emit('changePlaylistVisibility');
       }
     }
   };
