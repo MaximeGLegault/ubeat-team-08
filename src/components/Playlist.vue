@@ -76,6 +76,10 @@
       async changePlaylist(event) {
         if (event) {
           console.log(event.target.id);
+          await api.getPlaylists(event.target.id)
+            .then((value) => {
+              this.currentPlaylist = value;
+            });
         }
       },
       duration(time) {
