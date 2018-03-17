@@ -8,7 +8,17 @@
       </ul>
     </div>
     <div id = "playlist">
-      <h1 class="row justify-content-md-center">{{currentPlaylist.name}} </h1>
+      <div id="titlePl">
+        <h1>{{currentPlaylist.name}} </h1>
+        <button v-on:click="toggleEdit" id="editBtn" class="btn-floating waves-effect waves-light black "><i class="material-icons">mode_edit</i></button>
+        <div v-show="showSectionEdit" id = "editDiv">
+          <div class="input-field col s6">
+            <input id="pl_name" type="text" >
+            <label for="pl_name">Playlist Name</label>
+          </div>
+          <a id="checkBtn" class="waves-effect btn-flat "><i class="material-icons left">check</i></a>
+        </div>
+      </div>
       <div id="trackList">
         <table id="trackListTable">
           <thead>
@@ -47,7 +57,6 @@
   import util from '@/lib/util';
 
   const startIdPlayList = '5aad6bcb1a50230004d03911';
-
   export default {
     data: () => ({
       playlists: {},
@@ -56,8 +65,12 @@
       listPlaylists: [],
       currentPlaylist: {},
       timeTrack: {},
+      showSectionEdit: false
     }),
     methods: {
+      toggleEdit() {
+        this.showSectionEdit = !this.showSectionEdit;
+      },
       async addPlaylist() {
         // `this` inside methods points to the Vue instance
         await api.createPlaylist('New Playlist')
@@ -107,6 +120,42 @@
 </script>
 
 <style scoped>
+  input[type=text]:not(.browser-default):focus:not([readonly])+label{
+    color: white;
+    border-bottom: white;
+    box-shadow: white;
+  }
+  input[type=text]:not(.browser-default):focus:not([readonly]){
+    border-bottom: white;
+    box-shadow: white;
+  }
+  #editDiv{
+    display: flex;
+  }
+  #checkBtn{
+    margin-top: 20px;
+    width: 10px;
+    padding-left: 10px;
+  }
+  #checkBtn:hover{
+    color: white;
+  }
+  #titlePl{
+    display: flex;
+    justify-content: flex-start;
+    align-content: flex-start;
+    align-items: baseline;
+  }
+  #editBtn{
+    align-self: flex-start;
+
+  }
+  #editBtn i{
+    color: #343434;
+  }
+  #editBtn i:hover{
+    color: white;
+  }
   .listPlName{
     color: white;
     cursor: pointer;

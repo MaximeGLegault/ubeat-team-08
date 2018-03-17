@@ -1,9 +1,8 @@
 <template>
   <div id="app">
-    <nav-menu v-on:changePlaylistVisibility="toggle"/>
+    <nav-menu />
     <player-bar v-if="player_visibility"
                 :tracks="tracks"/>
-    <playlist-page v-if="playlist_visibility"/>
     <router-view/>
   </div>
 </template>
@@ -13,15 +12,13 @@
   import Navigation from '@/components/Navigation';
 
   import Player from '@/components/Player';
-  import Playlist from '@/components/Playlist';
 
   export default {
     name: 'app',
 
     components: {
       'nav-menu': Navigation,
-      'player-bar': Player,
-      'playlist-page': Playlist,
+      'player-bar': Player
     },
 
     data() {
@@ -30,12 +27,6 @@
         tracks: [],
         playlist_visibility: false
       };
-    },
-    methods: {
-      toggle() {
-        console.log(this.playlist_visibility);
-        this.playlist_visibility = true;
-      }
     },
     async created() {
       await api.getTracksOfAlbum(1125488753)

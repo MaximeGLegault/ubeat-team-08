@@ -90,23 +90,15 @@
         <div id="menuSmBtn"><a id="btnDropdown" class="btn btn-floating btn-large pulse deep-purple accent-3 "><i class="material-icons">fingerprint</i></a></div>
       </div>
       <div class="fixed-action-btn">
-        <!--<router-link to="/playlist">-->
-          <a id="playlistLink" class="btn-floating btn-large deep-purple accent-3 waves-effect waves-light" v-on:click="togglePlaylist">
+        <router-link to="/playlist">
+          <a id="playlistLink" class="btn-floating btn-large deep-purple accent-3 waves-effect waves-light">
             <i class="large material-icons">playlist_play</i>
           </a>
-        <!--</router-link>-->
+        </router-link>
       </div>
     </nav>
 </template>
 <script>
-
-  export default {
-    methods: {
-      togglePlaylist() {
-        this.$emit('changePlaylistVisibility');
-      }
-    }
-  };
 </script>
 <style>
   /* GENERAL */
