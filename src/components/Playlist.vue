@@ -45,7 +45,7 @@
 <script>
   import api from '@/lib/api';
   import util from '@/lib/util';
-  // import axios from 'axios';
+  import Tracklist from './Tracklist';
 
   const startIdPlayList = '5aad6bcb1a50230004d03911';
 
@@ -82,11 +82,23 @@
             });
         }
       },
+      changePlaylistToPlayOnlyPlaylistAndPlay(/* newPlaylist */) {
+        // console.log(newPlaylist);
+      },
+      addAlbumToPlaylist(/* albumToAdd */) {
+        // console.log(albumToAdd);
+      },
+      addTrackToPlaylist(/* trackToAdd */) {
+        // console.log(trackToAdd);
+      },
       duration(time) {
         return util.getLengthFromMilliseconds(time);
       }
     },
     async created() {
+      Tracklist.$on('playRequest', this.changePlaylistToPlayOnlyPlaylistAndPlay);
+      Tracklist.$on('addAlbumToPlaylist', this.addAlbumToPlaylist);
+      Tracklist.$on('addTrackToPlaylist', this.addTrackToPlaylist);
       await api.getPlaylists(`${startIdPlayList}`)
         .then((value) => {
           this.test = value.id;
