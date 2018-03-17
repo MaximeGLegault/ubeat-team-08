@@ -42,7 +42,7 @@
   .homeContainer
   {
     position: relative;
-    z-index: 0;
+    z-index: -1;
   }
   .homeContainer{
     font-size: 1.3em;
