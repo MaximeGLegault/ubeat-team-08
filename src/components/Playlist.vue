@@ -1,9 +1,10 @@
 <template>
   <div id="playlistPage">
     <div id = "playlistName">
-      <button id="addbutton" class="btn-floating waves-effect waves-light deep-purple accent-3 " v-on:click="greet"><i id = "clickButtonId" class="material-icons">add</i></button>
+      <button id="addbutton" class="btn-floating waves-effect waves-light deep-purple accent-3 " v-on:click="addPlaylist"><i id = "clickButtonId" class="material-icons">add</i></button>
+      <button id="addbuttonSm" class="btn-floating waves-effect waves-light btn-large deep-purple accent-3 " v-on:click="addPlaylist"><i class="material-icons">add</i></button>
       <ul v-for="playlist of listPlaylists">
-        <li>{{playlist.name}}</li>
+        <li><a class="listPlName">{{playlist.name}}</a></li>
       </ul>
     </div>
     <div id = "playlist">
@@ -14,7 +15,7 @@
           <tr>
             <th class="playBtn"></th>
             <th class ="trackNameCol">NAME</th>
-            <th class="albumNameCol">ARTIST</th>
+            <th class="artistNameCol">ARTIST</th>
             <th class="albumNameCol">ALBUM</th>
             <th class="time">Duration</th>
           </tr>
@@ -25,7 +26,7 @@
               <a class=" btn deep-purple accent-3"><i class="material-icons md-48">play_arrow</i></a>
             </td>
             <td class ="trackNameCol">{{track.trackName}}</td>
-            <td class="albumNameCol">{{track.artistName}}</td>
+            <td class="artistNameCol">{{track.artistName}}</td>
             <td class="albumNameCol">{{track.collectionName}}</td>
             <td class="time">{{duration(track.trackTimeMillis)}}</td>
           </tr>
@@ -46,7 +47,7 @@
   import util from '@/lib/util';
   // import axios from 'axios';
 
-  const startIdPlayList = '5aac58ada6d6b600042f3090';
+  const startIdPlayList = '5aad3e301a50230004d0386a';
 
   export default {
     data: () => ({
@@ -58,7 +59,7 @@
       timeTrack: {},
     }),
     methods: {
-      async greet(event) {
+      async addPlaylist(event) {
         // `this` inside methods points to the Vue instance
         await api.createPlaylist('New Playlist')
           .then((value) => { this.playlists = value.data; });
@@ -82,26 +83,25 @@
           this.test = value.id;
           this.listPlaylists.push(value);
           this.currentPlaylist = value;
-        }
-     // await api.createPlaylist('ahahha')
-        // .then((value) => { this.playlists = value.data; });
-      // await api.getPlaylists(this.playlists.id)
-        // .then((value) => {
-         //  this.test = value.id;
-          // this.listPlaylists.push(value.name);
-        // }
-        );
+        });
     }
   };
 
 </script>
 
 <style scoped>
+  .listPlName{
+    color: white;
+    cursor: pointer;
+  }
+  .listPlName:hover{
+    color: #651fff;
+  }
   #playlistName #addbutton{
     margin-left: 0;
   }
   #playlistName ul{
-    padding-left: 35px;
+    padding-left: 10px;
     margin-bottom: 0;
 
   }
@@ -124,7 +124,7 @@
     width: 100%;
   }
   #playlist h1{
-    padding-left: 50px;
+    padding-left: 20px;
     padding-top: 20px;
     margin-top: 0;
     font-size: 4em;
@@ -150,7 +150,10 @@
     text-align: left;
     width: 20%;
   }
-
+  .artistNameCol {
+    text-align: left;
+    width: 20%;
+  }
 
   #trackList .btn{
     padding: 0 1rem;
@@ -163,8 +166,59 @@
     width: 5%;
     text-align: center;
   }
+  #addbuttonSm{
+    display: none;
+  }
+  #addbutton{
+    display: unset;
+    margin-bottom: 5px;
+  }
 
   #trackListTable tr:nth-child(even) {
     background-color: #1e1e1e;
+  }
+  @media only screen and (min-device-width : 320px) and (max-device-width : 480px)
+  and (orientation: portrait){
+    #trackListTable{
+      font-size: 2em;
+    }
+    .albumNameCol{
+      display: none;
+    }
+    #playlist{
+      padding-top: 50px;
+    }
+    #playlistName{
+      font-size: 2em;
+    }
+    #playlistName ul{
+      padding-left: 0;
+    }
+    #addbuttonSm{
+      margin-bottom: 10px;
+      display: unset;
+
+    }
+    #addbuttonSm i{
+      font-size: 3em;
+
+    }
+    #addbutton {
+      display: none;
+    }
+  }
+  @media screen and (max-width: 798px){
+    .albumNameCol{
+      display: none;
+    }
+    #playlist{
+      padding-top: 30px;
+    }
+    #playlistName ul{
+      padding-left: 5px;
+    }
+    #addbutton{
+      margin-bottom: 10px;
+    }
   }
 </style>

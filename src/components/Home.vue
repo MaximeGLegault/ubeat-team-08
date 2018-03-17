@@ -61,5 +61,8 @@
     .homeContainer p{
       font-size: 2em;
     }
+    .homeContainer{
+      margin-top: 80px;
+    }
   }
 </style>

@@ -352,6 +352,9 @@
     }
   }
   @media screen and (max-width: 798px){
+    nav{
+      height: 25px;
+    }
     #menuSmBtn{
       display: flex;
     }
@@ -364,6 +367,9 @@
   }
   @media only screen and (min-device-width : 320px) and (max-device-width : 480px)
   and (orientation: portrait){
+    nav{
+      height: 25px;
+    }
     #menuSmBtn{
       display: flex;
     }
@@ -415,6 +421,15 @@
     }
     nav i.material-icons{
       font-size: 38px;
+    }
+    #playlistLink{
+      width: 5.5rem;
+      height: 5.5rem;
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+    }
+    #playlistLink i{
+      padding-top: 10px;
     }
   }
 </style>
