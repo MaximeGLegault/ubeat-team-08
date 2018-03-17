@@ -59,11 +59,7 @@
       timeTrack: {},
     }),
     methods: {
-<<<<<<< HEAD
-      async addPlaylist(event) {
-=======
-      async greet() {
->>>>>>> 4c5d6d80aa380649e149ac25ce7683a198a12ab0
+      async addPlaylist() {
         // `this` inside methods points to the Vue instance
         await api.createPlaylist('New Playlist')
           .then((value) => { this.playlists = value.data; });
