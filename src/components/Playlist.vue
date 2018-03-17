@@ -4,7 +4,7 @@
       <button id="addbutton" class="btn-floating waves-effect waves-light deep-purple accent-3 " v-on:click="addPlaylist"><i id = "clickButtonId" class="material-icons">add</i></button>
       <button id="addbuttonSm" class="btn-floating waves-effect waves-light btn-large deep-purple accent-3 " v-on:click="addPlaylist"><i class="material-icons">add</i></button>
       <ul v-for="playlist of listPlaylists">
-        <li><a class="listPlName">{{playlist.name}}</a></li>
+        <li><a class="listPlName" v-bind:id="playlist.id" v-on:click="changePlaylist">{{playlist.name}}</a></li>
       </ul>
     </div>
     <div id = "playlist">
@@ -69,6 +69,11 @@
             this.listPlaylists.push(value);
           });
         // `event` is the native DOM event
+        if (event) {
+          console.log(event.target.id);
+        }
+      },
+      async changePlaylist(event) {
         if (event) {
           console.log(event.target.id);
         }
