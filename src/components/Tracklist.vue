@@ -7,7 +7,7 @@
         <th>#</th>
         <th id="song_name_column">NAME</th>
         <th>Duration</th>
-        <th id="playlist_btn_column">
+        <th id="playlist_btn_column" v-on:click="emitAddAlbumToPlaylist">
           <i class="material-icons md-48" title="Add album to current playlist">playlist_add</i>
         </th>
       </tr>
@@ -15,7 +15,9 @@
       <tbody v-if="tracks.length">
         <trackListItem v-for="track in tracks"
                        :track="track"
-                       :key="track.trackId"/>
+                       :key="track.trackId"
+                       v-on:playRequest="emitNewPlaylistToPlay"
+                       v-on:addTrackToPlaylist="emitAddTrackToPlaylist"/>
       </tbody>
     </table>
   </div>
@@ -36,6 +38,21 @@
         required: true
       },
     },
+    methods: {
+      emitNewPlaylistToPlay(trackToPlay) {
+        const newPlaylist = this.tracks.slice();
+        const index = newPlaylist.findIndex(el => el.trackId === trackToPlay.trackId);
+        const tracksToBePushedAtTheBackOfPlaylist = newPlaylist.splice(0, index);
+        newPlaylist.push(...tracksToBePushedAtTheBackOfPlaylist);
+        this.$emit('playRequest', newPlaylist);
+      },
+      emitAddTrackToPlaylist(trackToAdd) {
+        this.$emit('addTrackToPlaylist', trackToAdd);
+      },
+      emitAddAlbumToPlaylist() {
+        this.$emit('addAlbumToPlaylist', this.tracks);
+      }
+    }
   };
 </script>
 
@@ -54,6 +71,7 @@
 
   #song_list_table {
     text-align: center;
+    margin-bottom: 150px;
   }
 
   #play_btn_column {

@@ -1,12 +1,12 @@
 <template>
   <tr>
     <td id="play_btn_column">
-      <a class=" btn deep-purple accent-3"><i class="material-icons md-48">play_arrow</i></a>
+      <a class=" btn deep-purple accent-3" v-on:click="playRequest"><i class="material-icons md-48">play_arrow</i></a>
     </td>
     <td>{{track.trackNumber}}</td>
     <td id="song_name_column">{{track.trackName}}</td>
     <td id="duration_column">{{duration}}</td>
-    <td id="add_playlist" :click="more" title="Add song to current playlist">
+    <td id="add_playlist" v-on:click="addTrackToPlaylist" title="Add song to current playlist">
       <i class="material-icons md-48">add</i>
     </td>
   </tr>
@@ -29,10 +29,13 @@
       }
     },
     methods: {
-      more() {
-
+      playRequest() {
+        this.$emit('playRequest', this.track);
+      },
+      addTrackToPlaylist() {
+        this.$emit('addTrackToPlaylist', this.track);
       }
-    }
+    },
   };
 </script>
 

@@ -1,8 +1,11 @@
 <template>
     <div id="player">
-      <div id="album_cover" v-if="current_track">
+
+      <!--
+       <div id="album_cover" v-if="current_track">
         <img :src="current_track.artworkUrl100"/>
-      </div>
+      </div>-->
+
       <div id="buttons">
       </div>
       <div id="audioPlayer">
@@ -42,7 +45,7 @@
     background-color: #1e1e1e;
     position: fixed;
     width: 100%;
-    height: 100px;
+    height: 50px;
     bottom: 0;
     left: 0;
     display: flex;
