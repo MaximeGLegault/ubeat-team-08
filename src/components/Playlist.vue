@@ -58,7 +58,7 @@
       timeTrack: {},
     }),
     methods: {
-      async greet(event) {
+      async greet() {
         // `this` inside methods points to the Vue instance
         await api.createPlaylist('New Playlist')
           .then((value) => { this.playlists = value.data; });
@@ -68,9 +68,9 @@
             this.listPlaylists.push(value);
           });
         // `event` is the native DOM event
-        if (event) {
-          console.log(event.target.id);
-        }
+        // if (event) {
+        //   console.log(event.target.id);
+        // }
       },
       duration(time) {
         return util.getLengthFromMilliseconds(time);
