@@ -32,13 +32,10 @@
       playRequest() {
         this.$emit('playRequest', this.track);
       },
-      addToPlaylist() {
-        this.$emit('addToPlaylist', this.track);
+      addTrackToPlaylist() {
+        this.$emit('addTrackToPlaylist', this.track);
       }
     },
-    created() {
-      this.$emit('addToPlaylist', this.track);
-    }
   };
 </script>
 
