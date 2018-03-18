@@ -42,11 +42,6 @@
           </tr>
           </tbody>
         </table>
-        <!--<p>create playlist: {{playlists}}</p>
-        <p>event: {{test2}}</p>
-        <p>current playlist: {{currentPlaylist}}</p>
-        <p>list playlist: {{listPlaylists}}</p>
-        <p>current playlist: {{currentPlaylist}}</p>-->
       </div>
     </div>
   </div>

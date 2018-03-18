@@ -6,8 +6,10 @@ import mutations from './mutations';
 Vue.use(Vuex);
 
 export const state = {
+  transactionStatus: 1,
   playlists: [],
-  current_playlist: {}
+  currentPlaylist: {},
+  isCurrentPlaylistModifiable: true,
 };
 
 export default new Vuex.Store({
