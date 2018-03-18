@@ -31,12 +31,14 @@ const actions = {
 
   addAlbumToCurrentPlaylist(context, album) {
     if (album && context.state.isCurrentPlaylistModifiable) {
-      context.commit('addSongsToCurrentPlaylist', album);
+      context.commit('ADD_SONG_TO_CURRENT_PLAYLIST', album);
     }
   },
-  playPlaylistWithoutSaving(context, playlist) {
+
+  addAlbumToCurrentPlaylistWithoutSaving({ commit }, playlist) {
     if (playlist) {
-      context.commit('SWITCH_CURRENT_PLAYLIST', playlist);
+      commit('SWITCH_CURRENT_PLAYLIST', playlist);
+      commit('SET_MODIFIABLE_CURRENT_PLAYLIST', false);
     }
   },
 
@@ -45,9 +47,10 @@ const actions = {
       context.commit('addPlayListToList', playlist);
     }
   },
+
   changeCurrentPlaylist(context, playlist) {
     if (playlist) {
-      context.commit('changeCurrentPlaylist', playlist);
+      context.commit('SWITCH_CURRENT_PLAYLIST', playlist);
     }
   }
 };

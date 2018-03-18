@@ -40,7 +40,7 @@
     },
     methods: {
       ...mapActions([
-        'playPlaylistWithoutSaving',
+        'addAlbumToCurrentPlaylistWithoutSaving',
         'addAlbumToCurrentPlaylist'
       ]),
       emitNewPlaylistToPlay(trackToPlay) {
@@ -48,7 +48,7 @@
         const index = newPlaylist.findIndex(el => el.trackId === trackToPlay.trackId);
         const tracksToBePushedAtTheBackOfPlaylist = newPlaylist.splice(0, index);
         newPlaylist.push(...tracksToBePushedAtTheBackOfPlaylist);
-        this.playPlaylistWithoutSaving(newPlaylist);
+        this.addAlbumToCurrentPlaylistWithoutSaving(newPlaylist);
       },
       addAlbumToPlaylist() {
         this.addAlbumToCurrentPlaylist(this.tracks);

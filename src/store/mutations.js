@@ -5,12 +5,8 @@ const mutations = {
     state.playlists[playlistIndex] = playlist;
   },
 
-  addSongsToCurrentPlaylist(state, payload) {
-    state.currentPlaylist.tracks.push(...payload);
-  },
-
-  SWITCH_CURRENT_PLAYLIST(state, playlistId) {
-    state.currentPlaylist = playlistId;
+  SWITCH_CURRENT_PLAYLIST(state, playlist) {
+    state.currentPlaylist = playlist;
   },
 
   SET_MODIFIABLE_CURRENT_PLAYLIST(state, isModifiable) {
@@ -21,9 +17,6 @@ const mutations = {
     state.playlists.push(playlist);
   },
 
-  changeCurrentPlaylist(state, payload) {
-    state.currentPlaylist = payload;
-  }
 };
 
 export default mutations;
