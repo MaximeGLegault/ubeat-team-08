@@ -29,7 +29,7 @@ const mutations = {
     state.current_playlist.current_request = payload;
   },
   EDIT_NAME(state, payload) {
-    console.log(payload);
+    state.currentPlaylist = payload;
   }
 };
 

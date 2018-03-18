@@ -64,7 +64,8 @@
         'addPlaylistToListPlaylists',
         'switchCurrentPlaylist',
         'createNewPlaylist',
-        'editName'
+        'editName',
+        'addSongToCurrentPlaylist'
       ]),
       toggleEdit() {
         this.showSectionEdit = !this.showSectionEdit;
@@ -76,8 +77,14 @@
         this.switchCurrentPlaylist({ playlistId: event.target.id, isModifiable: true });
       },
       async editNamePl() {
-        console.log(this.inputNameEdit);
-        this.editName(this.$store.state.currentPlaylist.id, 'newName');
+        const bkp = this.$store.state.currentPlaylist.tracks;
+        console.log(this.$store.state.currentPlaylist);
+        await this.editName({ playlistId: this.$store.state.currentPlaylist.id,
+          newName: this.inputNameEdit });
+        bkp.forEach((track) => {
+          this.addSongToCurrentPlaylist(track);
+        });
+        console.log(this.$store.state.currentPlaylist);
       },
       duration(time) {
         return util.getLengthFromMilliseconds(time);
