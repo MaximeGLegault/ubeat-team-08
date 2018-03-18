@@ -42,11 +42,6 @@
           </tr>
           </tbody>
         </table>
-        <!--<p>create playlist: {{playlists}}</p>
-        <p>event: {{test2}}</p>
-        <p>current playlist: {{currentPlaylist}}</p>
-        <p>list playlist: {{listPlaylists}}</p>
-        <p>current playlist: {{currentPlaylist}}</p>-->
       </div>
     </div>
   </div>
@@ -61,11 +56,10 @@
 
   export default {
     data: () => ({
-      playlists: {},
       test: {},
       test2: {},
       listPlaylists: [],
-      showSectionEdit: false
+      showSectionEdit: false,
     }),
     methods: {
       ...mapActions([
@@ -78,29 +72,15 @@
         this.showSectionEdit = !this.showSectionEdit;
       },
       async addPlaylist() {
-        await api.createPlaylist('New Playlist')
-          .then((value) => {
-            this.playlists = value.data;
-            console.log(this.playlists);
-          });
+        this.createNewPlaylist('New Playlist');
         api.getPlaylists(this.playlists.id)
           .then((value) => {
             // this.test2 = value.id;
-            console.log(value);
             this.addPlaylistToListPlaylists(value);
           });
-        console.log('addbuttonclick');
       },
       async changePlaylist(event) {
-        if (event) {
-          console.log(event.target.id);
-          await api.getPlaylists(event.target.id)
-            .then((value) => {
-              console.log(value);
-              this.changeCurrentPlaylist(value);
-              console.log(value.tracks);
-            });
-        }
+        this.switchCurrentPlaylist({ playlistId: event.target.id, isModifiable: true });
       },
       duration(time) {
         return util.getLengthFromMilliseconds(time);

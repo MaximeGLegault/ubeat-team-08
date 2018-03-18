@@ -38,8 +38,7 @@
         this.$emit('playRequest', this.track);
       },
       async addTrackToPlaylist() {
-        await this.addSongToCurrentPlaylist(this.track)
-          .catch(reason => console.log(reason));
+        await this.addSongToCurrentPlaylist(this.track);
       }
     },
   };
