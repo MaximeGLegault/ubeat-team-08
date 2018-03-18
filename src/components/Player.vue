@@ -9,13 +9,14 @@
       <div id="buttons">
       </div>
       <div id="audioPlayer">
-        <vue-audio :file="currentTrack" />
+        <vue-audio :file="currentTrack" autoPlay/>
       </div>
     </div>
 </template>
 
 <script>
   import VueAudio from 'vue-audio';
+  import { mapActions } from 'vuex';
 
   export default {
     data() {
@@ -31,15 +32,24 @@
         console.log(playRequest);
       }
     },
+    methods: {
+      ...mapActions([
+        'playCurrent'
+      ]),
+      async changeCurrentTrack(trackIndex) {
+        this.playCurrent(trackIndex);
+      }
+    },
     name: 'player',
     props: ['tracks'],
     computed: {
       currentTrack() {
         if (this.$store.state.currentPlaylist) {
-          if (this.$store.state.currentPlaylist.tracks.length > 0) {
-            if (this.$store.state.currentPlaylist.tracks[0]) {
-              return this.$store.state.currentPlaylist.tracks[0].previewUrl;
-            }
+          if (this.$store.state.currentPlaylist &&
+            this.$store.state.currentPlaylist.tracks &&
+            this.$store.state.currentPlaylist.tracks.length > 0) {
+            const trackIndex = this.$store.state.currentPlaylist.selectedTrack || 0;
+            return this.$store.state.currentPlaylist.tracks[trackIndex].previewUrl;
           }
         }
         return '';

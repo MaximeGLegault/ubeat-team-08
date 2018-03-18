@@ -58,7 +58,14 @@ const actions = {
       context.commit('addPlayListToList', playlist);
     }
   },
-
+  changeCurrentPlaylist(context, playlist) {
+    if (playlist) {
+      context.commit('SWITCH_CURRENT_PLAYLIST', playlist);
+    }
+  },
+  playCurrent(context, playRequest) {
+    if (playRequest) {
+      context.commit('SET_CURRENT_REQUEST', playRequest);
   editName(context, { playlistId, newName }) {
     if (playlistId) {
       console.log(playlistId);
