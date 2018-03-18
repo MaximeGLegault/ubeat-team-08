@@ -18,6 +18,12 @@ const mutations = {
   addPlayListToList(state, payload) {
     console.log(payload);
     state.playlists.push(payload);
+  },
+  changeCurrentPlaylist(state, payload) {
+    state.current_playlist.isModifiable = true;
+    state.current_playlist.tracks.length = 0;
+    state.current_playlist.tracks.push(...payload);
+    state.current_playlist.name = payload.name;
   }
 };
 
