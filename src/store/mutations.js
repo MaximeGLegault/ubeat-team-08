@@ -1,8 +1,12 @@
 /* eslint-disable no-param-reassign */
 const mutations = {
 
-  UPDATE_PLAYLIST(state, { playlistIndex, playlist }) {
-    state.playlists[playlistIndex] = playlist;
+  UPDATE_PLAYLIST(state, { oldPlaylist, newPlaylist }) {
+    const index = state.playlists.findIndex(el => el.id === oldPlaylist.id);
+    state.playlists[index] = newPlaylist;
+    if (state.currentPlaylist.id === oldPlaylist.id) {
+      state.currentPlaylist = newPlaylist;
+    }
   },
 
   SWITCH_CURRENT_PLAYLIST(state, playlist) {

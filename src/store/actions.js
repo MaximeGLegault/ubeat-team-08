@@ -6,8 +6,8 @@ const actions = {
     if (track && state.isCurrentPlaylistModifiable) {
       return api.addTrackToPlaylist(state.currentPlaylist.id, this.track)
         .then((value) => {
-          state.playlists.find(el => el.id === value.data.id);
-          commit('UPDATE_PLAYLIST', value.data);
+          const oldPlaylist = state.playlists.find(el => el.id === value.data.id);
+          commit('UPDATE_PLAYLIST', { oldPlaylist, newPlaylist: value.data });
         });
     }
     return Promise.reject(new Error('Can\'t add song to unmodifiable playlist'));
