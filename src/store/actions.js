@@ -3,16 +3,16 @@ import api from '@/lib/api';
 const actions = {
 
   addSongToCurrentPlaylist({ commit, state }, track) {
-    if (track && state.isCurrentPlaylistModifiable) {
-      console.log(track);
-      return api.addTrackToPlaylist(state.currentPlaylist.id, track)
-        .then((value) => {
-          console.log(value.data);
-          const oldPlaylist = state.playlists.find(el => el.id === value.data.id);
-          commit('UPDATE_PLAYLIST', { oldPlaylist, newPlaylist: value.data });
-        });
+    if (!track &&
+        !state.isCurrentPlaylistModifiable &&
+        !(state.currentPlaylist.tracks.findIndex(el => el.trackId === track.trackId) !== -1)) {
+      return Promise.reject(new Error('Can\'t add song to unmodifiable playlist'));
     }
-    return Promise.reject(new Error('Can\'t add song to unmodifiable playlist'));
+    return api.addTrackToPlaylist(state.currentPlaylist.id, track)
+      .then((value) => {
+        const oldPlaylist = state.playlists.find(el => el.id === value.data.id);
+        commit('UPDATE_PLAYLIST', { oldPlaylist, newPlaylist: value.data });
+      });
   },
 
   switchCurrentPlaylist({ commit, state }, { playlistId, isModifiable }) {
@@ -61,7 +61,6 @@ const actions = {
     }
   },
   playCurrent(context, playrequest) {
-    debugger;
     if (playrequest) {
       context.commit('playCurrent', playrequest);
     }
