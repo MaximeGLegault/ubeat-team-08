@@ -24,6 +24,12 @@ const actions = {
     if (playlist) {
       context.commit('changeCurrentPlaylist', playlist);
     }
+  },
+  playCurrent(context, playrequest) {
+    debugger;
+    if (playrequest) {
+      context.commit('playCurrent', playrequest);
+    }
   }
 };
 

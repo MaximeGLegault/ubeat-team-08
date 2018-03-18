@@ -69,7 +69,8 @@
     methods: {
       ...mapActions([
         'addPlaylistToListPlaylists',
-        'changeCurrentPlaylist'
+        'changeCurrentPlaylist',
+        'playCurrent'
       ]),
       toggleEdit() {
         this.showSectionEdit = !this.showSectionEdit;

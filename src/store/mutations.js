@@ -21,6 +21,9 @@ const mutations = {
   },
   changeCurrentPlaylist(state, payload) {
     state.current_playlist = payload;
+  },
+  playCurrent(state, payload) {
+    state.current_playlist.current_request = payload;
   }
 };
 

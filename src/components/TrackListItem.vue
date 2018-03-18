@@ -1,7 +1,7 @@
 <template>
   <tr>
     <td id="play_btn_column">
-      <a class=" btn deep-purple accent-3" v-on:click="playRequest"><i class="material-icons md-48">play_arrow</i></a>
+      <a class=" btn deep-purple accent-3" v-on:click="playRequest(track.trackId)"><i class="material-icons md-48">play_arrow</i></a>
     </td>
     <td>{{track.trackNumber}}</td>
     <td id="song_name_column">{{track.trackName}}</td>
@@ -32,10 +32,12 @@
     },
     methods: {
       ...mapActions([
-        'addSongToCurrentPlaylist'
+        'addSongToCurrentPlaylist',
+        'playCurrent'
       ]),
-      playRequest() {
+      playRequest(request) {
         this.$emit('playRequest', this.track);
+        this.playCurrent(request);
       },
       async addTrackToPlaylist() {
         console.log(this.track);
