@@ -4,6 +4,7 @@ import querystring from 'querystring';
 
 // const baseUrl = 'https://ubeat.herokuapp.com/'; // TODO switch to baseUrl after TP2
 const baseUnsecureUrl = 'https://ubeat.herokuapp.com/unsecure/';
+const ownerName = 'owner@gmail.com';
 
 export default {
   getTracksOfAlbum(collectionId) {
@@ -30,7 +31,14 @@ export default {
     return axios({
       method: 'post',
       url: `${baseUnsecureUrl}playlists`,
-      data: querystring.stringify({ name: playlistName })
+      data: querystring.stringify({ name: playlistName, owner: ownerName })
+    });
+  },
+  modifyPlaylist(playlistId, track) {
+    return axios({
+      method: 'post',
+      url: `${baseUnsecureUrl}playlists`,
+      data: querystring.stringify({ name: playlistId, owner: ownerName, track })
     });
   }
 // other things

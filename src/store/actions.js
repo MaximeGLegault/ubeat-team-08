@@ -1,11 +1,12 @@
+
 const actions = {
   addSongToCurrentPlaylist(context, track) {
-    if (track) {
+    if (track && context.state.current_playlist.isModifiable) {
       context.commit('addSongToCurrentPlaylist', track);
     }
   },
   addAlbumToCurrentPlaylist(context, album) {
-    if (album) {
+    if (album && context.state.current_playlist.isModifiable) {
       context.commit('addSongsToCurrentPlaylist', album);
     }
   },
@@ -16,7 +17,6 @@ const actions = {
   },
   addPlaylistToListPlaylists(context, playlist) {
     if (playlist) {
-      // console.log(playlist);
       context.commit('addPlayListToList', playlist);
     }
   }

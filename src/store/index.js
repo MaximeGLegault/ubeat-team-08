@@ -6,6 +6,7 @@ import mutations from './mutations';
 Vue.use(Vuex);
 
 export const state = {
+  transactionStatus: 1,
   playlists: [],
   current_playlist: {
     tracks: [],
