@@ -60,9 +60,9 @@ const actions = {
       context.commit('SWITCH_CURRENT_PLAYLIST', playlist);
     }
   },
-  playCurrent(context, playrequest) {
-    if (playrequest) {
-      context.commit('playCurrent', playrequest);
+  playCurrent(context, playRequest) {
+    if (playRequest) {
+      context.commit('SET_CURRENT_REQUEST', playRequest);
     }
   }
 };

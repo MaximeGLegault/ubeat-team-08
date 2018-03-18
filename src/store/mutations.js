@@ -14,7 +14,9 @@ const mutations = {
   SWITCH_CURRENT_PLAYLIST(state, playlist) {
     state.currentPlaylist = playlist;
   },
-
+  SET_CURRENT_REQUEST(state, trackIndex) {
+    state.currentPlaylist.selectedTrack = trackIndex;
+  },
   SET_MODIFIABLE_CURRENT_PLAYLIST(state, isModifiable) {
     state.isCurrentPlaylistModifiable = isModifiable;
   },
