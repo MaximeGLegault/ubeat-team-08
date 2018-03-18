@@ -42,63 +42,38 @@
           </tr>
           </tbody>
         </table>
-        <!--<p>create playlist: {{playlists}}</p>
-        <p>event: {{test2}}</p>
-        <p>current playlist: {{currentPlaylist}}</p>
-        <p>list playlist: {{listPlaylists}}</p>
-        <p>current playlist: {{currentPlaylist}}</p>-->
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  import api from '@/lib/api';
   import util from '@/lib/util';
   import { mapActions } from 'vuex';
 
-  // const startIdPlayList = '5aad6bcb1a50230004d03911';
   export default {
     data: () => ({
-      playlists: {},
       test: {},
       test2: {},
       listPlaylists: [],
-      showSectionEdit: false
+      showSectionEdit: false,
     }),
     methods: {
       ...mapActions([
         'addPlaylistToListPlaylists',
         'changeCurrentPlaylist',
-        'playCurrent'
+        'playCurrent',
+        'switchCurrentPlaylist',
+        'createNewPlaylist'
       ]),
       toggleEdit() {
         this.showSectionEdit = !this.showSectionEdit;
       },
       async addPlaylist() {
-        await api.createPlaylist('New Playlist')
-          .then((value) => {
-            this.playlists = value.data;
-            console.log(this.playlists);
-          });
-        api.getPlaylists(this.playlists.id)
-          .then((value) => {
-            // this.test2 = value.id;
-            console.log(value);
-            this.addPlaylistToListPlaylists(value);
-          });
-        console.log('addbuttonclick');
+        this.createNewPlaylist('New Playlist');
       },
       async changePlaylist(event) {
-        if (event) {
-          console.log(event.target.id);
-          await api.getPlaylists(event.target.id)
-            .then((value) => {
-              console.log(value);
-              this.changeCurrentPlaylist(value);
-              console.log(value.tracks);
-            });
-        }
+        this.switchCurrentPlaylist({ playlistId: event.target.id, isModifiable: true });
       },
       duration(time) {
         return util.getLengthFromMilliseconds(time);
@@ -106,20 +81,12 @@
     },
     computed: {
       currentPlaylist() {
-        return this.$store.state.current_playlist;
+        return this.$store.state.currentPlaylist;
       },
       listPlaylistsStore() {
         return this.$store.state.playlists;
       }
     },
-    // async created() {
-    //   await api.getPlaylists(`${startIdPlayList}`)
-    //     .then((value) => {
-    //       this.test = value.id;
-    //       this.listPlaylists.push(value);
-    //       this.currentPlaylist = value;
-    //     });
-    // },
   };
 
 </script>
