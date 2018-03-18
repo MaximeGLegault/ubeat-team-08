@@ -3,9 +3,9 @@ import api from '@/lib/api';
 const actions = {
 
   addSongToCurrentPlaylist({ commit, state }, track) {
-    if (!(track &&
-        state.isCurrentPlaylistModifiable &&
-        (state.currentPlaylist.tracks.findIndex(el => el.trackId === track.trackId) === -1))) {
+    if (!track &&
+        !state.isCurrentPlaylistModifiable &&
+        !(state.currentPlaylist.tracks.findIndex(el => el.trackId === track.trackId) !== -1)) {
       return Promise.reject(new Error('Can\'t add song to unmodifiable playlist'));
     }
     return api.addTrackToPlaylist(state.currentPlaylist.id, track)
@@ -31,6 +31,30 @@ const actions = {
       });
   },
 
+  addAlbumToCurrentPlaylist({ commit, state }, album) {
+    if (album && state.isCurrentPlaylistModifiable) {
+      return api.addTrackToPlaylist(state.currentPlaylist.id, this.track)
+        .then((value) => {
+          state.playlists.find(el => el.id === value.data.id);
+          commit('UPDATE_PLAYLIST', value.data);
+        });
+    }
+    return Promise.reject(new Error('Can\'t add song to unmodifiable playlist'));
+  },
+
+  addAlbumToCurrentPlaylistWithoutSaving({ commit }, playlist) {
+    if (playlist) {
+      commit('SWITCH_CURRENT_PLAYLIST', playlist);
+      commit('SET_MODIFIABLE_CURRENT_PLAYLIST', false);
+    }
+  },
+
+  addPlaylistToListPlaylists(context, playlist) {
+    if (playlist) {
+      context.commit('addPlayListToList', playlist);
+    }
+  },
+
   addTracksToCurrentPlaylist({ commit, state }, tracks) {
     if (tracks && state.isCurrentPlaylistModifiable) {
       return new Promise(() => {
@@ -48,33 +72,15 @@ const actions = {
     return Promise.reject(new Error('Can\'t add song to unmodifiable playlist'));
   },
 
-  addAlbumToCurrentPlaylistWithoutSaving({ commit }, playlist) {
-    if (playlist) {
-      commit('SWITCH_CURRENT_PLAYLIST', playlist);
-      commit('SET_MODIFIABLE_CURRENT_PLAYLIST', false);
-    }
-  },
-
-  addPlaylistToListPlaylists(context, playlist) {
-    if (playlist) {
-      context.commit('addPlayListToList', playlist);
-    }
-  },
-  playCurrent(context, playRequest) {
-    if (playRequest) {
-      context.commit('SET_CURRENT_REQUEST', playRequest);
-    }
-  },
   editName(context, { playlistId, newName }) {
     if (playlistId) {
-      console.log(playlistId);
       return api.editNamePlaylist(playlistId, newName)
         .then((value) => {
           context.commit('EDIT_NAME', value.data);
         });
     }
     return Promise.reject(new Error('unmodifiable playlist'));
-  },
+  }
 };
 
 export default actions;
