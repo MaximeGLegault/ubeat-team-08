@@ -3,6 +3,7 @@
 import Vue from 'vue';
 import App from './App';
 import router from './router';
+import store from './store/index';
 
 /* eslint-disable no-new */
 new Vue({
@@ -10,4 +11,5 @@ new Vue({
   router,
   template: '<App/>',
   components: { App },
+  store,
 });

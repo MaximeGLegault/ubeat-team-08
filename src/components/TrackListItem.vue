@@ -14,6 +14,7 @@
 
 <script>
   import util from '@/lib/util';
+  import { mapActions } from 'vuex';
 
   export default {
     name: 'trackListItem',
@@ -29,11 +30,15 @@
       }
     },
     methods: {
+      ...mapActions([
+        'addSongToCurrentPlaylist'
+      ]),
       playRequest() {
         this.$emit('playRequest', this.track);
       },
       addTrackToPlaylist() {
-        this.$emit('addTrackToPlaylist', this.track);
+        console.log(this.track);
+        this.addSongToCurrentPlaylist(this.track);
       }
     },
   };

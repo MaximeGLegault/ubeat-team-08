@@ -1,10 +1,10 @@
 <template>
   <div id="playlistPage">
     <div id = "playlistName">
-      <button id="addbutton" class="btn-floating waves-effect waves-light deep-purple accent-3 " v-on:click="addPlaylist"><i id = "clickButtonId" class="material-icons">add</i></button>
-      <button id="addbuttonSm" class="btn-floating waves-effect waves-light btn-large deep-purple accent-3 " v-on:click="addPlaylist"><i class="material-icons">add</i></button>
+      <button id="addbutton" class="btn-floating waves-effect waves-light deep-purple accent-3"><i id = "clickButtonId" class="material-icons">add</i></button>
+      <button id="addbuttonSm" class="btn-floating waves-effect waves-light btn-large deep-purple accent-3"><i class="material-icons">add</i></button>
       <ul v-for="playlist of listPlaylists">
-        <li><a class="listPlName" v-bind:id="playlist.id" v-on:click="changePlaylist">{{playlist.name}}</a></li>
+        <li><a class="listPlName" v-bind:id="playlist.id">{{playlist.name}}</a></li>
       </ul>
     </div>
     <div id = "playlist">
@@ -53,17 +53,17 @@
 </template>
 
 <script>
-  import api from '@/lib/api';
+  // import api from '@/lib/api';
   import util from '@/lib/util';
 
-  const startIdPlayList = '5aad6bcb1a50230004d03911';
+  // const startIdPlayList = '5aad6bcb1a50230004d03911';
   export default {
     data: () => ({
-      playlists: {},
+      // playlists: {},
       test: {},
       test2: {},
       listPlaylists: [],
-      currentPlaylist: {},
+      // currentPlaylist: {},
       timeTrack: {},
       showSectionEdit: false
     }),
@@ -71,50 +71,47 @@
       toggleEdit() {
         this.showSectionEdit = !this.showSectionEdit;
       },
-      async addPlaylist() {
-        // `this` inside methods points to the Vue instance
-        await api.createPlaylist('New Playlist')
-          .then((value) => { this.playlists = value.data; });
-        await api.getPlaylists(this.playlists.id)
-          .then((value) => {
-            this.test2 = value.id;
-            this.listPlaylists.push(value);
-          });
+      // async addPlaylist() {
+      //   // `this` inside methods points to the Vue instance
+      //   await api.createPlaylist('New Playlist')
+      //     .then((value) => {
+      //       this.playlists = value.data;
+      //     });
+      //   await api.getPlaylists(this.playlists.id)
+      //     .then((value) => {
+      //       this.test2 = value.id;
+      //       this.listPlaylists.push(value);
+      //     });
         // `event` is the native DOM event
         // if (event) {
         //   console.log(event.target.id);
         // }
-      },
-      async changePlaylist(event) {
-        if (event) {
-          console.log(event.target.id);
-          await api.getPlaylists(event.target.id)
-            .then((value) => {
-              this.currentPlaylist = value;
-            });
-        }
-      },
-      changePlaylistToPlayOnlyPlaylistAndPlay(/* newPlaylist */) {
-        // console.log(newPlaylist);
-      },
-      addAlbumToPlaylist(/* albumToAdd */) {
-        // console.log(albumToAdd);
-      },
-      addTrackToPlaylist(/* trackToAdd */) {
-        // console.log(trackToAdd);
-      },
+      // },
+      // async changePlaylist(/* event */) {
+      //   // if (event) {
+      //   //   console.log(event.target.id);
+      //   await api.getPlaylists(event.target.id)
+      //     .then((value) => {
+      //       this.currentPlaylist = value;
+      //     });
+      // },
       duration(time) {
         return util.getLengthFromMilliseconds(time);
       }
     },
-    async created() {
-      await api.getPlaylists(`${startIdPlayList}`)
-        .then((value) => {
-          this.test = value.id;
-          this.listPlaylists.push(value);
-          this.currentPlaylist = value;
-        });
-    }
+    computed: {
+      currentPlaylist() {
+        return this.$store.state.current_playlist;
+      }
+    },
+    // async created() {
+    //   await api.getPlaylists(`${startIdPlayList}`)
+    //     .then((value) => {
+    //       this.test = value.id;
+    //       this.listPlaylists.push(value);
+    //       this.currentPlaylist = value;
+    //     });
+    // },
   };
 
 </script>
