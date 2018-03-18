@@ -37,7 +37,6 @@
         this.$emit('playRequest', this.track);
       },
       addTrackToPlaylist() {
-        console.log(this.track);
         this.addSongToCurrentPlaylist(this.track);
       }
     },

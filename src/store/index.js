@@ -9,7 +9,7 @@ export const state = {
   playlists: [],
   current_playlist: {
     tracks: [],
-    isModifiable: true
+    isModifiable: true,
   }
 };
 
