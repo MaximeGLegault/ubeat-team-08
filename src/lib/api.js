@@ -34,13 +34,6 @@ export default {
       data: querystring.stringify({ name: playlistName, owner: ownerName })
     });
   },
-  modifyPlaylist(playlistId, track) {
-    return axios({
-      method: 'post',
-      url: `${baseUnsecureUrl}playlists`,
-      data: querystring.stringify({ name: playlistId, owner: ownerName, track })
-    });
-  },
   addTrackToPlaylist(playlistId, track) {
     return axios({
       method: 'post',
