@@ -1,9 +1,9 @@
 <template>
   <div id="playlistPage">
     <div id = "playlistName">
-      <button id="addbutton" class="btn-floating waves-effect waves-light deep-purple accent-3"><i id = "clickButtonId" class="material-icons">add</i></button>
-      <button id="addbuttonSm" class="btn-floating waves-effect waves-light btn-large deep-purple accent-3"><i class="material-icons">add</i></button>
-      <ul v-for="playlist of listPlaylists">
+      <button id="addbutton" class="btn-floating waves-effect waves-light deep-purple accent-3" v-on:click="addPlaylist"><i id = "clickButtonId" class="material-icons">add</i></button>
+      <button id="addbuttonSm" class="btn-floating waves-effect waves-light btn-large deep-purple accent-3" v-on:click="addPlaylist"><i class="material-icons">add</i></button>
+      <ul v-for="playlist in listPlaylistsStore">
         <li><a class="listPlName" v-bind:id="playlist.id">{{playlist.name}}</a></li>
       </ul>
     </div>
@@ -53,13 +53,14 @@
 </template>
 
 <script>
-  // import api from '@/lib/api';
+  import api from '@/lib/api';
   import util from '@/lib/util';
+  import { mapActions } from 'vuex';
 
   // const startIdPlayList = '5aad6bcb1a50230004d03911';
   export default {
     data: () => ({
-      // playlists: {},
+      playlists: {},
       test: {},
       test2: {},
       listPlaylists: [],
@@ -68,25 +69,26 @@
       showSectionEdit: false
     }),
     methods: {
+      ...mapActions([
+        'addPlaylistToListPlaylists'
+      ]),
       toggleEdit() {
         this.showSectionEdit = !this.showSectionEdit;
       },
-      // async addPlaylist() {
-      //   // `this` inside methods points to the Vue instance
-      //   await api.createPlaylist('New Playlist')
-      //     .then((value) => {
-      //       this.playlists = value.data;
-      //     });
-      //   await api.getPlaylists(this.playlists.id)
-      //     .then((value) => {
-      //       this.test2 = value.id;
-      //       this.listPlaylists.push(value);
-      //     });
-        // `event` is the native DOM event
-        // if (event) {
-        //   console.log(event.target.id);
-        // }
-      // },
+      async addPlaylist() {
+        await api.createPlaylist('New Playlist')
+          .then((value) => {
+            this.playlists = value.data;
+            console.log(this.playlists);
+          });
+        api.getPlaylists(this.playlists.id)
+          .then((value) => {
+            // this.test2 = value.id;
+            console.log(value);
+            this.addPlaylistToListPlaylists(value);
+          });
+        console.log('addbuttonclick');
+      },
       // async changePlaylist(/* event */) {
       //   // if (event) {
       //   //   console.log(event.target.id);
@@ -102,6 +104,9 @@
     computed: {
       currentPlaylist() {
         return this.$store.state.current_playlist;
+      },
+      listPlaylistsStore() {
+        return this.$store.state.playlists;
       }
     },
     // async created() {
