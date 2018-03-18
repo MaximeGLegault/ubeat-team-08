@@ -48,11 +48,9 @@
 </template>
 
 <script>
-  import api from '@/lib/api';
   import util from '@/lib/util';
   import { mapActions } from 'vuex';
 
-  // const startIdPlayList = '5aad6bcb1a50230004d03911';
   export default {
     data: () => ({
       test: {},
@@ -72,11 +70,6 @@
       },
       async addPlaylist() {
         this.createNewPlaylist('New Playlist');
-        api.getPlaylists(this.playlists.id)
-          .then((value) => {
-            // this.test2 = value.id;
-            this.addPlaylistToListPlaylists(value);
-          });
       },
       async changePlaylist(event) {
         this.switchCurrentPlaylist({ playlistId: event.target.id, isModifiable: true });

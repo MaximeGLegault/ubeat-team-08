@@ -29,7 +29,7 @@
     async created() {
       await api.createPlaylist('My Playlist')
         .then((value) => {
-          this.$store.state.current_playlist = value.data;
+          this.$store.state.currentPlaylist = value.data;
           this.$store.state.playlists.push(value.data);
         });
     }

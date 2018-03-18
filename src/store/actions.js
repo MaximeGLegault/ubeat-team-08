@@ -29,9 +29,9 @@ const actions = {
       });
   },
 
-  addAlbumToCurrentPlaylist(context, album) {
-    if (album && context.state.isCurrentPlaylistModifiable) {
-      context.commit('ADD_SONG_TO_CURRENT_PLAYLIST', album);
+  addAlbumToCurrentPlaylist({ commit, state }, album) {
+    if (album && state.isCurrentPlaylistModifiable) {
+      commit('ADD_SONG_TO_CURRENT_PLAYLIST', album);
     }
   },
 

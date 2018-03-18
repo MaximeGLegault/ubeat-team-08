@@ -44,10 +44,11 @@
         'addAlbumToCurrentPlaylist'
       ]),
       emitNewPlaylistToPlay(trackToPlay) {
-        const newPlaylist = this.tracks.slice();
-        const index = newPlaylist.findIndex(el => el.trackId === trackToPlay.trackId);
-        const tracksToBePushedAtTheBackOfPlaylist = newPlaylist.splice(0, index);
-        newPlaylist.push(...tracksToBePushedAtTheBackOfPlaylist);
+        const newTracks = this.tracks.slice();
+        const index = newTracks.findIndex(el => el.trackId === trackToPlay.trackId);
+        const tracksToBePushedAtTheBackOfPlaylist = newTracks.splice(0, index);
+        newTracks.push(...tracksToBePushedAtTheBackOfPlaylist);
+        const newPlaylist = { tracks: newTracks, name: newTracks[0].collectionName };
         this.addAlbumToCurrentPlaylistWithoutSaving(newPlaylist);
       },
       addAlbumToPlaylist() {
