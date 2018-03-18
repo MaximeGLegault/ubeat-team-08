@@ -41,7 +41,7 @@
     methods: {
       ...mapActions([
         'addAlbumToCurrentPlaylistWithoutSaving',
-        'addAlbumToCurrentPlaylist',
+        'addTracksToCurrentPlaylist',
       ]),
       emitNewPlaylistToPlay(trackToPlay) {
         const newTracks = this.tracks.slice();
@@ -52,7 +52,7 @@
         this.addAlbumToCurrentPlaylistWithoutSaving(newPlaylist);
       },
       addAlbumToPlaylist() {
-        this.addAlbumToCurrentPlaylist(this.tracks);
+        this.addTracksToCurrentPlaylist(this.tracks);
       }
     }
   };

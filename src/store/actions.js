@@ -31,7 +31,7 @@ const actions = {
       });
   },
 
-  addAlbumToCurrentPlaylist({ commit, state }, tracks) {
+  addTracksToCurrentPlaylist({ commit, state }, tracks) {
     if (tracks && state.isCurrentPlaylistModifiable) {
       return new Promise(() => {
         tracks.forEach(async (el) => {
@@ -66,6 +66,8 @@ const actions = {
   playCurrent(context, playRequest) {
     if (playRequest) {
       context.commit('SET_CURRENT_REQUEST', playRequest);
+    }
+  },
   editName(context, { playlistId, newName }) {
     if (playlistId) {
       console.log(playlistId);
