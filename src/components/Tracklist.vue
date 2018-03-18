@@ -51,8 +51,9 @@
         const newPlaylist = { tracks: newTracks, name: newTracks[0].collectionName };
         this.addAlbumToCurrentPlaylistWithoutSaving(newPlaylist);
       },
-      addAlbumToPlaylist() {
-        this.addTracksToCurrentPlaylist(this.tracks);
+      async addAlbumToPlaylist() {
+        await this.addTracksToCurrentPlaylist(this.tracks);
+          // .catch(reason => console.log('todo add a push to this', reason))
       }
     }
   };
