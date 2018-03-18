@@ -15,7 +15,7 @@
 <script>
   import util from '@/lib/util';
   import { mapActions } from 'vuex';
-  // import api from '@/lib/api';
+  import api from '@/lib/api';
 
   export default {
     name: 'trackListItem',
@@ -39,11 +39,11 @@
       },
       async addTrackToPlaylist() {
         console.log(this.track);
-        this.addSongToCurrentPlaylist(this.track);
-        // await api.addTrackToPlaylist(this.$store.state.current_playlist.id, this.track)
-        //   .then((value) => {
-        //     console.log(value);
-        //   })
+        // this.addSongToCurrentPlaylist(this.track);
+        await api.addTrackToPlaylist(this.$store.state.current_playlist.id, this.track)
+          .then((value) => {
+            console.log(value);
+          });
       }
     },
   };

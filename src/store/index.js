@@ -7,11 +7,7 @@ Vue.use(Vuex);
 
 export const state = {
   playlists: [],
-  current_playlist: {
-    tracks: [],
-    isModifiable: true,
-    name: '',
-  }
+  current_playlist: {}
 };
 
 export default new Vuex.Store({
