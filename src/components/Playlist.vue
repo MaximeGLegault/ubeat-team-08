@@ -63,7 +63,9 @@
     methods: {
       ...mapActions([
         'addPlaylistToListPlaylists',
-        'changeCurrentPlaylist'
+        'changeCurrentPlaylist',
+        'switchCurrentPlaylist',
+        'createNewPlaylist'
       ]),
       toggleEdit() {
         this.showSectionEdit = !this.showSectionEdit;
@@ -85,20 +87,12 @@
     },
     computed: {
       currentPlaylist() {
-        return this.$store.state.current_playlist;
+        return this.$store.state.currentPlaylist;
       },
       listPlaylistsStore() {
         return this.$store.state.playlists;
       }
     },
-    // async created() {
-    //   await api.getPlaylists(`${startIdPlayList}`)
-    //     .then((value) => {
-    //       this.test = value.id;
-    //       this.listPlaylists.push(value);
-    //       this.currentPlaylist = value;
-    //     });
-    // },
   };
 
 </script>

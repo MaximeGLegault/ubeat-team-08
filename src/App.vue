@@ -1,8 +1,7 @@
 <template>
   <div id="app">
     <nav-menu />
-    <player-bar v-if="player_visibility"
-                :tracks="tracks"/>
+    <player-bar v-if="player_visibility" />
     <router-view/>
   </div>
 </template>
@@ -24,13 +23,10 @@
     data() {
       return {
         player_visibility: true,
-        tracks: [],
         playlist_visibility: false
       };
     },
     async created() {
-      await api.getTracksOfAlbum(1125488753)
-        .then((value) => { this.tracks = value.results; });
       await api.createPlaylist('My Playlist')
         .then((value) => {
           this.$store.state.current_playlist = value.data;
