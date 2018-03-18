@@ -54,7 +54,6 @@ const actions = {
       context.commit('addPlayListToList', playlist);
     }
   },
-
   changeCurrentPlaylist(context, playlist) {
     if (playlist) {
       context.commit('SWITCH_CURRENT_PLAYLIST', playlist);
@@ -63,7 +62,15 @@ const actions = {
   playCurrent(context, playRequest) {
     if (playRequest) {
       context.commit('SET_CURRENT_REQUEST', playRequest);
+  editName(context, { playlistId, newName }) {
+    if (playlistId) {
+      console.log(playlistId);
+      return api.editNamePlaylist(playlistId, newName)
+        .then((value) => {
+          context.commit('EDIT_NAME', value.data);
+        });
     }
+    return Promise.reject(new Error('unmodifiable playlist'));
   }
 };
 
