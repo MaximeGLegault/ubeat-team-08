@@ -65,6 +65,15 @@ const actions = {
     if (playrequest) {
       context.commit('playCurrent', playrequest);
     }
+  },
+  editName(context, playlistId, newName) {
+    if (playlistId) {
+      return api.editNamePlaylist(playlistId, newName)
+        .then((value) => {
+          context.commit('EDIT_NAME', value.data);
+        });
+    }
+    return Promise.reject(new Error('unmodifiable playlist'));
   }
 };
 

@@ -40,6 +40,13 @@ export default {
       url: `${baseUnsecureUrl}playlists/${playlistId}/tracks`,
       data: querystring.stringify(track)
     });
+  },
+  editNamePlaylist(playlist, newName) {
+    return axios({
+      method: 'put',
+      url: `${baseUnsecureUrl}playlists/${playlist}`,
+      data: querystring.stringify({ name: newName })
+    });
   }
 // other things
 };

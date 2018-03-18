@@ -16,7 +16,7 @@
             <input id="pl_name" type="text" >
             <label for="pl_name">Playlist Name</label>
           </div>
-          <a id="checkBtn" class="waves-effect btn-flat "><i class="material-icons left">check</i></a>
+          <a id="checkBtn" class="waves-effect btn-flat " v-on:click="editNamePl"><i class="material-icons left">check</i></a>
         </div>
       </div>
       <div id="trackList">
@@ -64,7 +64,8 @@
         'changeCurrentPlaylist',
         'playCurrent',
         'switchCurrentPlaylist',
-        'createNewPlaylist'
+        'createNewPlaylist',
+        'editName'
       ]),
       toggleEdit() {
         this.showSectionEdit = !this.showSectionEdit;
@@ -74,6 +75,9 @@
       },
       async changePlaylist(event) {
         this.switchCurrentPlaylist({ playlistId: event.target.id, isModifiable: true });
+      },
+      async editNamePl() {
+        this.editName(this.$store.state.currentPlaylist.id, 'newName');
       },
       duration(time) {
         return util.getLengthFromMilliseconds(time);

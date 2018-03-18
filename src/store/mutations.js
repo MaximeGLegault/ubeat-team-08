@@ -25,6 +25,9 @@ const mutations = {
   },
   playCurrent(state, payload) {
     state.current_playlist.current_request = payload;
+  },
+  EDIT_NAME(state, payload) {
+    console.log(payload);
   }
 };
 
