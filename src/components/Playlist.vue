@@ -4,7 +4,7 @@
       <button id="addbutton" class="btn-floating waves-effect waves-light deep-purple accent-3" v-on:click="addPlaylist"><i id = "clickButtonId" class="material-icons">add</i></button>
       <button id="addbuttonSm" class="btn-floating waves-effect waves-light btn-large deep-purple accent-3" v-on:click="addPlaylist"><i class="material-icons">add</i></button>
       <ul v-for="playlist in listPlaylistsStore">
-        <li><a class="listPlName" v-bind:id="playlist.id">{{playlist.name}}</a></li>
+        <li><a class="listPlName" v-bind:id="playlist.id" v-on:click="changePlaylist">{{playlist.name}}</a></li>
       </ul>
     </div>
     <div id = "playlist">
@@ -64,13 +64,12 @@
       test: {},
       test2: {},
       listPlaylists: [],
-      // currentPlaylist: {},
-      timeTrack: {},
       showSectionEdit: false
     }),
     methods: {
       ...mapActions([
-        'addPlaylistToListPlaylists'
+        'addPlaylistToListPlaylists',
+        'changeCurrentPlaylist'
       ]),
       toggleEdit() {
         this.showSectionEdit = !this.showSectionEdit;
@@ -89,14 +88,17 @@
           });
         console.log('addbuttonclick');
       },
-      // async changePlaylist(/* event */) {
-      //   // if (event) {
-      //   //   console.log(event.target.id);
-      //   await api.getPlaylists(event.target.id)
-      //     .then((value) => {
-      //       this.currentPlaylist = value;
-      //     });
-      // },
+      async changePlaylist(event) {
+        if (event) {
+          console.log(event.target.id);
+          await api.getPlaylists(event.target.id)
+            .then((value) => {
+              console.log(value);
+              this.changeCurrentPlaylist(value);
+              console.log(value.tracks);
+            });
+        }
+      },
       duration(time) {
         return util.getLengthFromMilliseconds(time);
       }

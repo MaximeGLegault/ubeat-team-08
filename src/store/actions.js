@@ -19,6 +19,11 @@ const actions = {
     if (playlist) {
       context.commit('addPlayListToList', playlist);
     }
+  },
+  changeCurrentPlaylist(context, playlist) {
+    if (playlist) {
+      context.commit('changeCurrentPlaylist', playlist);
+    }
   }
 };
 

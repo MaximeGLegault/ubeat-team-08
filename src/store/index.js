@@ -11,9 +11,9 @@ export const state = {
   current_playlist: {
     tracks: [],
     isModifiable: true,
+    name: '',
   }
 };
-
 
 export default new Vuex.Store({
   state,
