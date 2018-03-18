@@ -9,7 +9,7 @@
       <div id="buttons">
       </div>
       <div id="audioPlayer">
-        <vue-audio :file="file1" />
+        <vue-audio :file="currentTrack" />
       </div>
     </div>
 </template>
@@ -20,8 +20,7 @@
   export default {
     data() {
       return {
-        file1: 'dist/sample.mp3',
-        file2: 'dist/1.mp3'
+        file1: 'https://audio-ssl.itunes.apple.com/apple-assets-us-std-000001/AudioPreview20/v4/45/9e/56/459e5630-66c6-da49-3f46-e36ff39d5044/mzaf_7576060663190289522.plus.aac.p.m4a',
       };
     },
     components: {
@@ -35,12 +34,9 @@
     name: 'player',
     props: ['tracks'],
     computed: {
-      current_track() {
-        if (this.tracks.length) {
-          return this.tracks[0];
-        }
-        return {};
-      }
+      currentTrack() {
+        return this.$store.state.currentPlaylist.tracks[0].previewUrl;
+      },
     }
   };
 </script>

@@ -5,7 +5,7 @@ const actions = {
   addSongToCurrentPlaylist({ commit, state }, track) {
     if (!track &&
         !state.isCurrentPlaylistModifiable &&
-        !(state.currentPlaylist.tracks.findIndex(el => el.trackId === track.trackId) === -1)) {
+        !(state.currentPlaylist.tracks.findIndex(el => el.trackId === track.trackId) !== -1)) {
       return Promise.reject(new Error('Can\'t add song to unmodifiable playlist'));
     }
     return api.addTrackToPlaylist(state.currentPlaylist.id, track)
@@ -61,7 +61,6 @@ const actions = {
     }
   },
   playCurrent(context, playrequest) {
-    debugger;
     if (playrequest) {
       context.commit('playCurrent', playrequest);
     }
