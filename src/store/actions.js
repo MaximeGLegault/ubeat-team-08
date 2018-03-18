@@ -3,9 +3,9 @@ import api from '@/lib/api';
 const actions = {
 
   addSongToCurrentPlaylist({ commit, state }, track) {
-    if (!track &&
-        !state.isCurrentPlaylistModifiable &&
-        !(state.currentPlaylist.tracks.findIndex(el => el.trackId === track.trackId) !== -1)) {
+    if (!(track &&
+        state.isCurrentPlaylistModifiable &&
+        (state.currentPlaylist.tracks.findIndex(el => el.trackId === track.trackId) === -1))) {
       return Promise.reject(new Error('Can\'t add song to unmodifiable playlist'));
     }
     return api.addTrackToPlaylist(state.currentPlaylist.id, track)
@@ -35,11 +35,13 @@ const actions = {
     if (tracks && state.isCurrentPlaylistModifiable) {
       return new Promise(() => {
         tracks.forEach(async (el) => {
-          await api.addTrackToPlaylist(state.currentPlaylist.id, el)
-          .then((value) => {
-            const oldPlaylist = state.playlists.find(pl => pl.id === value.data.id);
-            commit('UPDATE_PLAYLIST', { oldPlaylist, newPlaylist: value.data });
-          });
+          if (state.currentPlaylist.tracks.findIndex(tr => tr.trackId === el.trackId) === -1) {
+            await api.addTrackToPlaylist(state.currentPlaylist.id, el)
+              .then((value) => {
+                const oldPlaylist = state.playlists.find(pl => pl.id === value.data.id);
+                commit('UPDATE_PLAYLIST', { oldPlaylist, newPlaylist: value.data });
+              });
+          }
         });
       });
     }
