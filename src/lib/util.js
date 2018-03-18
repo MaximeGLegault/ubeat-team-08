@@ -33,4 +33,17 @@ export default {
 
     return `${hours}${minutes}${seconds}`;
   }
+
+  getMusicInfo(tracks) {
+    const musicInfo = [];
+    tracks.forEach(track => {
+      musicInfo.push({
+        url: track.previewUrl,
+        title: track.trackName,
+        author: track.artistName,
+        pic: track.artworkUrl100,
+        lrc: null
+      })
+    })
+  }
 };

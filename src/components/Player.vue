@@ -1,21 +1,10 @@
 <template>
     <div id="player">
-
-      <!--
-       <div id="album_cover" v-if="current_track">
-        <img :src="current_track.artworkUrl100"/>
-      </div>-->
-
-      <div id="buttons">
+       <player :file="currentTrack" />
       </div>
-      <div id="audioPlayer">
-        <vue-audio :file="currentTrack" autoPlay/>
-      </div>
-    </div>
 </template>
 
 <script>
-  import VueAudio from 'vue-audio';
   import { mapActions } from 'vuex';
 
   export default {
@@ -24,9 +13,7 @@
         file1: 'https://audio-ssl.itunes.apple.com/apple-assets-us-std-000001/AudioPreview20/v4/45/9e/56/459e5630-66c6-da49-3f46-e36ff39d5044/mzaf_7576060663190289522.plus.aac.p.m4a',
       };
     },
-    components: {
-      'vue-audio': VueAudio
-    },
+    components: ['Aplayer'],
     events: {
       playRequest(playRequest) {
         console.log(playRequest);
