@@ -62,6 +62,7 @@
       ...mapActions([
         'addPlaylistToListPlaylists',
         'changeCurrentPlaylist',
+        'playCurrent',
         'switchCurrentPlaylist',
         'createNewPlaylist'
       ]),

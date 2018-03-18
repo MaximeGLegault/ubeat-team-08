@@ -57,6 +57,12 @@ const actions = {
     if (playlist) {
       context.commit('SWITCH_CURRENT_PLAYLIST', playlist);
     }
+  },
+  playCurrent(context, playrequest) {
+    debugger;
+    if (playrequest) {
+      context.commit('playCurrent', playrequest);
+    }
   }
 };
 

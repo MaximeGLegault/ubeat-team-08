@@ -27,6 +27,11 @@
     components: {
       'vue-audio': VueAudio
     },
+    events: {
+      playRequest(playRequest) {
+        console.log(playRequest);
+      }
+    },
     name: 'player',
     props: ['tracks'],
     computed: {

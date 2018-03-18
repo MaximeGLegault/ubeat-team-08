@@ -20,7 +20,12 @@ const mutations = {
   SAVE_PLAYLIST(state, playlist) {
     state.playlists.push(playlist);
   },
-
+  changeCurrentPlaylist(state, payload) {
+    state.current_playlist = payload;
+  },
+  playCurrent(state, payload) {
+    state.current_playlist.current_request = payload;
+  }
 };
 
 export default mutations;
