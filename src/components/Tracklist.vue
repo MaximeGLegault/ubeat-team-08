@@ -41,7 +41,7 @@
     methods: {
       ...mapActions([
         'addAlbumToCurrentPlaylistWithoutSaving',
-        'addAlbumToCurrentPlaylist'
+        'addAlbumToCurrentPlaylist',
       ]),
       emitNewPlaylistToPlay(trackToPlay) {
         const newTracks = this.tracks.slice();

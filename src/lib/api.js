@@ -47,6 +47,6 @@ export default {
       url: `${baseUnsecureUrl}playlists/${playlist}`,
       data: querystring.stringify({ name: newName })
     });
-  }
+  },
 // other things
 };

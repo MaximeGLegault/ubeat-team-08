@@ -31,13 +31,17 @@ const actions = {
       });
   },
 
-  addAlbumToCurrentPlaylist({ commit, state }, album) {
-    if (album && state.isCurrentPlaylistModifiable) {
-      return api.addTrackToPlaylist(state.currentPlaylist.id, this.track)
-        .then((value) => {
-          state.playlists.find(el => el.id === value.data.id);
-          commit('UPDATE_PLAYLIST', value.data);
+  addAlbumToCurrentPlaylist({ commit, state }, tracks) {
+    if (tracks && state.isCurrentPlaylistModifiable) {
+      return new Promise(() => {
+        tracks.forEach(async (el) => {
+          await api.addTrackToPlaylist(state.currentPlaylist.id, el)
+          .then((value) => {
+            const oldPlaylist = state.playlists.find(pl => pl.id === value.data.id);
+            commit('UPDATE_PLAYLIST', { oldPlaylist, newPlaylist: value.data });
+          });
         });
+      });
     }
     return Promise.reject(new Error('Can\'t add song to unmodifiable playlist'));
   },
@@ -64,7 +68,7 @@ const actions = {
         });
     }
     return Promise.reject(new Error('unmodifiable playlist'));
-  }
+  },
 };
 
 export default actions;
