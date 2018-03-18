@@ -75,7 +75,7 @@
         this.switchCurrentPlaylist({ playlistId: event.target.id, isModifiable: true });
       },
       async editNamePl() {
-        this.editName(this.$store.state.currentPlaylist.id, 'newName');
+        this.editName({ playlistId: this.$store.state.currentPlaylist.id, newName: 'newName' });
       },
       duration(time) {
         return util.getLengthFromMilliseconds(time);

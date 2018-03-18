@@ -55,18 +55,9 @@ const actions = {
     }
   },
 
-  changeCurrentPlaylist(context, playlist) {
-    if (playlist) {
-      context.commit('SWITCH_CURRENT_PLAYLIST', playlist);
-    }
-  },
-  playCurrent(context, playrequest) {
-    if (playrequest) {
-      context.commit('playCurrent', playrequest);
-    }
-  },
-  editName(context, playlistId, newName) {
+  editName(context, { playlistId, newName }) {
     if (playlistId) {
+      console.log(playlistId);
       return api.editNamePlaylist(playlistId, newName)
         .then((value) => {
           context.commit('EDIT_NAME', value.data);
