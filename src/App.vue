@@ -31,6 +31,11 @@
     async created() {
       await api.getTracksOfAlbum(1125488753)
         .then((value) => { this.tracks = value.results; });
+      await api.createPlaylist('My Playlist')
+        .then((value) => {
+          this.$store.state.current_playlist = value.data;
+          this.$store.state.playlists.push(value.data);
+        });
     }
   };
 

@@ -53,7 +53,6 @@
   import { mapActions } from 'vuex';
 
   // const startIdPlayList = '5aad6bcb1a50230004d03911';
-
   export default {
     data: () => ({
       test: {},
@@ -64,9 +63,7 @@
     methods: {
       ...mapActions([
         'addPlaylistToListPlaylists',
-        'changeCurrentPlaylist',
-        'createNewPlaylist',
-        'switchCurrentPlaylist',
+        'changeCurrentPlaylist'
       ]),
       toggleEdit() {
         this.showSectionEdit = !this.showSectionEdit;
@@ -88,16 +85,20 @@
     },
     computed: {
       currentPlaylist() {
-        return this.$store.state.currentPlaylist;
+        return this.$store.state.current_playlist;
       },
       listPlaylistsStore() {
         return this.$store.state.playlists;
       }
     },
-    async created() {
-      const playlistId = await this.createNewPlaylist('ASDFASDFSDAF');
-      this.switchCurrentPlaylist({ playlistId, isModifiable: true });
-    },
+    // async created() {
+    //   await api.getPlaylists(`${startIdPlayList}`)
+    //     .then((value) => {
+    //       this.test = value.id;
+    //       this.listPlaylists.push(value);
+    //       this.currentPlaylist = value;
+    //     });
+    // },
   };
 
 </script>
