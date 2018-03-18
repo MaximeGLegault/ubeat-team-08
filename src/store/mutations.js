@@ -1,22 +1,28 @@
 /* eslint-disable no-param-reassign */
 const mutations = {
-  addSongToCurrentPlaylist(state, payload) {
-    state.currentPlaylist.tracks.push(payload);
+
+  UPDATE_PLAYLIST(state, { playlistIndex, playlist }) {
+    state.playlists[playlistIndex] = playlist;
   },
+
   addSongsToCurrentPlaylist(state, payload) {
     state.currentPlaylist.tracks.push(...payload);
   },
-  changeCurrentPlaylistByPlaylist(state, payload) {
-    state.isCurrentPlaylistModifiable = false;
-    state.currentPlaylist = payload;
+
+  SWITCH_CURRENT_PLAYLIST(state, playlistId) {
+    state.currentPlaylist = playlistId;
   },
-  addPlayListToList(state, payload) {
-    state.playlists.push(payload);
+
+  SET_MODIFIABLE_CURRENT_PLAYLIST(state, isModifiable) {
+    state.isCurrentPlaylistModifiable = isModifiable;
   },
+
+  SAVE_PLAYLIST(state, playlist) {
+    state.playlists.push(playlist);
+  },
+
   changeCurrentPlaylist(state, payload) {
-    state.isCurrentPlaylistModifiable = true;
-    state.currentPlaylist.tracks = payload;
-    state.currentPlaylist.name = payload.name;
+    state.currentPlaylist = payload;
   }
 };
 
