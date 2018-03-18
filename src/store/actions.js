@@ -4,8 +4,10 @@ const actions = {
 
   addSongToCurrentPlaylist({ commit, state }, track) {
     if (track && state.isCurrentPlaylistModifiable) {
-      return api.addTrackToPlaylist(state.currentPlaylist.id, this.track)
+      console.log(track);
+      return api.addTrackToPlaylist(state.currentPlaylist.id, track)
         .then((value) => {
+          console.log(value.data);
           const oldPlaylist = state.playlists.find(el => el.id === value.data.id);
           commit('UPDATE_PLAYLIST', { oldPlaylist, newPlaylist: value.data });
         });

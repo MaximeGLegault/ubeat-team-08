@@ -38,7 +38,7 @@ export default {
     return axios({
       method: 'post',
       url: `${baseUnsecureUrl}playlists/${playlistId}/tracks`,
-      data: querystring.stringify({ track })
+      data: querystring.stringify(track)
     });
   }
 // other things
