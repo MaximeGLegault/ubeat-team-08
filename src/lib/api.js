@@ -45,40 +45,7 @@ export default {
     return axios({
       method: 'post',
       url: `${baseUnsecureUrl}playlists/${playlistId}/tracks`,
-      data: querystring.stringify({
-        wrapperType: track.wrapperType,
-        kind: track.kind,
-        artistId: track.artistId,
-        collectionId: track.collectionId,
-        trackId: track.trackId,
-        artistName: track.artistName,
-        collectionName: track.collectionId,
-        trackName: track.trackName,
-        collectionCensoredName: track.collectionCensoredName,
-        trackCensoredName: track.trackCensoredName,
-        artistViewUrl: track.artistViewUrl,
-        collectionViewUrl: track.collectionViewUrl,
-        trackViewUrl: track.trackViewUrl,
-        previewUrl: track.previewUrl,
-        artworkUrl30: track.artworkUrl30,
-        artworkUrl60: track.artworkUrl60,
-        artworkUrl100: track.artworkUrl100,
-        collectionPrice: track.collectionPrice,
-        trackPrice: track.trackPrice,
-        releaseDate: track.releaseDate,
-        collectionExplicitness: track.collectionExplicitness,
-        trackExplicitness: track.trackExplicitness,
-        discCount: track.discCount,
-        discNumber: track.discNumber,
-        trackCount: track.trackCount,
-        trackNumber: track.trackNumber,
-        trackTimeMillis: track.trackTimeMillis,
-        country: track.country,
-        currency: track.currency,
-        primaryGenreName: track.primaryGenreName,
-        contentAdvisoryRating: track.contentAdvisoryRating,
-        radioStationUrl: track.radioStationUrl
-      })
+      data: querystring.stringify({ track })
     });
   }
 // other things

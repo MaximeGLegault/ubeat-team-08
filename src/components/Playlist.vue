@@ -105,7 +105,7 @@
     },
     computed: {
       currentPlaylist() {
-        return this.$store.state.current_playlist;
+        return this.$store.state.currentPlaylist;
       },
       listPlaylistsStore() {
         return this.$store.state.playlists;

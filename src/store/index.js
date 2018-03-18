@@ -8,11 +8,8 @@ Vue.use(Vuex);
 export const state = {
   transactionStatus: 1,
   playlists: [],
-  current_playlist: {
-    tracks: [],
-    isModifiable: true,
-    name: '',
-  }
+  currentPlaylist: {},
+  isCurrentPlaylistModifiable: true,
 };
 
 export default new Vuex.Store({
