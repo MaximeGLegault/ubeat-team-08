@@ -13,7 +13,7 @@
         <button v-on:click="toggleEdit" id="editBtn" class="btn-floating waves-effect waves-light black "><i class="material-icons">mode_edit</i></button>
         <div v-show="showSectionEdit" id = "editDiv">
           <div class="input-field col s6">
-            <input id="pl_name" type="text" >
+            <input id="pl_name" type="text" v-model="inputNameEdit">
             <label for="pl_name">Playlist Name</label>
           </div>
           <a id="checkBtn" class="waves-effect btn-flat " v-on:click="editNamePl"><i class="material-icons left">check</i></a>
@@ -57,6 +57,7 @@
       test2: {},
       listPlaylists: [],
       showSectionEdit: false,
+      inputNameEdit: ''
     }),
     methods: {
       ...mapActions([
@@ -75,6 +76,7 @@
         this.switchCurrentPlaylist({ playlistId: event.target.id, isModifiable: true });
       },
       async editNamePl() {
+        console.log(this.inputNameEdit);
         this.editName(this.$store.state.currentPlaylist.id, 'newName');
       },
       duration(time) {
