@@ -34,11 +34,7 @@
     },
     methods: {
       ...mapActions([
-        'playCurrent'
       ]),
-      async changeCurrentTrack(trackIndex) {
-        this.playCurrent(trackIndex);
-      }
     },
     name: 'player',
     props: ['tracks'],
