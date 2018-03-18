@@ -44,7 +44,7 @@ export default {
         collectionId: track.collectionId,
         trackId: track.trackId,
         artistName: track.artistName,
-        collectionName: track.collectionId,
+        collectionName: track.collectionName,
         trackName: track.trackName,
         collectionCensoredName: track.collectionCensoredName,
         trackCensoredName: track.trackCensoredName,
