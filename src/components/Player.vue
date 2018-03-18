@@ -35,8 +35,15 @@
     props: ['tracks'],
     computed: {
       currentTrack() {
-        return this.$store.state.currentPlaylist.tracks[0].previewUrl;
-      },
+        if (this.$store.state.currentPlaylist) {
+          if (this.$store.state.currentPlaylist.tracks.length > 0) {
+            if (this.$store.state.currentPlaylist.tracks[0]) {
+              return this.$store.state.currentPlaylist.tracks[0].previewUrl;
+            }
+          }
+        }
+        return '';
+      }
     }
   };
 </script>
