@@ -40,8 +40,8 @@
         this.playCurrent(request);
       },
       async addTrackToPlaylist() {
-        await this.addSongToCurrentPlaylist(this.track)
-          .catch(reason => console.log('add some toast or something when this pop: ', reason));
+        await this.addSongToCurrentPlaylist(this.track);
+          // .catch(reason => console.log('add some toast or something when this pop: ', reason));
       }
     },
   };
