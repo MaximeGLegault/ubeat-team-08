@@ -1,58 +1,42 @@
 <template>
     <div id="player">
-
-      <!--
-       <div id="album_cover" v-if="current_track">
-        <img :src="current_track.artworkUrl100"/>
-      </div>-->
-
-      <div id="buttons">
-      </div>
-      <div id="audioPlayer">
-        <vue-audio :file="currentTrack" autoPlay/>
-      </div>
+       <Aplayer v-if="shown"
+                :music.sync="currentTrack"
+                :list="currentTracks"
+                :autoplay="true"
+                :theme="'#e1e1e1'"
+                :showLrc="false"
+                :listMaxHeight="'0'"/>
     </div>
 </template>
 
 <script>
-  import VueAudio from 'vue-audio';
-  import { mapActions } from 'vuex';
+  import util from '@/lib/util';
+  import Aplayer from 'vue-aplayer';
 
   export default {
-    data() {
-      return {
-        file1: 'https://audio-ssl.itunes.apple.com/apple-assets-us-std-000001/AudioPreview20/v4/45/9e/56/459e5630-66c6-da49-3f46-e36ff39d5044/mzaf_7576060663190289522.plus.aac.p.m4a',
-      };
-    },
     components: {
-      'vue-audio': VueAudio
+      Aplayer,
     },
-    events: {
-      playRequest(playRequest) {
-        console.log(playRequest);
-      }
-    },
-    methods: {
-      ...mapActions([
-        'playCurrent'
-      ]),
-      async changeCurrentTrack(trackIndex) {
-        this.playCurrent(trackIndex);
-      }
-    },
-    name: 'player',
-    props: ['tracks'],
     computed: {
+      shown() {
+        return (this.$store.state.currentPlaylist &&
+          this.$store.state.currentPlaylist.tracks &&
+          this.$store.state.currentPlaylist.tracks.length > 0);
+      },
       currentTrack() {
-        if (this.$store.state.currentPlaylist) {
-          if (this.$store.state.currentPlaylist &&
-            this.$store.state.currentPlaylist.tracks &&
-            this.$store.state.currentPlaylist.tracks.length > 0) {
-            const trackIndex = this.$store.state.currentPlaylist.selectedTrack || 0;
-            return this.$store.state.currentPlaylist.tracks[trackIndex].previewUrl;
-          }
+        if (this.currentTracks.length > 0) {
+          return this.currentTracks[0];
         }
-        return '';
+        return null;
+      },
+      currentTracks() {
+        if (this.$store.state.currentPlaylist &&
+          this.$store.state.currentPlaylist.tracks &&
+          this.$store.state.currentPlaylist.tracks.length > 0) {
+          return util.getMusicInfo(this.$store.state.currentPlaylist.tracks);
+        }
+        return [];
       }
     }
   };
@@ -62,16 +46,9 @@
   #player {
     background-color: #1e1e1e;
     position: fixed;
-    width: 100%;
-    height: 50px;
+    width: 90%;
+    height: 10vh;
     bottom: 0;
     left: 0;
-    display: flex;
-    flex-flow: row;
-  }
-
-  #buttons {
-    display: flex;
-    flex-flow: column;
   }
 </style>
