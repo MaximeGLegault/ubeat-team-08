@@ -54,17 +54,26 @@ const actions = {
       context.commit('addPlayListToList', playlist);
     }
   },
-  changeCurrentPlaylist(context, playlist) {
-    if (playlist) {
-      context.commit('SWITCH_CURRENT_PLAYLIST', playlist);
+
+  addTracksToCurrentPlaylist({ commit, state }, tracks) {
+    if (tracks && state.isCurrentPlaylistModifiable) {
+      return new Promise(() => {
+        tracks.forEach(async (el) => {
+          if (state.currentPlaylist.tracks.findIndex(tr => tr.trackId === el.trackId) === -1) {
+            await api.addTrackToPlaylist(state.currentPlaylist.id, el)
+              .then((value) => {
+                const oldPlaylist = state.playlists.find(pl => pl.id === value.data.id);
+                commit('UPDATE_PLAYLIST', { oldPlaylist, newPlaylist: value.data });
+              });
+          }
+        });
+      });
     }
+    return Promise.reject(new Error('Can\'t add song to unmodifiable playlist'));
   },
-  playCurrent(context, playRequest) {
-    if (playRequest) {
-      context.commit('SET_CURRENT_REQUEST', playRequest);
+
   editName(context, { playlistId, newName }) {
     if (playlistId) {
-      console.log(playlistId);
       return api.editNamePlaylist(playlistId, newName)
         .then((value) => {
           context.commit('EDIT_NAME', value.data);

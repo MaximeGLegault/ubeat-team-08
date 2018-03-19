@@ -13,7 +13,7 @@
         <button v-on:click="toggleEdit" id="editBtn" class="btn-floating waves-effect waves-light black "><i class="material-icons">mode_edit</i></button>
         <div v-show="showSectionEdit" id = "editDiv">
           <div class="input-field col s6">
-            <input id="pl_name" type="text" >
+            <input id="pl_name" type="text" v-model="inputNameEdit">
             <label for="pl_name">Playlist Name</label>
           </div>
           <a id="checkBtn" class="waves-effect btn-flat " v-on:click="editNamePl"><i class="material-icons left">check</i></a>
@@ -57,13 +57,15 @@
       test2: {},
       listPlaylists: [],
       showSectionEdit: false,
+      inputNameEdit: ''
     }),
     methods: {
       ...mapActions([
         'addPlaylistToListPlaylists',
         'switchCurrentPlaylist',
         'createNewPlaylist',
-        'editName'
+        'editName',
+        'addSongToCurrentPlaylist'
       ]),
       toggleEdit() {
         this.showSectionEdit = !this.showSectionEdit;
@@ -75,7 +77,14 @@
         this.switchCurrentPlaylist({ playlistId: event.target.id, isModifiable: true });
       },
       async editNamePl() {
-        this.editName({ playlistId: this.$store.state.currentPlaylist.id, newName: 'newName' });
+        const bkp = this.$store.state.currentPlaylist.tracks;
+        console.log(this.$store.state.currentPlaylist);
+        await this.editName({ playlistId: this.$store.state.currentPlaylist.id,
+          newName: this.inputNameEdit });
+        bkp.forEach((track) => {
+          this.addSongToCurrentPlaylist(track);
+        });
+        console.log(this.$store.state.currentPlaylist);
       },
       duration(time) {
         return util.getLengthFromMilliseconds(time);

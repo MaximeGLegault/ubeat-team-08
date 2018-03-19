@@ -10,6 +10,7 @@ export const state = {
   playlists: [],
   currentPlaylist: {},
   isCurrentPlaylistModifiable: true,
+  bkpList: {}
 };
 
 export default new Vuex.Store({
