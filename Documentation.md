@@ -2,7 +2,7 @@
 
 ## Membre de l'équipe
 
-* Maxime Gagnon-Legault, MEGAL106, 111 090 182
+* Maxime Gagnon-Legault, MAGAL106, 111 090 082
 * Fadi Chaouachi, 
 * Benoit Verret, BEVER25, 111 099 148 
 * Alain Junior Marcoux, AJMAR8, 111 151 878
