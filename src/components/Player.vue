@@ -5,7 +5,6 @@
                 :list="currentTracks"
                 :autoplay="true"
                 :theme="'#e1e1e1'"
-                :mode="circulation"
                 :showLrc="false"
                 :listMaxHeight="'1'"/>
     </div>
@@ -48,7 +47,7 @@
     background-color: #1e1e1e;
     position: fixed;
     width: 100%;
-    height: 100px;
+    height: 10vh;
     bottom: 0;
     left: 0;
   }
