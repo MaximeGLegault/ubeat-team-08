@@ -1,11 +1,13 @@
 <template>
     <div id="player">
-       <Aplayer v-if="currentTrack"
-                :music.sync="currentTracks"
+       <Aplayer v-if="shown"
+                :music.sync="currentTrack"
                 :list="currentTracks"
                 :autoplay="true"
-                theme="#e1e1e1"
-                mode="circulation" />
+                :theme="'#e1e1e1'"
+                :mode="circulation"
+                :showLrc="false"
+                :listMaxHeight="'1'"/>
     </div>
 </template>
 
@@ -18,13 +20,16 @@
       Aplayer,
     },
     computed: {
-      currentTrack() {
-        if (this.$store.state.currentPlaylist &&
+      shown() {
+        return (this.$store.state.currentPlaylist &&
           this.$store.state.currentPlaylist.tracks &&
-          this.$store.state.currentPlaylist.tracks.length > 0) {
-          return true;
+          this.$store.state.currentPlaylist.tracks.length > 0);
+      },
+      currentTrack() {
+        if (this.currentTracks.length > 0) {
+          return this.currentTracks[0];
         }
-        return false;
+        return null;
       },
       currentTracks() {
         if (this.$store.state.currentPlaylist &&
