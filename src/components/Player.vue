@@ -1,6 +1,6 @@
 <template>
     <div id="player">
-       <Aplayer v-if="shown"
+       <Aplayer style="width: 90%" v-if="shown"
                 :music.sync="currentTrack"
                 :list="currentTracks"
                 :autoplay="true"
@@ -46,7 +46,7 @@
   #player {
     background-color: #1e1e1e;
     position: fixed;
-    width: 90%;
+    width: 100%;
     height: 10vh;
     bottom: 0;
     left: 0;
