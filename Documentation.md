@@ -54,15 +54,12 @@
       * Dans la section principale, cliquer sur le crayon à côté du nom de la playlist pour ouvrir un zone de saisie pour changer le nom de la playlist.
       * Cliquer sur l'icone Play pour fare jouer une piste.
      
-     * Volet de Lecture (De gauche à droite)
+     * Volet de Lecture (Apparait après avoir fait play sur une chanson)
      
-      * Stop : Arrêter la Playlist
       * Play/Pause : Mettre le morceau en pause ou le faire jouer
       * Barre de lecture
-      * Télécharger la piste
-      * Jouer la piste en boucle
-      * Fermer le son (n'arrête pas la lecture)
-      * Ajuster le volume
+      * Ajuster le son ou mettre sur mute
+      * Mode de lecture
     
     
 
