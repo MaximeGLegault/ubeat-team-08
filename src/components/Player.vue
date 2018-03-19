@@ -6,7 +6,7 @@
                 :autoplay="true"
                 :theme="'#e1e1e1'"
                 :showLrc="false"
-                :listMaxHeight="'1'"/>
+                :listMaxHeight="'0'"/>
     </div>
 </template>
 
