@@ -46,7 +46,7 @@
   #player {
     background-color: #1e1e1e;
     position: fixed;
-    width: 100%;
+    width: 90%;
     height: 10vh;
     bottom: 0;
     left: 0;
