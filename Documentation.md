@@ -3,13 +3,13 @@
 ## Membre de l'équipe
 
 * Maxime Gagnon-Legault, MEGAL106, 111 090 182
-* Fadi Chaouachi, 
+* Fadi Chaouachi, FACHA34, 111 184 242
 * Benoit Verret, BEVER25, 111 099 148 
 * Alain Junior Marcoux, AJMAR8, 111 151 878
 
 ## Explication de comment lancer l’application
-  * Dézipper le projet
-    
+  * Décompresser le zip.
+  
   * Installer les dépendances
     ```bash
     npm install
@@ -36,8 +36,6 @@
       * Barre de recherche (Non-Implémenté)
       
     * Page Home : [http://localhost:8080/#/](http://localhost:8080/#/)
-    
-      * Cliquer sur les bouton gauche ou droit pour changer manuellement de photo.
     
     * Page Albums : [http://localhost:8080/#/album/1125488753](http://localhost:8080/#/album/1125488753) (pour le Livrable 2, il s'agit d'un album par défaut)
     
