@@ -1,8 +1,8 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Home from '@/components/Home';
-import Album from '@/components/Album';
-import Artist from '@/components/Artist';
+import Album from '@/components/album/Album';
+import Artist from '@/components//artist/Artist';
 import Playlist from '@/components/Playlist';
 
 Vue.use(Router);

@@ -7,10 +7,9 @@
 </template>
 
 <script>
-  import api from '@/lib/api';
+  import { mapActions } from 'vuex';
   import Navigation from '@/components/Navigation';
-
-  import Player from '@/components/Player';
+  import Player from '@/components/player/Player';
 
   export default {
     name: 'app',
@@ -23,16 +22,19 @@
     data() {
       return {
         player_visibility: true,
-        playlist_visibility: false
       };
     },
+    methods: {
+      ...mapActions([
+        'createNewPlaylist',
+        'switchCurrentPlaylist'
+      ]),
+    },
     async created() {
-      await api.createPlaylist('My Playlist')
-        .then((value) => {
-          this.$store.state.currentPlaylist = value.data;
-          this.$store.state.playlists.push(value.data);
-        });
-    }
+      // todo search for playlist before creating an empty one
+      const newPlaylistId = await this.createNewPlaylist('My playlist');
+      this.switchCurrentPlaylist({ playlistId: newPlaylistId, isModifiable: true });
+    },
   };
 
 </script>
