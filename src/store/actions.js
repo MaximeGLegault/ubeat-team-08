@@ -2,7 +2,7 @@ import api from '@/lib/api';
 
 const actions = {
 
-  addSongToCurrentPlaylist({ commit, state }, track) {
+  addTrackToCurrentPlaylist({ commit, state }, track) {
     if (!track &&
         !state.isCurrentPlaylistModifiable &&
         !(state.currentPlaylist.tracks.findIndex(el => el.trackId === track.trackId) !== -1)) {
@@ -10,8 +10,7 @@ const actions = {
     }
     return api.addTrackToPlaylist(state.currentPlaylist.id, track)
       .then((value) => {
-        const oldPlaylist = state.playlists.find(el => el.id === value.data.id);
-        commit('UPDATE_PLAYLIST', { oldPlaylist, newPlaylist: value.data });
+        commit('UPDATE_PLAYLIST', value.data);
       });
   },
 
@@ -72,11 +71,12 @@ const actions = {
     return Promise.reject(new Error('Can\'t add song to unmodifiable playlist'));
   },
 
-  editName(context, { playlistId, newName }) {
-    if (playlistId) {
-      return api.editNamePlaylist(playlistId, newName)
+  updatePlaylist({ commit, state }, playlistWithChanges) {
+    if (playlistWithChanges &&
+      state.playlists.findIndex(el => el.id === playlistWithChanges.id) !== -1) {
+      return api.updatePlaylist(playlistWithChanges)
         .then((value) => {
-          context.commit('EDIT_NAME', value.data);
+          commit('UPDATE_PLAYLIST', value.data);
         });
     }
     return Promise.reject(new Error('unmodifiable playlist'));

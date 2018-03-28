@@ -32,10 +32,10 @@
     },
     methods: {
       ...mapActions([
-        'addSongToCurrentPlaylist',
+        'addTrackToCurrentPlaylist',
       ]),
       async addTrackToPlaylist() {
-        await this.addSongToCurrentPlaylist(this.track);
+        await this.addTrackToCurrentPlaylist(this.track);
           // .catch(reason => console.log('add some toast or something when this pop: ', reason));
       }
     },

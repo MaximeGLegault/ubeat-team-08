@@ -5,7 +5,7 @@
            src="http://is3.mzstatic.com/image/thumb/Music20/v4/33/47/ea/3347ea2b-5628-9283-da07-bcfb58e597d0/source/100x100bb.jpg"
            :click="$emit('jhg')"/>
 
-      <controller/>
+      <controller ref="progressController"/>
 
 
         <div id="controls">
@@ -13,6 +13,10 @@
           <div id="text_info">
             <a style="padding-left: 100px">Song Name</a>
             <a style="padding-left: 100px">Artist Name</a>
+          </div>
+
+          <div id="currentTimeLabel">
+            0:00
           </div>
 
           <div id="buttons">
@@ -26,6 +30,8 @@
               <a class=" btn deep-purple accent-3 btn-floating"><i class="material-icons md-48">skip_next</i></a>
             </div>
           </div>
+
+          <div id="totalTimeLabel">4:30</div>
 
           <div id="playlist_button"></div>
 
@@ -47,7 +53,7 @@
       audio() {
         return this.$ref.audio;
       }
-    }
+    },
   };
 </script>
 
@@ -82,6 +88,10 @@
     justify-content: center;
   }
 
+  #currentTimeLabel {
+    flex-basis: content;
+  }
+
   #playlist_button {
     flex: 1;
   }
@@ -98,9 +108,10 @@
     justify-content: center;
   }
 
-  #asd {
-    flex: 1;
+  #totalTimeLabel {
+    flex-basis: content;
   }
+
 
 
 

@@ -2,6 +2,7 @@
   <div style="display: flex; flex-flow: row nowrap">
     <div style="flex: 1"></div>
     <input  id="range"
+            ref="range"
             type="range"
             @mousedown=""
             @touchstart=""/>
@@ -17,6 +18,9 @@
         },
         onTouchStart() {
         },
+      },
+      mounted() {
+        this.$refs.range.value = 0;
       }
     };
 </script>
