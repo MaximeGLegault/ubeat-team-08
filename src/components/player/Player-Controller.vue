@@ -4,6 +4,7 @@
     <input  id="range"
             ref="range"
             type="range"
+            :value="currentValue"
             @mousedown=""
             @touchstart=""/>
     <div style="flex: 1"></div>
@@ -13,6 +14,7 @@
 <script>
     export default {
       name: 'Player-Controller',
+      props: ['timeStats'],
       methods: {
         onMouseDown() {
         },
@@ -21,7 +23,15 @@
       },
       mounted() {
         this.$refs.range.value = 0;
-      }
+      },
+      computed: {
+        currentValue() {
+          if (this.timeStats) {
+            return ((this.timeStats.currentTime / this.timeStats.duration) * 100);
+          }
+          return 0;
+        }
+      },
     };
 </script>
 

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <nav-menu />
-    <player-bar v-if="player_visibility" />
+    <player-bar/>
     <router-view/>
   </div>
 </template>
@@ -17,12 +17,6 @@
     components: {
       'nav-menu': Navigation,
       'player-bar': Player
-    },
-
-    data() {
-      return {
-        player_visibility: true,
-      };
     },
     methods: {
       ...mapActions([

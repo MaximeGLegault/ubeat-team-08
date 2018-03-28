@@ -3,9 +3,9 @@
 
       <img id="thumbnail"
            src="http://is3.mzstatic.com/image/thumb/Music20/v4/33/47/ea/3347ea2b-5628-9283-da07-bcfb58e597d0/source/100x100bb.jpg"
-           :click="$emit('jhg')"/>
+           "/>
 
-      <controller ref="progressController"/>
+      <controller ref="progressController" :timeStats="timeStats"/>
 
 
         <div id="controls">
@@ -24,7 +24,7 @@
               <a class=" btn deep-purple accent-3 btn-floating"><i class="material-icons md-48">skip_previous</i></a>
             </div>
             <div id="middle_button">
-              <a class=" btn deep-purple accent-3 btn-floating"><i style="font-size: 40px" class="material-icons md-48">play_arrow</i></a>
+              <a class=" btn deep-purple accent-3 btn-floating" v-on:click="playPressed"><i style="font-size: 40px" class="material-icons md-48">play_arrow</i></a>
             </div>
             <div id="right_buttons">
               <a class=" btn deep-purple accent-3 btn-floating"><i class="material-icons md-48">skip_next</i></a>
@@ -37,7 +37,7 @@
 
         </div>
 
-        <audio ref="audio"/>
+        <audio ref="audio"></audio>
 
       </div>
 </template>
@@ -49,10 +49,31 @@
     components: {
       Controller
     },
+    data() {
+      return {
+        playStats: {
+          duration: 0,
+          currentTime: 0,
+        }
+      };
+    },
     computed: {
       audio() {
-        return this.$ref.audio;
+        return this.$refs.audio;
+      },
+      timeStats() {
+        if (this.$refs.audio) {
+          return { currentTime: this.audio.currentTime,
+            duration: this.audio.duration ? this.audio.duration : 1 };
+        }
+        return { currentTime: 0, duration: 1 };
       }
+    },
+    methods: {
+      playPressed() {
+        this.audio.src = 'https://audio-ssl.itunes.apple.com/apple-assets-us-std-000001/Music/ed/ed/dd/mzm.raqlwshv.aac.p.m4a';
+        this.audio.play();
+      },
     },
   };
 </script>
