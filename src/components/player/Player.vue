@@ -31,7 +31,7 @@
 
         </div>
 
-        <audio ref="audio" />
+        <audio ref="audio"/>
 
       </div>
 </template>
@@ -69,7 +69,6 @@
     left: 0;
   }
 
-
   #controls {
     display: flex;
     flex-flow: row nowrap;
@@ -92,8 +91,6 @@
     display: flex;
     flex-flow: column nowrap;
   }
-
-
 
   #buttons {
     display: flex;
