@@ -13,22 +13,27 @@ export default {
     return axios.get(`${baseUnsecureUrl}albums/${collectionId}/tracks`) // TODO switch to baseUrl after TP2
       .then(value => value.data);
   },
+
   getAlbum(collectionId) {
     return axios.get(`${baseUnsecureUrl}albums/${collectionId}`) // TODO switch to baseUrl after TP2
       .then(value => value.data);
   },
+
   getAlbums(artistId) {
     return axios.get(`${baseUnsecureUrl}artists/${artistId}/albums`) // TODO switch to baseUrl after TP2
       .then(value => value.data);
   },
+
   getArtist(artistId) {
     return axios.get(`${baseUnsecureUrl}artists/${artistId}`) // TODO switch to baseUrl after TP2
       .then(value => value.data);
   },
+
   getPlaylists(playlistId) {
     return axios.get(`${baseUnsecureUrl}playlists/${playlistId}`)
       .then(value => value.data);
   },
+
   createPlaylist(playlistName) {
     return axios({
       method: 'post',
@@ -39,6 +44,7 @@ export default {
       })
     });
   },
+
   addTrackToPlaylist(playlistId, track) {
     return axios({
       method: 'post',
@@ -46,11 +52,15 @@ export default {
       data: querystring.stringify(track)
     });
   },
-  editNamePlaylist(playlist, newName) {
+
+  updatePlaylist(playlistWithChanges) {
     return axios({
       method: 'put',
-      url: `${baseUnsecureUrl}playlists/${playlist}`,
-      data: querystring.stringify({ name: newName })
+      url: `${baseUnsecureUrl}playlists/${playlistWithChanges.id}`,
+      data: querystring.stringify({ name: playlistWithChanges.name,
+        id: playlistWithChanges.id,
+        owner: ownerName,
+        tracks: JSON.stringify(playlistWithChanges.tracks) })
     });
   },
   getSearch(searchTerm) {

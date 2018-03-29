@@ -32,15 +32,10 @@
     },
     methods: {
       ...mapActions([
-        'addSongToCurrentPlaylist',
-        'playCurrent'
+        'addTrackToCurrentPlaylist',
       ]),
-      playRequest(index) {
-        this.$emit('playRequest', this.track);
-        this.playCurrent(index);
-      },
       async addTrackToPlaylist() {
-        await this.addSongToCurrentPlaylist(this.track);
+        await this.addTrackToCurrentPlaylist(this.track);
           // .catch(reason => console.log('add some toast or something when this pop: ', reason));
       }
     },
