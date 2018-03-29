@@ -45,7 +45,7 @@
             <div id="menuSearch" class="menuSmSearch">
               <form>
                 <input id="search" type="text" placeholder="Search...">
-                <a><i class="material-icons">search</i></a>
+                <router-link :to="{ name : 'Search', params: { searchTerm : 'metallica' }}"><a><i class="material-icons">search</i></a></router-link>
               </form>
             </div>
           </div>
@@ -72,7 +72,7 @@
             <div class="menuSmSearch">
               <form>
                 <input type="text" placeholder="Search...">
-                <a><i class="material-icons">search</i></a>
+                <router-link :to="{ name : 'Search', params: { searchTerm : 'metallica' }}"><a><i class="material-icons">search</i></a></router-link>
               </form>
             </div>
           </div>
