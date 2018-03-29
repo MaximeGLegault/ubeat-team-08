@@ -3,8 +3,8 @@
     <h1>{{this.searchTerm}}</h1>
     <search-bar v-if="this.searchTerm"/>
     <search-result v-if="this.results"
-                :key="this.searchTerm"
-                :albums="this.results"
+                   :key="this.searchTerm"
+                   :results="this.results"
     />
   </div>
 </template>
@@ -34,8 +34,16 @@
         };
       },
       async created() {
-        this.searchTerm = this.$route.params.searchTerm;
-        await api.getSearch(this.$route.params.searchTerm)
+        this.searchTerm = this.$route.query.q;
+        await api.getSearch(this.$route.query.q)
+          .then((value) => {
+            this.results.globals = value.results;
+            this.resultCount = value.resultCount;
+          });
+      },
+      async updated() {
+        this.searchTerm = this.$route.query.q;
+        await api.getSearch(this.$route.query.q)
           .then((value) => {
             this.results.globals = value.results;
             this.resultCount = value.resultCount;

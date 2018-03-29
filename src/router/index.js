@@ -2,9 +2,9 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Home from '@/components/Home';
 import Album from '@/components/album/Album';
-import Artist from '@/components//artist/Artist';
+import Artist from '@/components/artist/Artist';
 import Playlist from '@/components/Playlist';
-import Search from '@/components/Search';
+import Search from '@/components/search/Search';
 
 Vue.use(Router);
 
@@ -27,7 +27,7 @@ export default new Router({
       name: 'Playlist',
       component: Playlist
     }, {
-      path: '/search?q=:searchTerm',
+      path: '/search',
       name: 'Search',
       component: Search
     }

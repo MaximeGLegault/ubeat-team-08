@@ -44,8 +44,8 @@
             </div>
             <div id="menuSearch" class="menuSmSearch">
               <form>
-                <input id="search" type="text" placeholder="Search...">
-                <router-link :to="{ name : 'Search', params: { searchTerm : 'metallica' }}"><a><i class="material-icons">search</i></a></router-link>
+                <input v-on:keyup.enter="goSearch()" v-model="search1" id="search" type="text" placeholder="Search...">
+                <router-link :to="{ name : 'Search', query : { q: search1 }}"><a><i class="material-icons">search</i></a></router-link>
               </form>
             </div>
           </div>
@@ -71,8 +71,8 @@
           <div id="menuSmUserSearch">
             <div class="menuSmSearch">
               <form>
-                <input type="text" placeholder="Search...">
-                <router-link :to="{ name : 'Search', params: { searchTerm : 'metallica' }}"><a><i class="material-icons">search</i></a></router-link>
+                <input v-on:keyup.enter="goSearch()" v-model="search1" type="text" placeholder="Search...">
+                <router-link :to="{ name : 'Search', query: { q : search1 }}"><a><i class="material-icons">search</i></a></router-link>
               </form>
             </div>
           </div>
@@ -99,6 +99,17 @@
     </nav>
 </template>
 <script>
+  export default {
+    name: 'Navigation',
+    props: {
+      search1: ''
+    },
+    methods: {
+      goSearch() {
+        this.$router.push({ name: 'Search', query: { q: this.search1 } });
+      }
+    }
+  };
 </script>
 <style>
   /* GENERAL */

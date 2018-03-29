@@ -63,8 +63,9 @@ export default {
         tracks: JSON.stringify(playlistWithChanges.tracks) })
     });
   },
-  getSearch(searchTerm) {
-    return axios.get(`${baseUrl}${token}/search?q=${searchTerm}`)
+  getSearch(q) {
+    return axios.get(`${baseUnsecureUrl}search`, {
+      params: { q } })
       .then(value => value.data);
   },
   getSearchByAlbums(album) {
