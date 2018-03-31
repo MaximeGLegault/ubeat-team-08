@@ -38,6 +38,8 @@
                 <li class="divider"></li>
                 <li><a href="#">parameter</a></li>
                 <li class="divider"></li>
+                <li><router-link to="/signUp">sign up</router-link></li>
+                <li><router-link to="/login">login</router-link></li>
                 <li><a href="#">log out</a></li>
               </ul>
               <h6 id="userName">user_name</h6>
