@@ -7,7 +7,7 @@
 </template>
 
 <script>
-  import api from '@/lib/api';
+  // import api from '@/lib/api';
   import Navigation from '@/components/Navigation';
 
   import Player from '@/components/Player';
@@ -26,13 +26,17 @@
         playlist_visibility: false
       };
     },
-    async created() {
-      await api.createPlaylist('My Playlist')
-        .then((value) => {
-          this.$store.state.currentPlaylist = value.data;
-          this.$store.state.playlists.push(value.data);
-        });
-    }
+    // async created() {
+    //   await api.createPlaylist('My Playlist')
+    //     .then((value) => {
+    //       this.$store.state.currentPlaylist = value.data;
+    //       this.$store.state.playlists.push(value.data);
+    //     }).catch((error) => {
+    //       if (error.response.status === 401) {
+    //         window.location = '#/login';
+    //       }
+    //     });
+    // }
   };
 
 </script>

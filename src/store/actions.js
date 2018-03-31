@@ -12,6 +12,10 @@ const actions = {
       .then((value) => {
         const oldPlaylist = state.playlists.find(el => el.id === value.data.id);
         commit('UPDATE_PLAYLIST', { oldPlaylist, newPlaylist: value.data });
+      }).catch((error) => {
+        if (error.response.status === 401) {
+          window.location = '#/login';
+        }
       });
   },
 
@@ -28,6 +32,10 @@ const actions = {
       .then((value) => {
         commit('SAVE_PLAYLIST', value.data);
         return value.data.id;
+      }).catch((error) => {
+        if (error.response.status === 401) {
+          window.location = '#/login';
+        }
       });
   },
 
@@ -77,6 +85,10 @@ const actions = {
       return api.editNamePlaylist(playlistId, newName)
         .then((value) => {
           context.commit('EDIT_NAME', value.data);
+        }).catch((error) => {
+          if (error.response.status === 401) {
+            window.location = '#/login';
+          }
         });
     }
     return Promise.reject(new Error('unmodifiable playlist'));

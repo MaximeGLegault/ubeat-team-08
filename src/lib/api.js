@@ -1,5 +1,6 @@
 import axios from 'axios';
 import querystring from 'querystring';
+import Cookies from 'js-cookie';
 
 
 // const baseUrl = 'https://ubeat.herokuapp.com/'; // TODO switch to baseUrl after TP2
@@ -9,20 +10,40 @@ const ownerName = 'owner@gmail.com';
 
 export default {
   getTracksOfAlbum(collectionId) {
-    return axios.get(`${baseUnsecureUrl}albums/${collectionId}/tracks`) // TODO switch to baseUrl after TP2
-      .then(value => value.data);
+    return axios({
+      method: 'get',
+      url: `${baseUrl}albums/${collectionId}/tracks`,
+      headers: {
+        Authorization: Cookies.get('token')
+      }
+    }).then(value => value.data);
   },
   getAlbum(collectionId) {
-    return axios.get(`${baseUnsecureUrl}albums/${collectionId}`) // TODO switch to baseUrl after TP2
-      .then(value => value.data);
+    return axios({
+      method: 'get',
+      url: `${baseUrl}albums/${collectionId}`,
+      headers: {
+        Authorization: Cookies.get('token')
+      }
+    }).then(value => value.data);
   },
   getAlbums(artistId) {
-    return axios.get(`${baseUnsecureUrl}artists/${artistId}/albums`) // TODO switch to baseUrl after TP2
-      .then(value => value.data);
+    return axios({
+      method: 'get',
+      url: `${baseUrl}artists/${artistId}/albums`,
+      headers: {
+        Authorization: Cookies.get('token')
+      }
+    }).then(value => value.data);
   },
   getArtist(artistId) {
-    return axios.get(`${baseUnsecureUrl}artists/${artistId}`) // TODO switch to baseUrl after TP2
-      .then(value => value.data);
+    return axios({
+      method: 'get',
+      url: `${baseUrl}artists/${artistId}`,
+      headers: {
+        Authorization: Cookies.get('token')
+      }
+    }).then(value => value.data);
   },
   getPlaylists(playlistId) {
     return axios.get(`${baseUnsecureUrl}playlists/${playlistId}`)
@@ -31,21 +52,30 @@ export default {
   createPlaylist(playlistName) {
     return axios({
       method: 'post',
-      url: `${baseUnsecureUrl}playlists`,
+      url: `${baseUrl}playlists`,
+      headers: {
+        Authorization: Cookies.get('token')
+      },
       data: querystring.stringify({ name: playlistName, owner: ownerName })
     });
   },
   addTrackToPlaylist(playlistId, track) {
     return axios({
       method: 'post',
-      url: `${baseUnsecureUrl}playlists/${playlistId}/tracks`,
+      url: `${baseUrl}playlists/${playlistId}/tracks`,
+      headers: {
+        Authorization: Cookies.get('token')
+      },
       data: querystring.stringify(track)
     });
   },
   editNamePlaylist(playlist, newName) {
     return axios({
       method: 'put',
-      url: `${baseUnsecureUrl}playlists/${playlist}`,
+      url: `${baseUrl}playlists/${playlist}`,
+      headers: {
+        Authorization: Cookies.get('token')
+      },
       data: querystring.stringify({ name: newName })
     });
   },
