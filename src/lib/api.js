@@ -55,6 +55,9 @@ export default {
       url: `${baseUrl}login`,
       data: querystring.stringify({ email: userEmail, password: userPassword })
     });
+  },
+  logout() {
+    return axios.get(`${baseUrl}logout`);
   }
 // other things
 };

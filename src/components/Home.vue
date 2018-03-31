@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="container homeContainer">
-      <h3 class="titleHeader">Welcome {{userName}}</h3>
+      <h3 class="titleHeader">Welcome <span class="userName">{{userName}}</span></h3>
       <p class="titleText">With UBeat you can listen to your favorite tracks.Create playlist and share it with your friends  </p>
       <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <!-- Wrapper for slides -->
@@ -39,6 +39,9 @@
 </script>
 
 <style>
+  .userName{
+    color: #651fff;
+  }
   .homeContainer
   {
     position: relative;

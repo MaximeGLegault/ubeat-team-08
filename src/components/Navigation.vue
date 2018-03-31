@@ -104,6 +104,7 @@
   // import util from '@/lib/util';
   import { mapActions } from 'vuex';
   import Cookies from 'js-cookie';
+  import api from '@/lib/api';
 
   export default {
     data: () => ({
@@ -111,10 +112,19 @@
     methods: {
       ...mapActions([
       ]),
-      logout() {
-        console.log('logout');
+      async logout() {
         console.log(this.$store.state.userName);
         console.log(Cookies.get('token'));
+        await api.logout()
+          .then(() => {
+            window.location = '#/login';
+            Cookies.set('token', '');
+            this.$store.state.userName = '';
+            this.$store.state.email = '';
+            this.$store.state.password = '';
+          }).catch(() => {
+            window.location = '/login';
+          });
       }
       // toggleEdit() {
       //   this.showSectionEdit = !this.showSectionEdit;
