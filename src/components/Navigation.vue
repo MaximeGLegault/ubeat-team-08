@@ -42,7 +42,7 @@
                 <li><router-link to="/login">login</router-link></li>
                 <li><a href="#" v-on:click="logout">log out</a></li>
               </ul>
-              <h6 id="userName">user_name</h6>
+              <h6 id="userName">{{this.$store.state.userName}}</h6>
             </div>
             <div id="menuSearch" class="menuSmSearch">
               <form>
@@ -106,14 +106,13 @@
 
   export default {
     data: () => ({
-
     }),
     methods: {
       ...mapActions([
-
       ]),
       logout() {
         console.log('logout');
+        console.log(this.$store.state.userName);
       }
       // toggleEdit() {
       //   this.showSectionEdit = !this.showSectionEdit;

@@ -3,14 +3,16 @@
       <h1>Login</h1>
       <div id="inputDiv">
         <div class="input-field col s6">
-          <input id="userEmail" type="text" v-model="email">
+          <input id="userEmail" type="text" v-model="user_email">
           <label for="userEmail">Email</label>
         </div>
         <div class="input-field col s6">
-          <input id="userPass" type="password" v-model="password">
+          <input id="userPass" type="password" v-model="user_password">
           <label for="userPass">Password</label>
         </div>
         <button id="btnLogin" v-on:click="login" class="deep-purple accent-3 waves-effect waves-light btn">Login</button>
+        <p class="errorMessage">{{messageErr}}</p>
+        <p class="loginMessage">{{messageLog}}</p>
       </div>
     </div>
 </template>
@@ -18,21 +20,32 @@
 <script>
   // import util from '@/lib/util';
   import { mapActions } from 'vuex';
+  import api from '@/lib/api';
 
   export default {
     data: () => ({
-      email: '',
-      password: ''
+      user_email: '',
+      user_password: '',
+      messageErr: '',
+      messageLog: ''
     }),
     methods: {
       ...mapActions([
 
       ]),
-      login() {
-        console.log('login');
-        console.log(this.email);
-        console.log(this.password);
-        window.location = '/';
+      async login() {
+        await api.loginUser(this.user_email, this.user_password)
+          .then((value) => {
+            console.log(value.data);
+            this.$store.state.userName = value.data.name;
+            this.messageErr = '';
+            this.messageLog = 'You\'re now log in';
+            console.log(this.$store.state.userName);
+          }).catch(() => {
+            this.messageErr = 'User not found, check your username and password';
+            this.messageLog = '';
+            this.$store.state.userName = '';
+          });
       }
       // toggleEdit() {
       //   this.showSectionEdit = !this.showSectionEdit;
@@ -59,5 +72,15 @@
   }
   .btn:focus, .btn:hover{
     color: white;
+  }
+  .errorMessage{
+    margin-top: 25px;
+    color: red;
+    font-size: 1em;
+  }
+  .loginMessage{
+    margin-top: 25px;
+    color: greenyellow;
+    font-size: 1em;
   }
 </style>

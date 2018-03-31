@@ -49,9 +49,9 @@ export default {
       data: querystring.stringify({ name: newName })
     });
   },
-  login(userEmail, userPassword) {
+  loginUser(userEmail, userPassword) {
     return axios({
-      methods: 'post',
+      method: 'post',
       url: `${baseUrl}login`,
       data: querystring.stringify({ email: userEmail, password: userPassword })
     });
