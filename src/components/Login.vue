@@ -21,6 +21,7 @@
   // import util from '@/lib/util';
   import { mapActions } from 'vuex';
   import api from '@/lib/api';
+  import Cookies from 'js-cookie';
 
   export default {
     data: () => ({
@@ -36,11 +37,11 @@
       async login() {
         await api.loginUser(this.user_email, this.user_password)
           .then((value) => {
-            console.log(value.data);
             this.$store.state.userName = value.data.name;
             this.messageErr = '';
             this.messageLog = 'You\'re now log in';
-            console.log(this.$store.state.userName);
+            Cookies.set('token', value.data.token);
+            console.log(Cookies.get('token'));
           }).catch(() => {
             this.messageErr = 'User not found, check your username and password';
             this.messageLog = '';

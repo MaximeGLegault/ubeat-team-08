@@ -11,7 +11,9 @@ export const state = {
   currentPlaylist: {},
   isCurrentPlaylistModifiable: true,
   bkpList: {},
-  userName: ''
+  userName: '',
+  email: '',
+  password: ''
 };
 
 export default new Vuex.Store({

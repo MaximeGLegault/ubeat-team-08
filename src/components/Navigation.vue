@@ -103,6 +103,7 @@
 <script>
   // import util from '@/lib/util';
   import { mapActions } from 'vuex';
+  import Cookies from 'js-cookie';
 
   export default {
     data: () => ({
@@ -113,6 +114,7 @@
       logout() {
         console.log('logout');
         console.log(this.$store.state.userName);
+        console.log(Cookies.get('token'));
       }
       // toggleEdit() {
       //   this.showSectionEdit = !this.showSectionEdit;
