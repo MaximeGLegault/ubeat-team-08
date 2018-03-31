@@ -40,7 +40,7 @@
                 <li class="divider"></li>
                 <li><router-link to="/signUp">sign up</router-link></li>
                 <li><router-link to="/login">login</router-link></li>
-                <li><a href="#">log out</a></li>
+                <li><a href="#" v-on:click="logout">log out</a></li>
               </ul>
               <h6 id="userName">user_name</h6>
             </div>
@@ -101,6 +101,28 @@
     </nav>
 </template>
 <script>
+  // import util from '@/lib/util';
+  import { mapActions } from 'vuex';
+
+  export default {
+    data: () => ({
+
+    }),
+    methods: {
+      ...mapActions([
+
+      ]),
+      logout() {
+        console.log('logout');
+      }
+      // toggleEdit() {
+      //   this.showSectionEdit = !this.showSectionEdit;
+      // },
+      // async addPlaylist() {
+      //   this.createNewPlaylist('New Playlist');
+      // }
+    }
+  };
 </script>
 <style>
   /* GENERAL */

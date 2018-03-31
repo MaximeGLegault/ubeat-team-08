@@ -4,6 +4,7 @@ import querystring from 'querystring';
 
 // const baseUrl = 'https://ubeat.herokuapp.com/'; // TODO switch to baseUrl after TP2
 const baseUnsecureUrl = 'https://ubeat.herokuapp.com/unsecure/';
+const baseUrl = 'https://ubeat.herokuapp.com/';
 const ownerName = 'owner@gmail.com';
 
 export default {
@@ -48,5 +49,12 @@ export default {
       data: querystring.stringify({ name: newName })
     });
   },
+  login(userEmail, userPassword) {
+    return axios({
+      methods: 'post',
+      url: `${baseUrl}login`,
+      data: querystring.stringify({ email: userEmail, password: userPassword })
+    });
+  }
 // other things
 };
