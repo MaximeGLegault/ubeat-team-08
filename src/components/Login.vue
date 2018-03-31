@@ -1,6 +1,7 @@
 <template>
     <div id = "contentLogin">
       <h1>Login</h1>
+      <p class="center">You have no account? <router-link to="/signUp">Sign up</router-link> now with UBeat</p>
       <div id="inputDiv">
         <div class="input-field col s6">
           <input id="userEmail" type="text" v-model="user_email">
@@ -49,12 +50,6 @@
             this.$store.state.userName = '';
           });
       }
-      // toggleEdit() {
-      //   this.showSectionEdit = !this.showSectionEdit;
-      // },
-      // async addPlaylist() {
-      //   this.createNewPlaylist('New Playlist');
-      // }
     }
   };
 </script>
@@ -84,5 +79,12 @@
     margin-top: 25px;
     color: greenyellow;
     font-size: 1em;
+  }
+  .center{
+    align-self: center;
+  }
+  a{
+    color: #651fff;
+    font-size: 1.2em;
   }
 </style>

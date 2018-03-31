@@ -58,6 +58,13 @@ export default {
   },
   logout() {
     return axios.get(`${baseUrl}logout`);
+  },
+  signUp(userName, userEmail, userPassword) {
+    return axios({
+      method: 'post',
+      url: `${baseUrl}signup`,
+      data: querystring.stringify({ name: userName, email: userEmail, password: userPassword })
+    });
   }
 // other things
 };
