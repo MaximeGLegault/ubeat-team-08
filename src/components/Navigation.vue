@@ -378,7 +378,7 @@
   }
   #userSmLi{
     margin-bottom: 20px;
-    display: flex;
+    display: flex; 
     flex-direction: column;
     align-items: center;
     font-weight: bold;
