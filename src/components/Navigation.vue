@@ -78,15 +78,17 @@
               </form>
             </div>
           </div>
-            <div id="menuSmUser" class="fixed-action-btn horizontal click-to-toggle">
-              <a class="btn-floating btn-large deep-purple accent-3">
-                <i class="material-icons ">person</i>
-              </a>
-              <ul>
-                <li><a class="btn-floating btn white"><i class="material-icons iconPurple fa fa-sign-out"></i></a></li>
-                <li><a class="btn-floating btn deep-purple accent-3"><i class="material-icons">settings_applications</i></a></li>
-                <li><a class="btn-floating btn white"><i class="material-icons iconPurple">assignment_ind</i></a></li>
-              </ul>
+          <div v-show="showSectionUser" id="userOption">
+            <ul id="userSmLi">
+              <li><a href="#">profil</a></li>
+              <li><a href="#">parameter</a></li>
+              <li><router-link to="/signUp">sign up</router-link></li>
+              <li><router-link to="/login">login</router-link></li>
+              <li><a href="#" v-on:click="logout">log out</a></li>
+            </ul>
+          </div>
+            <div id="menuSmUser">
+              <a v-on:click ="toggleUser" class="btn-floating btn-large deep-purple accent-3"><i class="material-icons ">person</i></a>
             </div>
         </div>
         <div id="menuSmBtn"><a id="btnDropdown" class="btn btn-floating btn-large pulse deep-purple accent-3 "><i class="material-icons">fingerprint</i></a></div>
@@ -108,6 +110,7 @@
 
   export default {
     data: () => ({
+      showSectionUser: false,
     }),
     methods: {
       ...mapActions([
@@ -125,13 +128,10 @@
           }).catch(() => {
             window.location = '/login';
           });
+      },
+      toggleUser() {
+        this.showSectionUser = !this.showSectionUser;
       }
-      // toggleEdit() {
-      //   this.showSectionEdit = !this.showSectionEdit;
-      // },
-      // async addPlaylist() {
-      //   this.createNewPlaylist('New Playlist');
-      // }
     }
   };
 </script>
@@ -335,8 +335,7 @@
     display: flex;
     align-items: right;
     justify-content: flex-end;
-    position: absolute;
-    padding: 20px 20px 20px 0;
+    padding-right: 20px;
   }
   #menuSmUser ul{
     width: 250px;
@@ -354,7 +353,7 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    padding: 0 0 55px 15px;
+    padding: 0 0 0 15px;
   }
   .menuSmSearch form{
     display: flex;
@@ -376,6 +375,23 @@
   }
   #menuSm {
     display: none;
+  }
+  #userSmLi{
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: bold;
+
+  }
+  #userSmLi li{
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    line-height: 40px;
+    font-size: 2em;
+    text-transform: uppercase;
+    width: 100%;
   }
 
   /* MEDIA SCREEN */
