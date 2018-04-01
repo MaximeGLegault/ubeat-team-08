@@ -132,6 +132,12 @@
       toggleUser() {
         this.showSectionUser = !this.showSectionUser;
       }
+    },
+    created() {
+      if (this.$store.state.userName === '') {
+        window.location = '#/login';
+        Cookies.set('token', '');
+      }
     }
   };
 </script>
