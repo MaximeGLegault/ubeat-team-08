@@ -41,7 +41,7 @@
     methods: {
       ...mapActions([
         'addAlbumToCurrentPlaylistWithoutSaving',
-        'addTracksToCurrentPlaylist',
+        'addTrackToCurrentPlaylist',
       ]),
       emitNewPlaylistToPlay(trackToPlay) {
         const newTracks = this.tracks.slice();
@@ -52,8 +52,7 @@
         this.addAlbumToCurrentPlaylistWithoutSaving(newPlaylist);
       },
       async addAlbumToPlaylist() {
-        await this.addTracksToCurrentPlaylist(this.tracks);
-          // .catch(reason => console.log('todo add a push to this', reason))
+        this.tracks.forEach(track => this.addTrackToCurrentPlaylist(track));
       }
     }
   };

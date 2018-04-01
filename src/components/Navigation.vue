@@ -46,8 +46,8 @@
             </div>
             <div id="menuSearch" class="menuSmSearch">
               <form>
-                <input id="search" type="text" placeholder="Search...">
-                <a><i class="material-icons">search</i></a>
+                <input v-on:keyup.enter="goSearch" v-model="search1" id="search" type="text" placeholder="Search...">
+                <a @click="goSearch"><i class="material-icons">search</i></a>
               </form>
             </div>
           </div>
@@ -73,8 +73,8 @@
           <div id="menuSmUserSearch">
             <div class="menuSmSearch">
               <form>
-                <input type="text" placeholder="Search...">
-                <a><i class="material-icons">search</i></a>
+                <input v-on:keyup.enter="goSearch" v-model="search1" type="text" placeholder="Search...">
+                <a @click="goSearch"><i class="material-icons">search</i></a>
               </form>
             </div>
           </div>
@@ -103,18 +103,19 @@
     </nav>
 </template>
 <script>
-  // import util from '@/lib/util';
-  import { mapActions } from 'vuex';
   import Cookies from 'js-cookie';
   import api from '@/lib/api';
 
   export default {
+    name: 'Navigation',
+
     data: () => ({
       showSectionUser: false,
     }),
+    props: {
+      search1: ''
+    },
     methods: {
-      ...mapActions([
-      ]),
       async logout() {
         await api.logout()
           .then(() => {
@@ -129,6 +130,9 @@
       },
       toggleUser() {
         this.showSectionUser = !this.showSectionUser;
+      },
+      goSearch() {
+        this.$router.push({ name: 'Search', query: { q: this.search1 } });
       }
     },
     created() {
@@ -144,10 +148,12 @@
   }
   a:hover{
     text-decoration: none;
+    cursor: pointer;
   }
   a:focus{
     text-decoration: none;
     color: white;
+    cursor: pointer;
   }
   /* MENU */
   #menu{
@@ -195,9 +201,11 @@
     padding: 0 5px;
     align-items: center;
     font-size: 20px;
+    cursor: pointer;
   }
   #menuNavLg li:hover a{
     color: #651fff;
+    cursor: pointer;
   }
   #menuNavLg li:hover i{
     color: #651fff;
@@ -247,6 +255,7 @@
   }
   #menu #dropdown1 a{
     color: #fff;
+    cursor: pointer;
   }
   #menuUser{
     display: flex;

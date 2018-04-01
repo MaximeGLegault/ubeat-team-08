@@ -6,9 +6,9 @@ import mutations from './mutations';
 Vue.use(Vuex);
 
 export const state = {
-  transactionStatus: 1,
   playlists: [],
   currentPlaylist: {},
+  currentlyPlaying: {},
   isCurrentPlaylistModifiable: true,
   bkpList: {},
   userName: '',
@@ -18,7 +18,6 @@ export const state = {
 
 export default new Vuex.Store({
   state,
-  // getters,
   actions,
   mutations,
 });
