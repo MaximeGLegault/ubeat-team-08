@@ -59,4 +59,13 @@
     height: 18px;
     width: 18px;
   }
+
+  input[type=range]+.thumb.active {
+    visibility: hidden!important;
+  }
+
+  input[type=range]+.thumb {
+    display: none!important;
+  }
+
 </style>

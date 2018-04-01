@@ -43,7 +43,7 @@
         .then((value) => {
           this.trackList = value.results;
           this.albumDescriptionDataObject.albumLength =
-            util.getLengthFromMilliseconds(this.trackList
+            util.getLength(this.trackList
               .reduce((total, num) => {
                 const newTotal = total + num.trackTimeMillis;
                 return newTotal;

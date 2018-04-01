@@ -5,7 +5,7 @@
            src="http://is3.mzstatic.com/image/thumb/Music20/v4/33/47/ea/3347ea2b-5628-9283-da07-bcfb58e597d0/source/100x100bb.jpg"
            "/>
 
-      <controller ref="progressController" :timeStats="timeStats"/>
+      <controller ref="progressController" :timeStats="playStats"/>
 
 
         <div id="controls">
@@ -16,7 +16,7 @@
           </div>
 
           <div id="currentTimeLabel">
-            0:00
+            {{ currentTime }}
           </div>
 
           <div id="buttons">
@@ -31,7 +31,7 @@
             </div>
           </div>
 
-          <div id="totalTimeLabel">4:30</div>
+          <div id="totalTimeLabel">{{ duration }}</div>
 
           <div id="playlist_button"></div>
 
@@ -43,7 +43,9 @@
 </template>
 
 <script>
+  import util from '@/lib/util';
   import Controller from './Player-Controller';
+
 
   export default {
     components: {
@@ -52,7 +54,7 @@
     data() {
       return {
         playStats: {
-          duration: 0,
+          duration: 1,
           currentTime: 0,
         }
       };
@@ -61,12 +63,11 @@
       audio() {
         return this.$refs.audio;
       },
-      timeStats() {
-        if (this.$refs.audio) {
-          return { currentTime: this.audio.currentTime,
-            duration: this.audio.duration ? this.audio.duration : 1 };
-        }
-        return { currentTime: 0, duration: 1 };
+      duration() {
+        return util.getLength(this.playStats.duration, 'seconds');
+      },
+      currentTime() {
+        return util.getLength(this.playStats.currentTime, 'seconds');
       }
     },
     methods: {
@@ -74,7 +75,22 @@
         this.audio.src = 'https://audio-ssl.itunes.apple.com/apple-assets-us-std-000001/Music/ed/ed/dd/mzm.raqlwshv.aac.p.m4a';
         this.audio.play();
       },
+      onDurationChange() {
+        if (this.audio.duration !== 1) {
+          this.playStats.duration = this.audio.duration;
+        }
+      },
+      onTimeUpdate() {
+        this.playStats.currentTime = this.audio.currentTime;
+      },
+      initAudio() {
+        this.audio.addEventListener('durationchange', this.onDurationChange);
+        this.audio.addEventListener('timeupdate', this.onTimeUpdate);
+      }
     },
+    mounted() {
+      this.initAudio();
+    }
   };
 </script>
 

@@ -90,6 +90,7 @@ export default {
       })
     });
   },
+
   getSearch(q) {
     return axios.get(`${baseUnsecureUrl}search`, {
       params: { q }

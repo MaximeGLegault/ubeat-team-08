@@ -82,7 +82,7 @@
         await this.updatePlaylist(playlistWithNameChanged);
       },
       duration(time) {
-        return util.getLengthFromMilliseconds(time);
+        return util.getLength(time);
       }
     },
     computed: {
