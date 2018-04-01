@@ -116,8 +116,6 @@
       ...mapActions([
       ]),
       async logout() {
-        console.log(this.$store.state.userName);
-        console.log(Cookies.get('token'));
         await api.logout()
           .then(() => {
             window.location = '#/login';
@@ -134,10 +132,7 @@
       }
     },
     created() {
-      if (this.$store.state.userName === '') {
-        window.location = '#/login';
-        Cookies.set('token', '');
-      }
+      Cookies.set('token', '');
     }
   };
 </script>

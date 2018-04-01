@@ -50,6 +50,7 @@
 <script>
   import util from '@/lib/util';
   import { mapActions } from 'vuex';
+  import Cookies from 'js-cookie';
 
   export default {
     data: () => ({
@@ -98,6 +99,12 @@
         return this.$store.state.playlists;
       }
     },
+    created() {
+      if (this.$store.state.userName === '') {
+        window.location = '#/login';
+        Cookies.set('token', '');
+      }
+    }
   };
 
 </script>
