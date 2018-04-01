@@ -1,7 +1,8 @@
 <template>
   <div>
     <h1>{{this.searchTerm}}</h1>
-    <search-bar v-if="this.searchTerm"/>
+    <search-bar/>
+    {{results.globals[0].wrapperType}}
     <search-result v-if="this.results"
                    :key="this.searchTerm"
                    :results="this.results"
@@ -48,7 +49,7 @@
             this.results.globals = value.results;
             this.resultCount = value.resultCount;
           });
-      }
+      },
     };
 </script>
 

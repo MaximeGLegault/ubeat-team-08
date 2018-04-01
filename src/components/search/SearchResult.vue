@@ -1,10 +1,11 @@
 <template>
   <div>
+    {{results.globals[0].artistId}}
     <result v-if="results.globals"
             :key="searchTerm"
-            :results="results.globals"
+            :globals="results.globals"
     />
-    <!--<result-by-track v-if="this.results.tracks"-->
+    <!--<result-by-track v-else-if="this.results.tracks"-->
                      <!--:key="this.searchTerm"-->
                      <!--:results="this.results.tracks"-->
     <!--/>-->
@@ -19,10 +20,6 @@
     <!--<result-by-user v-else-if="this.results.users"-->
                     <!--:key="this.searchTerm"-->
                     <!--:results="this.results.users"-->
-    <!--/>-->
-    <!--<search-result v-else-if="this.results.globals"-->
-                   <!--:key="this.searchTerm"-->
-                   <!--:results="this.results.globals"-->
     <!--/>-->
     <!--{{results}}-->
   </div>
@@ -39,11 +36,13 @@
       name: 'SearchResult',
       components: { Result, ResultByUser, ResultByAlbum, ResultByArtist, ResultByTrack },
       props: {
-        searchTerm: '',
-        results: {}
-      },
-      async created() {
-        this.searchTerm = this.$route.query.q;
+        results: {
+          globals: [],
+          artists: [],
+          albums: [],
+          tracks: [],
+          users: [],
+        }
       }
     };
 </script>

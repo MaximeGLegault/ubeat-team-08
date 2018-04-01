@@ -3,7 +3,7 @@ import querystring from 'querystring';
 
 
 // const baseUrl = 'https://ubeat.herokuapp.com/'; // TODO switch to baseUrl after TP2
-const baseUnsecureUrl = 'https://ubeat.herokuapp.com/unsecure/';
+const baseUnsecureUrl = 'http://ubeat.herokuapp.com/unsecure/';
 const baseUrl = 'https://ubeat.herokuapp.com/';
 const ownerName = 'owner@gmail.com';
 const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiI1YWJkMDQ2NTQwNjE3YzAwMDQ3MjY3YTEiLCJleHAiOjE1MjI0MjMzOTI2NDF9.qfT1CTi-NeSq9qVzxJfEIM4y5bpnoa5acXVDIPf-Bd0';
@@ -65,8 +65,8 @@ export default {
   },
   getSearch(q) {
     return axios.get(`${baseUnsecureUrl}search`, {
-      params: { q } })
-      .then(value => value.data);
+      params: { q }
+    }).then(value => value.data);
   },
   getSearchByAlbums(album) {
     return axios.get(`${baseUrl}${token}/search/albums?q=${album}`)
