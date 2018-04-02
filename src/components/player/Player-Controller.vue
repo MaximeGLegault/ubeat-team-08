@@ -15,7 +15,7 @@
 <script>
     export default {
       name: 'Player-Controller',
-      props: ['timeStats'],
+      props: ['audioCurrentTime', 'audioDuration'],
       methods: {
         onMouseDown() {
         },
@@ -27,8 +27,9 @@
       },
       computed: {
         currentValue() {
-          if (this.timeStats) {
-            return ((this.timeStats.currentTime / this.timeStats.duration) * 100);
+          if (this.audioCurrentTime && this.audioDuration &&
+            !Number.isNaN(this.audioCurrentTime) && !Number.isNaN(this.audioDuration)) {
+            return ((this.audioCurrentTime / this.audioDuration) * 100);
           }
           return 0;
         }
