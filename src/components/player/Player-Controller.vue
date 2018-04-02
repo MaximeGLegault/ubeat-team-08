@@ -2,6 +2,7 @@
   <div style="display: flex; flex-flow: row nowrap">
     <div style="flex: 1"></div>
     <input  id="range"
+            class="browser-default"
             ref="range"
             type="range"
             :value="currentValue"
@@ -64,8 +65,6 @@
     visibility: hidden!important;
   }
 
-  input[type=range]+.thumb {
-    display: none!important;
-  }
+
 
 </style>
