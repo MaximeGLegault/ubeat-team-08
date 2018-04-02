@@ -127,6 +127,15 @@ export default {
       url: `${baseUrl}signup`,
       data: querystring.stringify({ name: userName, email: userEmail, password: userPassword })
     });
-  }
+  },
+  getTokenInfo() {
+    return axios({
+      method: 'get',
+      url: `${baseUrl}tokenInfo`,
+      headers: {
+        Authorization: Cookies.get('token')
+      }
+    }).then(value => value.data);
+  },
 // other things
 };

@@ -49,7 +49,7 @@
 <script>
   import util from '@/lib/util';
   import { mapActions } from 'vuex';
-  import Cookies from 'js-cookie';
+  // import Cookies from 'js-cookie';
 
   export default {
     data: () => ({
@@ -94,10 +94,9 @@
       }
     },
     created() {
-      if (this.$store.state.userName === '') {
-        window.location = '#/login';
-        Cookies.set('token', '');
-      }
+      // if (this.$store.state.userName === '') {
+      //   window.location = '#/login';
+      // }
     }
   };
 
