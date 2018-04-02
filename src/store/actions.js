@@ -28,10 +28,11 @@ const actions = {
     }
   },
 
-  createNewPlaylist({ commit, state }, playlistName) {
-    return api.createPlaylist(playlistName)
+  createNewPlaylist({ commit, state }, playlistName, userName) {
+    return api.createPlaylist(playlistName, userName)
       .then((value) => {
         commit('SAVE_PLAYLIST', value.data);
+        console.log(value);
         return value.data.id;
       }).catch((error) => {
         if (error.response.status === 401) {

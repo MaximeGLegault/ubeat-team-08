@@ -71,7 +71,7 @@
         this.showSectionEdit = !this.showSectionEdit;
       },
       addPlaylist() {
-        this.createNewPlaylist('New Playlist');
+        this.createNewPlaylist('New Playlist', this.$store.state.email);
       },
       changePlaylist(event) {
         this.switchCurrentPlaylist({ playlistId: event.target.id, isModifiable: true });

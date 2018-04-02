@@ -54,14 +54,14 @@ export default {
       .then(value => value.data);
   },
 
-  createPlaylist(playlistName) {
+  createPlaylist(playlistName, userEmail) {
     return axios({
       method: 'post',
       url: `${baseUrl}playlists`,
       headers: {
         Authorization: Cookies.get('token')
       },
-      data: querystring.stringify({ name: playlistName })
+      data: querystring.stringify({ name: playlistName, owner: userEmail })
     });
   },
 
@@ -136,6 +136,10 @@ export default {
         Authorization: Cookies.get('token')
       }
     }).then(value => value.data);
+  },
+  getAllPlaylists() {
+    return axios.get(`${baseUrl}playlists`)
+      .then(value => value.data);
   },
 // other things
 };
