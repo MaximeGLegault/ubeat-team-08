@@ -50,6 +50,7 @@
   import util from '@/lib/util';
   import { mapActions } from 'vuex';
   // import Cookies from 'js-cookie';
+  import api from '@/lib/api';
 
   export default {
     data: () => ({
@@ -93,10 +94,28 @@
         return this.$store.state.playlists;
       }
     },
-    created() {
+    async created() {
       // if (this.$store.state.userName === '') {
       //   window.location = '#/login';
       // }
+      await api.getAllPlaylists()
+        .then((value) => {
+          const list = value;
+          const listPlUser = [];
+          // const listPlUser = [];
+          list.forEach((keys) => {
+            if (keys.owner !== undefined) {
+              // console.log(keys.owner);
+              if (keys.owner.email === this.$store.state.email) {
+                listPlUser.push(keys);
+              }
+            }
+          });
+          this.$store.state.playlists = listPlUser;
+          console.log(this.$store.state.playlists);
+        }).catch(() => {
+          window.location = '#/login';
+        });
     }
   };
 

@@ -138,8 +138,13 @@ export default {
     }).then(value => value.data);
   },
   getAllPlaylists() {
-    return axios.get(`${baseUrl}playlists`)
-      .then(value => value.data);
+    return axios({
+      method: 'get',
+      url: `${baseUrl}playlists`,
+      headers: {
+        Authorization: Cookies.get('token')
+      }
+    }).then(value => value.data);
   },
 // other things
 };

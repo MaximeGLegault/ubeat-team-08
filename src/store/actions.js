@@ -32,7 +32,6 @@ const actions = {
     return api.createPlaylist(playlistName, userName)
       .then((value) => {
         commit('SAVE_PLAYLIST', value.data);
-        console.log(value);
         return value.data.id;
       }).catch((error) => {
         if (error.response.status === 401) {
