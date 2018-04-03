@@ -4,30 +4,36 @@
       <div class="resultType" v-if="result.wrapperType === 'track'" >
         <div class="resultJacket">
           <router-link :to="{ name : 'Album', params: { collectionId: result.collectionId }}">
-            <img :src="result.artworkUrl100"/>
+            <img :src="artwork(result.artworkUrl100)"/>
           </router-link>
         </div>
+        <div class="resultName">
         <div class="resultTitle">{{result.trackName}}</div>
+        </div>
       </div>
       <div class="resultType" v-else-if="result.wrapperType === 'collection'" >
         <div class="resultJacket">
           <router-link :to="{ name : 'Album', params: { collectionId: result.collectionId }}">
-            <img :src="result.artworkUrl100"/>
+            <img :src="artwork(result.artworkUrl100)"/>
           </router-link>
         </div>
+        <div class="resultName">
         <div class="resultTitle">{{result.collectionName}}</div>
+        </div>
       </div>
       <div class="resultType" v-else="result.wrapperType === 'artist'" >
         <div class="resultJacket">
         </div>
+        <div class="resultName">
         <div class="resultTitle">{{result.artistName}}</div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  import util from '@/lib/api';
+  import util from '@/lib/util';
 
   export default {
     name: 'ResultByGlobals',
@@ -61,9 +67,9 @@
   }
   .result{
     margin: 20px 15px 15px 15px;
-    max-width: 250px;
+    width: 50%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: nowrap;
     align-items: flex-start;
     align-content: flex-start;
@@ -73,6 +79,7 @@
     align-self: auto;
   }
   .resultJacket{
+    margin-right: 10px;
   }
   .resultName{
     margin: 0 auto;
@@ -95,8 +102,8 @@
   }
   img {
     object-fit: contain;
-    width: 250px;
-    height: 250px;
+    width: 150px;
+    height: 150px;
   }
 
   @media only screen and (min-device-width : 320px) and (max-device-width : 480px)
