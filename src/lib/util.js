@@ -14,8 +14,13 @@ export default {
     return elements.join('/');
   },
 
-  getLengthFromMilliseconds(milliseconds) {
-    const duration = moment.duration(milliseconds);
+  getLength(amount, unit = '') {
+    let duration;
+    if (unit) {
+      duration = moment.duration(amount, unit);
+    } else {
+      duration = moment.duration(amount); // milliseconds
+    }
     let hours = duration.hours();
     hours = hours ? `${hours}:` : '';
 
@@ -33,18 +38,4 @@ export default {
 
     return `${hours}${minutes}${seconds}`;
   },
-
-  getMusicInfo(tracks) {
-    const musicInfo = [];
-    tracks.forEach((track) => {
-      musicInfo.push({
-        url: track.previewUrl,
-        title: track.trackName,
-        author: track.artistName,
-        pic: track.artworkUrl100,
-        lrc: null
-      });
-    });
-    return musicInfo;
-  }
 };

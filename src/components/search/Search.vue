@@ -42,14 +42,14 @@
             this.resultCount = value.resultCount;
           });
       },
-      async updated() {
-        this.searchTerm = this.$route.query.q;
-        await api.getSearch(this.$route.query.q)
-          .then((value) => {
-            this.results.globals = value.results;
-            this.resultCount = value.resultCount;
-          });
-      },
+      // async updated() {
+      //   this.searchTerm = this.$route.query.q;
+      //   await api.getSearch(this.$route.query.q)
+      //     .then((value) => {
+      //       this.results.globals = value.results;
+      //       this.resultCount = value.resultCount;
+      //     });
+      // },
     };
 </script>
 

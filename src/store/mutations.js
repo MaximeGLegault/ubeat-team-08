@@ -2,11 +2,11 @@
 const mutations = {
 
   UPDATE_PLAYLIST(state, newPlaylist) {
-    const index = state.playlists.findIndex(el => el.id === newPlaylist.id);
+    const index = state.userPlaylists.findIndex(el => el.id === newPlaylist.id);
     if (index !== -1) {
-      state.playlists[index] = newPlaylist;
-      if (state.currentPlaylist.id === newPlaylist.id) {
-        state.currentPlaylist = newPlaylist;
+      state.userPlaylists[index] = newPlaylist;
+      if (state.userCurrentPlaylist.id === newPlaylist.id) {
+        state.userCurrentPlaylist = newPlaylist;
         // TODO check if we can separate this in a different mutations functions
         // TODO and add the thing if currentlyPlaying
       }
@@ -14,7 +14,7 @@ const mutations = {
   },
 
   SWITCH_CURRENT_PLAYLIST(state, playlist) {
-    state.currentPlaylist = playlist;
+    state.userCurrentPlaylist = playlist;
   },
 
   SWITCH_CURRENTLY_PLAYING_PLAYLIST(state, playlist) {
@@ -22,7 +22,7 @@ const mutations = {
   },
 
   SET_CURRENT_REQUEST(state, trackIndex) {
-    state.currentPlaylist.selectedTrack = trackIndex;
+    state.userCurrentPlaylist.selectedTrack = trackIndex;
   },
 
   SET_MODIFIABLE_CURRENT_PLAYLIST(state, isModifiable) {
@@ -30,7 +30,7 @@ const mutations = {
   },
 
   SAVE_PLAYLIST(state, playlist) {
-    state.playlists.push(playlist);
+    state.userPlaylists.push(playlist);
   },
   changeCurrentPlaylist(state, payload) {
     state.current_playlist = payload;
@@ -41,7 +41,7 @@ const mutations = {
   },
 
   EDIT_NAME(state, payload) {
-    state.currentPlaylist = payload;
+    state.userCurrentPlaylist = payload;
   }
 };
 

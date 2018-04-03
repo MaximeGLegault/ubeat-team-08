@@ -9,7 +9,7 @@
     </div>
     <div id = "playlist">
       <div id="titlePl">
-        <h1>{{currentPlaylist.name}} </h1>
+        <h1>{{this.$store.state.userCurrentPlaylist.name}} </h1>
         <button v-on:click="toggleEdit" id="editBtn" class="btn-floating waves-effect waves-light black "><i class="material-icons">mode_edit</i></button>
         <div v-show="showSectionEdit" id = "editDiv">
           <div class="input-field col s6">
@@ -49,6 +49,7 @@
 <script>
   import util from '@/lib/util';
   import { mapActions } from 'vuex';
+  import Cookies from 'js-cookie';
 
   export default {
     data: () => ({
@@ -76,22 +77,28 @@
         this.switchCurrentPlaylist({ playlistId: event.target.id, isModifiable: true });
       },
       async editNamePlaylist() {
-        const playlistWithNameChanged = Object.assign({}, this.$store.state.currentPlaylist);
+        const playlistWithNameChanged = Object.assign({}, this.$store.state.userCurrentPlaylist);
         playlistWithNameChanged.name = this.inputNameEdit;
         await this.updatePlaylist(playlistWithNameChanged);
       },
       duration(time) {
-        return util.getLengthFromMilliseconds(time);
+        return util.getLength(time);
       }
     },
     computed: {
       currentPlaylist() {
-        return this.$store.state.currentPlaylist;
+        return this.$store.state.userCurrentPlaylist;
       },
       listPlaylistsStore() {
-        return this.$store.state.playlists;
+        return this.$store.state.userPlaylists;
       }
     },
+    created() {
+      if (this.$store.state.userName === '') {
+        window.location = '#/login';
+        Cookies.set('token', '');
+      }
+    }
   };
 
 </script>

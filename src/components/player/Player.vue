@@ -2,10 +2,12 @@
     <div id="player_section">
 
       <img id="thumbnail"
-           src="http://is3.mzstatic.com/image/thumb/Music20/v4/33/47/ea/3347ea2b-5628-9283-da07-bcfb58e597d0/source/100x100bb.jpg"
-           />
+           src="http://is3.mzstatic.com/image/thumb/Music20/v4/33/47/ea/3347ea2b-5628-9283-da07-bcfb58e597d0/source/100x100bb.jpg"/>
 
-      <controller ref="progressController" :timeStats="timeStats"/>
+
+      <controller ref="progressController"
+                  :audioCurrentTime="audioCurrentTime"
+                  :audioDuration="audioDuration"/>
 
 
         <div id="controls">
@@ -15,9 +17,7 @@
             <a style="padding-left: 100px">Artist Name</a>
           </div>
 
-          <div id="currentTimeLabel">
-            0:00
-          </div>
+          <div id="currentTimeLabel">{{ currentTimeLength }}</div>
 
           <div id="buttons">
             <div id="left_buttons">
@@ -31,7 +31,7 @@
             </div>
           </div>
 
-          <div id="totalTimeLabel">4:30</div>
+          <div id="totalTimeLabel">{{ durationLength }}</div>
 
           <div id="playlist_button"></div>
 
@@ -43,7 +43,9 @@
 </template>
 
 <script>
+  import util from '@/lib/util';
   import Controller from './Player-Controller';
+
 
   export default {
     components: {
@@ -51,30 +53,62 @@
     },
     data() {
       return {
-        playStats: {
-          duration: 0,
-          currentTime: 0,
-        }
+        audioDuration: 0,
+        audioCurrentTime: 0,
+        albumImgSrc: '',
+        isPlaying: false,
+        indexOfPlayingTrack: 0,
       };
     },
     computed: {
       audio() {
         return this.$refs.audio;
       },
-      timeStats() {
-        if (this.$refs.audio) {
-          return { currentTime: this.audio.currentTime,
-            duration: this.audio.duration ? this.audio.duration : 1 };
-        }
-        return { currentTime: 0, duration: 1 };
+      playlist() {
+        return this.$store.state.currentlyPlaying;
+      },
+      durationLength() {
+        return util.getLength(this.audioDuration, 'seconds');
+      },
+      currentTimeLength() {
+        return util.getLength(this.audioCurrentTime, 'seconds');
       }
     },
     methods: {
-      playPressed() {
+      newPlayRequested() {
+        this.albumImgSrc = this.playlist;
         this.audio.src = 'https://audio-ssl.itunes.apple.com/apple-assets-us-std-000001/Music/ed/ed/dd/mzm.raqlwshv.aac.p.m4a';
         this.audio.play();
       },
+      playPressed() {
+        if (this.isPlaying) {
+          this.audio.pause();
+          this.isPlaying = false;
+        } else if (this.playlist) {
+          this.audio.play();
+          this.isPlaying = true;
+        } else {
+          this.newPlayRequested();
+        }
+      },
+      onDurationChange() {
+        if (this.audio.duration !== 1) {
+          this.playStats.duration = this.audio.duration;
+        }
+      },
+      onTimeUpdate() {
+        this.playStats.currentTime = this.audio.currentTime;
+      },
+      initAudio() {
+        this.audio.addEventListener('durationchange', this.onDurationChange);
+        this.audio.addEventListener('timeupdate', this.onTimeUpdate);
+        this.audio.addEventListener('paused', this.onPaused);
+        this.audio.addEventListener('paused', this.onPaused);
+      }
     },
+    mounted() {
+      this.initAudio();
+    }
   };
 </script>
 

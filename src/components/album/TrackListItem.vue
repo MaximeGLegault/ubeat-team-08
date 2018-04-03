@@ -27,7 +27,7 @@
     },
     computed: {
       duration() {
-        return util.getLengthFromMilliseconds(this.track.trackTimeMillis);
+        return util.getLength(this.track.trackTimeMillis);
       }
     },
     methods: {
