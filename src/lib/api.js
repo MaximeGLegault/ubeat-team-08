@@ -65,7 +65,8 @@ export default {
   },
   getSearch(q) {
     return axios.get(`${baseUnsecureUrl}search`, {
-      params: { q }
+      params: { q },
+      headers: { 'Cache-Control': 'no-cache' }
     }).then(value => value.data);
   },
   getSearchByAlbums(album) {

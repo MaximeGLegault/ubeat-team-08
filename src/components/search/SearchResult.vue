@@ -1,9 +1,10 @@
 <template>
   <div>
-    {{results.globals[0].artistId}}
-    <result v-if="results.globals"
-            :key="searchTerm"
-            :globals="results.globals"
+    <!--{{results.globals[0].artistId}}-->
+    <result-by-global v-if="results.globals.length > 0"
+            :key="this.searchTerm"
+            :searchTerm="searchTerm"
+            :results="results.globals"
     />
     <!--<result-by-track v-else-if="this.results.tracks"-->
                      <!--:key="this.searchTerm"-->
@@ -30,12 +31,13 @@
     import ResultByArtist from './ResultByArtist';
     import ResultByAlbum from './ResultByAlbum';
     import ResultByUser from './ResultByUser';
-    import Result from './Result';
+    import ResultByGlobal from './ResultByGlobal';
 
     export default {
       name: 'SearchResult',
-      components: { Result, ResultByUser, ResultByAlbum, ResultByArtist, ResultByTrack },
+      components: { ResultByGlobal, ResultByUser, ResultByAlbum, ResultByArtist, ResultByTrack },
       props: {
+        searchTerm: '',
         results: {
           globals: [],
           artists: [],

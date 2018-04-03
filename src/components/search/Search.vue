@@ -2,9 +2,9 @@
   <div>
     <h1>{{this.searchTerm}}</h1>
     <search-bar/>
-    {{results.globals[0].wrapperType}}
     <search-result v-if="this.results"
                    :key="this.searchTerm"
+                   :searchTerm="this.searchTerm"
                    :results="this.results"
     />
   </div>

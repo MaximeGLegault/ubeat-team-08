@@ -3,7 +3,7 @@
 
       <img id="thumbnail"
            src="http://is3.mzstatic.com/image/thumb/Music20/v4/33/47/ea/3347ea2b-5628-9283-da07-bcfb58e597d0/source/100x100bb.jpg"
-           "/>
+           />
 
       <controller ref="progressController" :timeStats="timeStats"/>
 
