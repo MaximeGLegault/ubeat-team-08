@@ -112,7 +112,6 @@
             }
           });
           this.$store.state.playlists = listPlUser;
-          console.log(this.$store.state.playlists);
         }).catch(() => {
           window.location = '#/login';
         });
