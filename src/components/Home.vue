@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="container homeContainer">
-      <h3 class="titleHeader">Welcome</h3>
+      <h3 class="titleHeader">Welcome <span class="userName">{{userName}}</span></h3>
       <p class="titleText">With UBeat you can listen to your favorite tracks.Create playlist and share it with your friends  </p>
       <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <!-- Wrapper for slides -->
@@ -22,23 +22,26 @@
             <img src="https://cdn01.masterstudies.com/element_db/52/5261_Electronics_Music_Production_pic_1.jpg" alt="electro" style="width:100%;">
           </div>
         </div>
-        <!-- Left and right controls -->
-        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-          <span class="glyphicon glyphicon-chevron-left"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="right carousel-control" href="#myCarousel" data-slide="next">
-          <span class="glyphicon glyphicon-chevron-right"></span>
-          <span class="sr-only">Next</span>
-        </a>
       </div>
     </div>
   </div>
 </template>
 
-
+<script>
+  export default {
+    data: () => ({
+      userName: 'test'
+    }),
+    async created() {
+      this.userName = this.$store.state.userName;
+    }
+  };
+</script>
 
 <style>
+  .userName{
+    color: #651fff;
+  }
   .homeContainer
   {
     position: relative;

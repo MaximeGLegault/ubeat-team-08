@@ -34,17 +34,25 @@
           const description = value.results[0];
           description.albumLength = '';
           this.albumDescriptionDataObject = description;
+        }).catch((error) => {
+          if (error.response.status === 401) {
+            window.location = '#/login';
+          }
         });
       await api.getTracksOfAlbum(this.$route.params.collectionId)
         .then((value) => {
           this.trackList = value.results;
           this.albumDescriptionDataObject.albumLength =
-            util.getLengthFromMilliseconds(this.trackList
+            util.getLength(this.trackList
               .reduce((total, num) => {
                 const newTotal = total + num.trackTimeMillis;
                 return newTotal;
               }, 0));
           this.albumDescriptionDataObject.trackCount = this.trackList.length;
+        }).catch((error) => {
+          if (error.response.status === 401) {
+            window.location = '#/login';
+          }
         });
     }
   };

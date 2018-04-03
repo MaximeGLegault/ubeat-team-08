@@ -9,14 +9,13 @@
     </div>
     <div id = "playlist">
       <div id="titlePl">
-        <h1>{{currentPlaylist.name}} </h1>
+        <h1>{{this.$store.state.userCurrentPlaylist.name}} </h1>
         <button v-on:click="toggleEdit" id="editBtn" class="btn-floating waves-effect waves-light black "><i class="material-icons">mode_edit</i></button>
         <div v-show="showSectionEdit" id = "editDiv">
           <div class="input-field col s6">
-            <input id="pl_name" type="text" v-model="inputNameEdit">
-            <label for="pl_name">Playlist Name</label>
+            <input id="pl_name" type="text" v-model="inputNameEdit" placeholder="Playlist's Name">
           </div>
-          <a id="checkBtn" class="waves-effect btn-flat " v-on:click="editNamePl"><i class="material-icons left">check</i></a>
+          <a id="checkBtn" class="waves-effect btn-flat " v-on:click="editNamePlaylist"><i class="material-icons left">check</i></a>
         </div>
       </div>
       <div id="trackList">
@@ -50,6 +49,7 @@
 <script>
   import util from '@/lib/util';
   import { mapActions } from 'vuex';
+  import Cookies from 'js-cookie';
 
   export default {
     data: () => ({
@@ -64,40 +64,41 @@
         'addPlaylistToListPlaylists',
         'switchCurrentPlaylist',
         'createNewPlaylist',
-        'editName',
-        'addSongToCurrentPlaylist'
+        'updatePlaylist',
+        'addTrackToCurrentPlaylist'
       ]),
       toggleEdit() {
         this.showSectionEdit = !this.showSectionEdit;
       },
-      async addPlaylist() {
+      addPlaylist() {
         this.createNewPlaylist('New Playlist');
       },
-      async changePlaylist(event) {
+      changePlaylist(event) {
         this.switchCurrentPlaylist({ playlistId: event.target.id, isModifiable: true });
       },
-      async editNamePl() {
-        const bkp = this.$store.state.currentPlaylist.tracks;
-        console.log(this.$store.state.currentPlaylist);
-        await this.editName({ playlistId: this.$store.state.currentPlaylist.id,
-          newName: this.inputNameEdit });
-        bkp.forEach((track) => {
-          this.addSongToCurrentPlaylist(track);
-        });
-        console.log(this.$store.state.currentPlaylist);
+      async editNamePlaylist() {
+        const playlistWithNameChanged = Object.assign({}, this.$store.state.userCurrentPlaylist);
+        playlistWithNameChanged.name = this.inputNameEdit;
+        await this.updatePlaylist(playlistWithNameChanged);
       },
       duration(time) {
-        return util.getLengthFromMilliseconds(time);
+        return util.getLength(time);
       }
     },
     computed: {
       currentPlaylist() {
-        return this.$store.state.currentPlaylist;
+        return this.$store.state.userCurrentPlaylist;
       },
       listPlaylistsStore() {
-        return this.$store.state.playlists;
+        return this.$store.state.userPlaylists;
       }
     },
+    created() {
+      if (this.$store.state.userName === '') {
+        window.location = '#/login';
+        Cookies.set('token', '');
+      }
+    }
   };
 
 </script>
@@ -181,7 +182,7 @@
   #trackList {
     align-content: center;
     align-self: auto;
-    margin: 0 auto 5vh;
+    margin: 0 auto 20vh;
     width: 100%;
   }
 
