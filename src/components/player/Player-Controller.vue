@@ -31,19 +31,16 @@
         options: {
           dotSize: 18,
           speed: 0,
-          // piecewiseStyle: {
-          //   // eslint-disable-next-line
-          //   'backgroundColor': '#111111',
-          // },
-          // piecewiseActiveStyle: {
-          //   backgroundColor: '#111111'
-          // },
+          tooltip: false,
           bgStyle: {
-            backgroundColor: '#111111',
+            backgroundColor: '#999999',
           },
           processStyle: {
-            backgroundColor: '#111111'
-          }
+            backgroundColor: '#651fff'
+          },
+          sliderStyle: {
+            backgroundColor: '#651fff'
+          },
         }
       };
     },
