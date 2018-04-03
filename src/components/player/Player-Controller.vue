@@ -1,40 +1,64 @@
 <template>
   <div style="display: flex; flex-flow: row nowrap">
     <div style="flex: 1"></div>
-    <input  id="range"
-            class="browser-default"
-            ref="range"
-            type="range"
-            :value="currentValue"
-            @mousedown=""
-            @touchstart=""/>
+    <vue-slider style="flex: 2"
+                ref="slider"
+                v-model="value"
+                v-bind="options" />
+    <!--<input  id="range"-->
+            <!--class="browser-default"-->
+            <!--ref="range"-->
+            <!--type="range"-->
+            <!--:value="currentValue"-->
+            <!--@mousedown=""-->
+            <!--@touchstart=""/>-->
     <div style="flex: 1"></div>
   </div>
 </template>
 
 <script>
-    export default {
-      name: 'Player-Controller',
-      props: ['audioCurrentTime', 'audioDuration'],
-      methods: {
-        onMouseDown() {
-        },
-        onTouchStart() {
-        },
-      },
-      mounted() {
-        this.$refs.range.value = 0;
-      },
-      computed: {
-        currentValue() {
-          if (this.audioCurrentTime && this.audioDuration &&
-            !Number.isNaN(this.audioCurrentTime) && !Number.isNaN(this.audioDuration)) {
-            return ((this.audioCurrentTime / this.audioDuration) * 100);
+  import vueSlider from 'vue-slider-component';
+
+  export default {
+    name: 'Player-Controller',
+    components: {
+      'vue-slider': vueSlider
+    },
+    props: ['audioCurrentTime', 'audioDuration'],
+    data() {
+      return {
+        value: 0,
+        options: {
+          dotSize: 18,
+          speed: 0,
+          // piecewiseStyle: {
+          //   // eslint-disable-next-line
+          //   'backgroundColor': '#111111',
+          // },
+          // piecewiseActiveStyle: {
+          //   backgroundColor: '#111111'
+          // },
+          bgStyle: {
+            backgroundColor: '#111111',
+          },
+          processStyle: {
+            backgroundColor: '#111111'
           }
-          return 0;
         }
-      },
-    };
+      };
+    },
+    methods: {
+    },
+    computed: {
+      currentValue() {
+        if (this.audioCurrentTime && this.audioDuration &&
+          !Number.isNaN(this.audioCurrentTime) && !Number.isNaN(this.audioDuration)) {
+          this.value = ((this.audioCurrentTime / this.audioDuration) * 100);
+        }
+        this.value = 0;
+      }
+    },
+  };
 </script>
 
 <style scoped>
@@ -62,10 +86,11 @@
     width: 18px;
   }
 
-  input[type=range]+.thumb.active {
-    visibility: hidden!important;
+  input[type=range] + .thumb {
+    background-color: #dedede;
   }
 
-
-
+  input[type=range] + .thumb.active .value {
+    color: red;
+  }
 </style>
