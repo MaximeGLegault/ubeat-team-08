@@ -12,8 +12,8 @@
         <div id="controls">
 
           <div id="text_info">
-            <a style="padding-left: 100px">Song Name</a>
-            <a style="padding-left: 100px">Artist Name</a>
+            <a style="padding-left: 100px">{{songName}}</a>
+            <a style="padding-left: 100px">{{artistName}}</a>
           </div>
 
           <div id="currentTimeLabel">{{ currentTimeLength }}</div>
@@ -64,13 +64,22 @@
         return this.$refs.audio;
       },
       playlist() {
-        return this.$store.state.currentlyPlaying;
+        return this.$store.state.currentlyPlayingPlaylist;
+      },
+      track() {
+        return this.$store.state.currentlyPlayingPlaylist;
       },
       durationLength() {
         return util.getLength(this.audioDuration, 'seconds');
       },
       currentTimeLength() {
         return util.getLength(this.audioCurrentTime, 'seconds');
+      },
+      songName() {
+        return this.track.trackName;
+      },
+      artistName() {
+        return this.track.artistName;
       }
     },
     methods: {

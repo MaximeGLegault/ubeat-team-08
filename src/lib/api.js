@@ -76,7 +76,7 @@ export default {
     });
   },
 
-  updatePlaylist(playlistWithChanges) {
+  updatePlaylistName(playlistWithChanges) {
     return axios({
       method: 'put',
       url: `${baseUrl}playlists/${playlistWithChanges.id}`,

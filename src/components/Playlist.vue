@@ -9,7 +9,7 @@
     </div>
     <div id = "playlist">
       <div id="titlePl">
-        <h1>{{this.$store.state.userCurrentPlaylist.name}} </h1>
+        <h1>{{this.$store.state.userCurrentSelectedPlaylist.name}} </h1>
         <button v-on:click="toggleEdit" id="editBtn" class="btn-floating waves-effect waves-light black "><i class="material-icons">mode_edit</i></button>
         <div v-show="showSectionEdit" id = "editDiv">
           <div class="input-field col s6">
@@ -61,10 +61,9 @@
     }),
     methods: {
       ...mapActions([
-        'addPlaylistToListPlaylists',
         'switchCurrentPlaylist',
         'createNewPlaylist',
-        'updatePlaylist',
+        'updatePlaylistName',
         'addTrackToCurrentPlaylist'
       ]),
       toggleEdit() {
@@ -74,12 +73,13 @@
         this.createNewPlaylist('New Playlist');
       },
       changePlaylist(event) {
-        this.switchCurrentPlaylist({ playlistId: event.target.id, isModifiable: true });
+        this.switchCurrentPlaylist(event.target.id);
       },
       async editNamePlaylist() {
-        const playlistWithNameChanged = Object.assign({}, this.$store.state.userCurrentPlaylist);
-        playlistWithNameChanged.name = this.inputNameEdit;
-        await this.updatePlaylist(playlistWithNameChanged);
+        await this.updatePlaylistName({
+          playlistId: this.$store.state.userCurrentSelectedPlaylist.id,
+          newName: this.inputNameEdit
+        });
       },
       duration(time) {
         return util.getLength(time);
@@ -87,7 +87,7 @@
     },
     computed: {
       currentPlaylist() {
-        return this.$store.state.userCurrentPlaylist;
+        return this.$store.state.userCurrentSelectedPlaylist;
       },
       listPlaylistsStore() {
         return this.$store.state.userPlaylists;
