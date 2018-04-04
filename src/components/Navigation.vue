@@ -34,9 +34,9 @@
             <div id="menuUser">
               <a class='dropdown-button btn-floating deep-purple accent-3' href='#' data-activates='dropdown1'><i class="material-icons">person</i></a>
               <ul id='dropdown1' class='dropdown-content'>
-                <li><a href="#">profil</a></li>
+                <li><router-link to="/PageUser">profil</router-link></li>
                 <li class="divider"></li>
-                <li><a href="#">parameter</a></li>
+                <li><router-link to="/Parameter">parameter</router-link></li>
                 <li class="divider"></li>
                 <li><router-link to="/signUp">sign up</router-link></li>
                 <li><router-link to="/login">login</router-link></li>

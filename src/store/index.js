@@ -13,7 +13,11 @@ export const state = {
   bkpList: {},
   userName: '',
   email: '',
-  password: ''
+  password: '',
+  PageUserFriends: '',
+  PageUserFollow: '',
+  PageUserUnfollow: '',
+  PageUserPlayListFromPlaylist: ''
 };
 
 export default new Vuex.Store({
