@@ -21,13 +21,13 @@
     methods: {
       ...mapActions([
         'createNewPlaylist',
-        'switchCurrentPlaylist'
+        'switchUserCurrentPlaylist'
       ]),
     },
     async created() {
       // todo search for playlist before creating an empty one
       const newPlaylistId = await this.createNewPlaylist('My playlist');
-      this.switchCurrentPlaylist({ playlistId: newPlaylistId, isModifiable: true });
+      this.switchUserCurrentPlaylist({ playlistId: newPlaylistId, isModifiable: true });
     },
   };
 

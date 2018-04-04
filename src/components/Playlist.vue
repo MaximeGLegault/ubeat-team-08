@@ -61,7 +61,7 @@
     }),
     methods: {
       ...mapActions([
-        'switchCurrentPlaylist',
+        'switchUserCurrentPlaylist',
         'createNewPlaylist',
         'updatePlaylistName',
         'addTrackToCurrentPlaylist'
@@ -73,7 +73,7 @@
         this.createNewPlaylist('New Playlist');
       },
       changePlaylist(event) {
-        this.switchCurrentPlaylist(event.target.id);
+        this.switchUserCurrentPlaylist(event.target.id);
       },
       async editNamePlaylist() {
         await this.updatePlaylistName({

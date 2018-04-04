@@ -2,7 +2,7 @@
     <div id="player_section">
 
       <img id="thumbnail"
-           src="http://is3.mzstatic.com/image/thumb/Music20/v4/33/47/ea/3347ea2b-5628-9283-da07-bcfb58e597d0/source/100x100bb.jpg"/>
+           :src="this.currentlyPlayingTrack.artworkUrl100"/>
 
       <controller ref="progressController"
                   :audioCurrentTime="audioCurrentTime"
@@ -65,9 +65,9 @@
       return {
         audioDuration: 0,
         audioCurrentTime: 0,
-        albumImgSrc: '',
         isPlaying: true,
         indexOfPlayingTrack: 0,
+        currentlyPlayingTrack: {}
       };
     },
     computed: {
@@ -75,10 +75,10 @@
         return this.$refs.audio;
       },
       playlist() {
-        return this.$store.state.currentlyPlayingPlaylist;
+        return this.$store.state.currentlyPlayingPlaylist.tracks;
       },
       track() {
-        return this.$store.state.currentlyPlayingPlaylist;
+        return this.$store.state.currentlyPlayingTrack;
       },
       durationLength() {
         return util.getLength(this.audioDuration, 'seconds');
@@ -95,15 +95,18 @@
     },
     methods: {
       newPlayRequested() {
-        this.albumImgSrc = this.playlist;
-        this.audio.src = 'https://audio-ssl.itunes.apple.com/apple-assets-us-std-000001/Music/ed/ed/dd/mzm.raqlwshv.aac.p.m4a';
+        this.audio.pause();
+        this.indexOfPlayingTrack = this.playlist.findIndex(
+          el => el.trackId === this.track.trackId);
+        this.currentlyPlayingTrack = this.track;
+        this.audio.src = this.track.previewUrl;
         this.audio.play();
       },
       playPressed() {
         if (this.isPlaying) {
           this.audio.pause();
           this.isPlaying = false;
-        } else if (this.playlist) {
+        } else if (this.track) {
           this.audio.play();
           this.isPlaying = true;
         } else {
@@ -112,11 +115,11 @@
       },
       onDurationChange() {
         if (this.audio.duration !== 1) {
-          this.playStats.duration = this.audio.duration;
+          this.audioDuration = this.audio.duration;
         }
       },
       onTimeUpdate() {
-        this.playStats.currentTime = this.audio.currentTime;
+        this.audioCurrentTime = this.audio.currentTime;
       },
       initAudio() {
         this.audio.addEventListener('durationchange', this.onDurationChange);
@@ -127,7 +130,8 @@
     },
     mounted() {
       this.initAudio();
-    }
+      this.$root.$on('newPlayRequested', this.newPlayRequested);
+    },
   };
 </script>
 

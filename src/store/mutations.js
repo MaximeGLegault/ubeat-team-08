@@ -13,7 +13,7 @@ const mutations = {
     }
   },
 
-  SWITCH_CURRENT_PLAYLIST(state, playlist) {
+  SWITCH_USER_CURRENT_PLAYLIST(state, playlist) {
     state.userCurrentSelectedPlaylist = playlist;
   },
 
@@ -21,8 +21,8 @@ const mutations = {
     state.currentlyPlayingPlaylist = playlist;
   },
 
-  SET_CURRENT_REQUEST(state, trackIndex) {
-    state.userCurrentSelectedPlaylist.selectedTrack = trackIndex;
+  SWITCH_CURRENTLY_PLAYING_TRACK(state, track) {
+    state.currentlyPlayingTrack = track;
   },
 
   SAVE_PLAYLIST(state, playlist) {

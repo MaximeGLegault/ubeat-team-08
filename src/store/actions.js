@@ -20,10 +20,10 @@ const actions = {
       });
   },
 
-  switchCurrentPlaylist({ commit, state }, playlistId) {
+  switchUserCurrentPlaylist({ commit, state }, playlistId) {
     const playlist = state.userPlaylists.find(el => el.id === playlistId);
     if (playlist) {
-      commit('SWITCH_CURRENT_PLAYLIST', playlist);
+      commit('SWITCH_USER_CURRENT_PLAYLIST', playlist);
     }
   },
 
@@ -39,9 +39,16 @@ const actions = {
       });
   },
 
-  addAlbumToCurrentPlaylistWithoutSaving({ commit }, playlist) {
+  addAlbumAsCurrentlyPlayingPlaylist({ commit }, playlist) {
     if (playlist) {
-      commit('SWITCH_CURRENT_PLAYLIST', playlist);
+      commit('SWITCH_CURRENTLY_PLAYING_PLAYLIST', playlist);
+    }
+  },
+
+  addTrackAsCurrentlyPlayingTrack({ commit, state }, track) {
+    if (track &&
+      state.currentlyPlayingPlaylist.tracks.findIndex(el => el.trackId === track.trackId) !== -1) {
+      commit('SWITCH_CURRENTLY_PLAYING_TRACK', track);
     }
   },
 

@@ -42,7 +42,6 @@
             this.messageErr = '';
             this.messageLog = 'You\'re now log in';
             Cookies.set('token', value.data.token);
-            console.log(Cookies.get('token'));
             window.location = '#/';
           }).catch(() => {
             this.messageErr = 'User not found, check your username and password';
