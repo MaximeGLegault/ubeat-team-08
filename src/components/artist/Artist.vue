@@ -12,6 +12,7 @@
 </template>
 
 <script>
+  import Cookies from 'js-cookie';
   import api from '@/lib/api';
   import AlbumsList from './AlbumsList';
   import ArtistDescription from './ArtistDescription';
@@ -29,9 +30,8 @@
       };
     },
     beforeCreate() {
-      if (this.$store.state.userName === '') {
+      if (Cookies.get('token') === '') {
         this.$router.push('/login');
-        console.log('test');
       }
     },
     async created() {
