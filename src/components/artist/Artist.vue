@@ -28,7 +28,12 @@
         albums: []
       };
     },
-
+    beforeCreate() {
+      if (this.$store.state.userName === '') {
+        this.$router.push('/login');
+        console.log('test');
+      }
+    },
     async created() {
       await api.getArtist(this.$route.params.artistId)
         .then((value) => {

@@ -89,15 +89,14 @@
     computed: {
       currentPlaylist() {
         return this.$store.state.currentPlaylist;
-      },
-      listPlaylistsStore() {
-        return this.$store.state.playlists;
+      }
+    },
+    beforeCreate() {
+      if (this.$store.state.userName === '') {
+        this.$router.push('/login');
       }
     },
     async created() {
-      // if (this.$store.state.userName === '') {
-      //   window.location = '#/login';
-      // }
       await api.getAllPlaylists()
         .then((value) => {
           const list = value;
@@ -113,7 +112,7 @@
           });
           this.$store.state.playlists = listPlUser;
         }).catch(() => {
-          window.location = '#/login';
+          this.$router.push('/login');
         });
     }
   };

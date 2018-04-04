@@ -11,6 +11,7 @@
   import Navigation from '@/components/Navigation';
   import Player from '@/components/player/Player';
   import api from '@/lib/api';
+  import Cookies from 'js-cookie';
 
   export default {
     name: 'app',
@@ -24,6 +25,28 @@
         'createNewPlaylist',
         'switchCurrentPlaylist'
       ]),
+    },
+    // beforeRouteEnter (to, from, next) {
+    //   next(() => {
+    //     api.getTokenInfo()
+    //       .then((value) => {
+    //         this.$store.state.userName = value.name;
+    //         this.$store.state.email = value.email;
+    //       }).catch(() => {
+    //       console.log('noToken');
+    //       Cookies.set('token', '');
+    //     });
+    //   })
+    // },
+    beforeCreate() {
+      api.getTokenInfo()
+        .then((value) => {
+          this.$store.state.userName = value.name;
+          this.$store.state.email = value.email;
+        }).catch(() => {
+          console.log('noToken');
+          Cookies.set('token', '');
+        });
     },
     async created() {
       await api.getAllPlaylists()
@@ -45,7 +68,8 @@
           }
           console.log(this.$store.state.playlists[0]);
         }).catch(() => {
-          window.location = '#/login';
+          this.$router.push('/login');
+          // window.location = '#/login';
         });
       // todo search for playlist before creating an empty one
       // if (this.$store.state.playlists.size === 0) {
