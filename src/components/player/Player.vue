@@ -23,7 +23,18 @@
               <a class=" btn deep-purple accent-3 btn-floating"><i class="material-icons md-48">skip_previous</i></a>
             </div>
             <div id="middle_button">
-              <a class=" btn deep-purple accent-3 btn-floating" v-on:click="playPressed"><i style="font-size: 40px" class="material-icons md-48">play_arrow</i></a>
+
+              <a class=" btn deep-purple accent-3 btn-floating"
+                 v-on:click="playPressed"
+                 v-if="!isPlaying">
+                <i style="font-size: 40px" class="material-icons md-48">play_arrow</i>
+              </a>
+
+              <a class=" btn deep-purple accent-3 btn-floating"
+                 v-on:click="playPressed"
+                 v-if="this.isPlaying">
+                <i style="font-size: 40px" class="material-icons md-48">pause</i>
+              </a>
             </div>
             <div id="right_buttons">
               <a class=" btn deep-purple accent-3 btn-floating"><i class="material-icons md-48">skip_next</i></a>
@@ -55,7 +66,7 @@
         audioDuration: 0,
         audioCurrentTime: 0,
         albumImgSrc: '',
-        isPlaying: false,
+        isPlaying: true,
         indexOfPlayingTrack: 0,
       };
     },

@@ -95,7 +95,7 @@
     },
     created() {
       if (this.$store.state.userName === '') {
-        window.location = '#/login';
+        this.$router.push('/login');
         Cookies.set('token', '');
       }
     }
