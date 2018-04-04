@@ -14,6 +14,10 @@ export const state = {
   userName: '',
   email: '',
   password: '',
+  PageUserFriends: '',
+  PageUserFollow: '',
+  PageUserUnfollow: '',
+  PageUserPlayListFromPlaylist: ''
 };
 
 export default new Vuex.Store({
