@@ -40,7 +40,7 @@
           this.albumDescriptionDataObject = description;
         }).catch((error) => {
           if (error.response.status === 401) {
-            window.location = '#/login';
+            this.$router.push('/login');
           }
         });
       await api.getTracksOfAlbum(this.$route.params.collectionId)
@@ -56,7 +56,6 @@
         }).catch((error) => {
           if (error.response.status === 401) {
             this.$router.push('/login');
-            // window.location = '#/login';
           }
         });
     }

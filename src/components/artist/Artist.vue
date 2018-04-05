@@ -40,7 +40,7 @@
           this.artist = value.results[0];
         }).catch((error) => {
           if (error.response.status === 401) {
-            window.location = '#/login';
+            this.$router.push('/login');
           }
         });
       await api.getAlbums(this.$route.params.artistId)
@@ -50,7 +50,7 @@
             album2.releaseDate.slice(0, 4) - album1.releaseDate.slice(0, 4));
         }).catch((error) => {
           if (error.response.status === 401) {
-            window.location = '#/login';
+            this.$router.push('/login');
           }
         });
     }

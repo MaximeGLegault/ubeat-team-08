@@ -92,7 +92,6 @@
       }
     },
     beforeCreate() {
-      console.log(Cookies.get('token'));
       if (Cookies.get('token') === '') {
         this.$router.push('/login');
       }
@@ -102,10 +101,8 @@
         .then((value) => {
           const list = value;
           const listPlUser = [];
-          // const listPlUser = [];
           list.forEach((keys) => {
             if (keys.owner !== undefined) {
-              // console.log(keys.owner);
               if (keys.owner.email === this.$store.state.email) {
                 listPlUser.push(keys);
               }
