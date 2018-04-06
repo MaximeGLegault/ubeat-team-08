@@ -147,5 +147,15 @@ export default {
       }
     }).then(value => value.data);
   },
+  editNamePlaylist(playlist, newName) {
+    return axios({
+      method: 'put',
+      url: `${baseUrl}playlists/${playlist}`,
+      headers: {
+        Authorization: Cookies.get('token')
+      },
+      data: querystring.stringify({ name: newName })
+    });
+  },
 // other things
 };

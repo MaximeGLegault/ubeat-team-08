@@ -67,7 +67,23 @@ const actions = {
         });
     }
     return Promise.reject(new Error('unmodifiable playlist'));
-  }
+  },
+  editPlaylistName(context, { playlistId, newName }) {
+    if (playlistId) {
+      return api.editNamePlaylist(playlistId, newName)
+        .then((value) => {
+          context.commit('EDIT_NAME', value.data);
+        });
+    }
+    return Promise.reject(new Error('unmodifiable playlist'));
+  },
+  addSongToCurrentPlaylist({ commit, state }, track) {
+    return api.addTrackToPlaylist(state.userCurrentSelectedPlaylist.id, track)
+      .then((value) => {
+        const oldPlaylist = state.userPlaylists.find(el => el.id === value.data.id);
+        commit('UPDATE_PLAYLIST', { oldPlaylist, newPlaylist: value.data });
+      });
+  },
 };
 
 export default actions;
