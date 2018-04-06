@@ -3,13 +3,13 @@
     <div id = "playlistName">
       <button id="addbutton" class="btn-floating waves-effect waves-light deep-purple accent-3" v-on:click="addPlaylist"><i id = "clickButtonId" class="material-icons">add</i></button>
       <button id="addbuttonSm" class="btn-floating waves-effect waves-light btn-large deep-purple accent-3" v-on:click="addPlaylist"><i class="material-icons">add</i></button>
-      <ul v-for="playlist in this.$store.state.playlists">
+      <ul v-for="playlist in this.$store.state.userPlaylists">
         <li><a class="listPlName" v-bind:id="playlist.id" v-on:click="changePlaylist">{{playlist.name}}</a></li>
       </ul>
     </div>
     <div id = "playlist">
       <div id="titlePl">
-        <h1>{{this.$store.state.currentPlaylist.name}} </h1>
+        <h1>{{this.$store.state.userCurrentSelectedPlaylist.name}} </h1>
         <button v-on:click="toggleEdit" id="editBtn" class="btn-floating waves-effect waves-light black "><i class="material-icons">mode_edit</i></button>
         <div v-show="showSectionEdit" id = "editDiv">
           <div class="input-field col s6">
@@ -62,10 +62,9 @@
     }),
     methods: {
       ...mapActions([
-        'addPlaylistToListPlaylists',
-        'switchCurrentPlaylist',
+        'switchUserCurrentPlaylist',
         'createNewPlaylist',
-        'updatePlaylist',
+        'updatePlaylistName',
         'addTrackToCurrentPlaylist'
       ]),
       toggleEdit() {
@@ -75,20 +74,22 @@
         this.createNewPlaylist('New Playlist', this.$store.state.email);
       },
       changePlaylist(event) {
-        this.switchCurrentPlaylist({ playlistId: event.target.id, isModifiable: true });
+        this.switchUserCurrentPlaylist(event.target.id);
       },
       async editNamePlaylist() {
-        const playlistWithNameChanged = Object.assign({}, this.$store.state.currentPlaylist);
-        playlistWithNameChanged.name = this.inputNameEdit;
-        await this.updatePlaylist(playlistWithNameChanged);
+        await this.updatePlaylistName({
+          playlistId: this.$store.state.userCurrentSelectedPlaylist.id,
+          newName: this.inputNameEdit
+        });
       },
       duration(time) {
-        return util.getLengthFromMilliseconds(time);
+        return util.getLength(time);
       }
     },
     computed: {
       currentPlaylist() {
-        return this.$store.state.currentPlaylist;
+        // return this.$store.state.currentPlaylist;
+        return this.$store.state.userCurrentSelectedPlaylist;
       }
     },
     beforeCreate() {
@@ -108,7 +109,7 @@
               }
             }
           });
-          this.$store.state.playlists = listPlUser;
+          this.$store.state.userPlaylists = listPlUser;
         }).catch(() => {
           this.$router.push('/login');
         });

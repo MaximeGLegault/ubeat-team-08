@@ -40,16 +40,23 @@
     },
     methods: {
       ...mapActions([
-        'addAlbumToCurrentPlaylistWithoutSaving',
+        'addAlbumAsCurrentlyPlayingPlaylist',
         'addTrackToCurrentPlaylist',
+        'addTrackAsCurrentlyPlayingTrack'
       ]),
       emitNewPlaylistToPlay(trackToPlay) {
         const newTracks = this.tracks.slice();
         const index = newTracks.findIndex(el => el.trackId === trackToPlay.trackId);
         const tracksToBePushedAtTheBackOfPlaylist = newTracks.splice(0, index);
         newTracks.push(...tracksToBePushedAtTheBackOfPlaylist);
-        const newPlaylist = { tracks: newTracks, name: newTracks[0].collectionName };
-        this.addAlbumToCurrentPlaylistWithoutSaving(newPlaylist);
+        const newPlaylist = {
+          tracks: newTracks,
+          name: newTracks[0].collectionName,
+          id: 0
+        };
+        this.addAlbumAsCurrentlyPlayingPlaylist(newPlaylist);
+        this.addTrackAsCurrentlyPlayingTrack(trackToPlay);
+        this.$root.$emit('newPlayRequested');
       },
       async addAlbumToPlaylist() {
         this.tracks.forEach(track => this.addTrackToCurrentPlaylist(track));

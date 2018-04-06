@@ -7,6 +7,9 @@ import Playlist from '@/components/Playlist';
 import SignUp from '@/components/SignUp';
 import Login from '@/components/Login';
 import Search from '@/components/search/Search';
+import PageUser from '@/components/PageUser';
+import Parameter from '@/components/Parameter';
+
 
 Vue.use(Router);
 
@@ -40,6 +43,16 @@ export default new Router({
       path: '/search',
       name: 'Search',
       component: Search
+    },
+    {
+      path: '/pageuser',
+      name: 'PageUser',
+      component: PageUser
+    },
+    {
+      path: '/parameter',
+      name: 'Parameter',
+      component: Parameter
     }
   ],
 });

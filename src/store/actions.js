@@ -4,13 +4,13 @@ const actions = {
 
   addTrackToCurrentPlaylist({ commit, state }, track) {
     if (!track &&
-        !state.isCurrentPlaylistModifiable &&
-        !(state.currentPlaylist.tracks.findIndex(el => el.trackId === track.trackId) !== -1)) {
+        !(state.userCurrentSelectedPlaylist.tracks.findIndex(el =>
+          el.trackId === track.trackId) !== -1)) {
       return Promise.reject(new Error('Can\'t add song to unmodifiable playlist'));
     }
-    return api.addTrackToPlaylist(state.currentPlaylist.id, track)
+    return api.addTrackToPlaylist(state.userCurrentSelectedPlaylist.id, track)
       .then((value) => {
-        commit('UPDATE_PLAYLIST', value.data);
+        commit('UPDATE_PLAYLIST_NAME', value.data);
       }).catch((error) => {
         if (error.response.status === 401) {
           window.location = '#/login';
@@ -20,11 +20,10 @@ const actions = {
       });
   },
 
-  switchCurrentPlaylist({ commit, state }, { playlistId, isModifiable }) {
-    const playlist = state.playlists.find(el => el.id === playlistId);
+  switchUserCurrentPlaylist({ commit, state }, playlistId) {
+    const playlist = state.userPlaylists.find(el => el.id === playlistId);
     if (playlist) {
-      commit('SWITCH_CURRENT_PLAYLIST', playlist);
-      commit('SET_MODIFIABLE_CURRENT_PLAYLIST', isModifiable);
+      commit('SWITCH_USER_CURRENT_PLAYLIST', playlist);
     }
   },
 
@@ -40,25 +39,27 @@ const actions = {
       });
   },
 
-  addAlbumToCurrentPlaylistWithoutSaving({ commit }, playlist) {
+  addAlbumAsCurrentlyPlayingPlaylist({ commit }, playlist) {
     if (playlist) {
-      commit('SWITCH_CURRENT_PLAYLIST', playlist);
-      commit('SET_MODIFIABLE_CURRENT_PLAYLIST', false);
+      commit('SWITCH_CURRENTLY_PLAYING_PLAYLIST', playlist);
     }
   },
 
-  addPlaylistToListPlaylists(context, playlist) {
-    if (playlist) {
-      context.commit('addPlayListToList', playlist);
+  addTrackAsCurrentlyPlayingTrack({ commit, state }, track) {
+    if (track &&
+      state.currentlyPlayingPlaylist.tracks.findIndex(el => el.trackId === track.trackId) !== -1) {
+      commit('SWITCH_CURRENTLY_PLAYING_TRACK', track);
     }
   },
 
-  updatePlaylist({ commit, state }, playlistWithChanges) {
-    if (playlistWithChanges &&
-      state.playlists.findIndex(el => el.id === playlistWithChanges.id) !== -1) {
-      return api.updatePlaylist(playlistWithChanges)
+  updatePlaylistName({ commit, state }, { playlistId, newName }) {
+    const index = state.userPlaylists.findIndex(el => el.id === playlistId);
+    if (index !== -1) {
+      const playlistWithChanges = Object.assign({}, state.userPlaylists[index]);
+      playlistWithChanges.name = newName;
+      return api.updatePlaylistName(playlistWithChanges)
         .then((value) => {
-          commit('UPDATE_PLAYLIST', value.data);
+          commit('UPDATE_PLAYLIST_NAME', value.data);
         }).catch((error) => {
           if (error.response.status === 401) {
             window.location = '#/login';

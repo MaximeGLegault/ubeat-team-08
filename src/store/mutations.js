@@ -1,36 +1,32 @@
 /* eslint-disable no-param-reassign */
 const mutations = {
 
-  UPDATE_PLAYLIST(state, newPlaylist) {
-    const index = state.playlists.findIndex(el => el.id === newPlaylist.id);
+  UPDATE_PLAYLIST_NAME(state, newPlaylist) {
+    const index = state.userPlaylists.findIndex(el => el.id === newPlaylist.id);
     if (index !== -1) {
-      state.playlists[index] = newPlaylist;
-      if (state.currentPlaylist.id === newPlaylist.id) {
-        state.currentPlaylist = newPlaylist;
+      state.userPlaylists[index] = newPlaylist;
+      if (state.userCurrentSelectedPlaylist.id === newPlaylist.id) {
+        state.userCurrentSelectedPlaylist = newPlaylist;
         // TODO check if we can separate this in a different mutations functions
-        // TODO and add the thing if currentlyPlaying
+        // TODO and add the thing if currentlyPlayingPlaylist
       }
     }
   },
 
-  SWITCH_CURRENT_PLAYLIST(state, playlist) {
-    state.currentPlaylist = playlist;
+  SWITCH_USER_CURRENT_PLAYLIST(state, playlist) {
+    state.userCurrentSelectedPlaylist = playlist;
   },
 
   SWITCH_CURRENTLY_PLAYING_PLAYLIST(state, playlist) {
-    state.currentlyPlaying = playlist;
+    state.currentlyPlayingPlaylist = playlist;
   },
 
-  SET_CURRENT_REQUEST(state, trackIndex) {
-    state.currentPlaylist.selectedTrack = trackIndex;
-  },
-
-  SET_MODIFIABLE_CURRENT_PLAYLIST(state, isModifiable) {
-    state.isCurrentPlaylistModifiable = isModifiable;
+  SWITCH_CURRENTLY_PLAYING_TRACK(state, track) {
+    state.currentlyPlayingTrack = track;
   },
 
   SAVE_PLAYLIST(state, playlist) {
-    state.playlists.push(playlist);
+    state.userPlaylists.push(playlist);
   },
   changeCurrentPlaylist(state, payload) {
     state.current_playlist = payload;
@@ -41,7 +37,7 @@ const mutations = {
   },
 
   EDIT_NAME(state, payload) {
-    state.currentPlaylist = payload;
+    state.userCurrentSelectedPlaylist = payload;
   }
 };
 

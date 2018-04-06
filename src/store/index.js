@@ -6,14 +6,18 @@ import mutations from './mutations';
 Vue.use(Vuex);
 
 export const state = {
-  playlists: [],
-  currentPlaylist: {},
-  currentlyPlaying: {},
-  isCurrentPlaylistModifiable: true,
+  userPlaylists: [],
+  userCurrentSelectedPlaylist: {},
+  currentlyPlayingPlaylist: {},
+  currentlyPlayingTrack: {},
   bkpList: {},
   userName: '',
   email: '',
-  password: ''
+  password: '',
+  PageUserFriends: '',
+  PageUserFollow: '',
+  PageUserUnfollow: '',
+  PageUserPlayListFromPlaylist: ''
 };
 
 export default new Vuex.Store({

@@ -2,36 +2,46 @@
     <div id="player_section">
 
       <img id="thumbnail"
-           src="http://is3.mzstatic.com/image/thumb/Music20/v4/33/47/ea/3347ea2b-5628-9283-da07-bcfb58e597d0/source/100x100bb.jpg"
-           "/>
+           :src="this.currentlyPlayingTrack.artworkUrl100"/>
 
-      <controller ref="progressController" :timeStats="timeStats"/>
+      <controller ref="progressController"
+                  :audioCurrentTime="audioCurrentTime"
+                  :audioDuration="audioDuration"/>
 
 
         <div id="controls">
 
           <div id="text_info">
-            <a style="padding-left: 100px">Song Name</a>
-            <a style="padding-left: 100px">Artist Name</a>
+            <a style="padding-left: 100px">{{songName}}</a>
+            <a style="padding-left: 100px">{{artistName}}</a>
           </div>
 
-          <div id="currentTimeLabel">
-            0:00
-          </div>
+          <div id="currentTimeLabel">{{ currentTimeLength }}</div>
 
           <div id="buttons">
             <div id="left_buttons">
               <a class=" btn deep-purple accent-3 btn-floating"><i class="material-icons md-48">skip_previous</i></a>
             </div>
             <div id="middle_button">
-              <a class=" btn deep-purple accent-3 btn-floating" v-on:click="playPressed"><i style="font-size: 40px" class="material-icons md-48">play_arrow</i></a>
+
+              <a class=" btn deep-purple accent-3 btn-floating"
+                 v-on:click="playPressed"
+                 v-if="!isPlaying">
+                <i style="font-size: 40px" class="material-icons md-48">play_arrow</i>
+              </a>
+
+              <a class=" btn deep-purple accent-3 btn-floating"
+                 v-on:click="playPressed"
+                 v-if="this.isPlaying">
+                <i style="font-size: 40px" class="material-icons md-48">pause</i>
+              </a>
             </div>
             <div id="right_buttons">
               <a class=" btn deep-purple accent-3 btn-floating"><i class="material-icons md-48">skip_next</i></a>
             </div>
           </div>
 
-          <div id="totalTimeLabel">4:30</div>
+          <div id="totalTimeLabel">{{ durationLength }}</div>
 
           <div id="playlist_button"></div>
 
@@ -43,7 +53,9 @@
 </template>
 
 <script>
+  import util from '@/lib/util';
   import Controller from './Player-Controller';
+
 
   export default {
     components: {
@@ -51,29 +63,74 @@
     },
     data() {
       return {
-        playStats: {
-          duration: 0,
-          currentTime: 0,
-        }
+        audioDuration: 0,
+        audioCurrentTime: 0,
+        isPlaying: true,
+        indexOfPlayingTrack: 0,
+        currentlyPlayingTrack: {}
       };
     },
     computed: {
       audio() {
         return this.$refs.audio;
       },
-      timeStats() {
-        if (this.$refs.audio) {
-          return { currentTime: this.audio.currentTime,
-            duration: this.audio.duration ? this.audio.duration : 1 };
-        }
-        return { currentTime: 0, duration: 1 };
+      playlist() {
+        return this.$store.state.currentlyPlayingPlaylist.tracks;
+      },
+      track() {
+        return this.$store.state.currentlyPlayingTrack;
+      },
+      durationLength() {
+        return util.getLength(this.audioDuration, 'seconds');
+      },
+      currentTimeLength() {
+        return util.getLength(this.audioCurrentTime, 'seconds');
+      },
+      songName() {
+        return this.track.trackName;
+      },
+      artistName() {
+        return this.track.artistName;
       }
     },
     methods: {
-      playPressed() {
-        this.audio.src = 'https://audio-ssl.itunes.apple.com/apple-assets-us-std-000001/Music/ed/ed/dd/mzm.raqlwshv.aac.p.m4a';
+      newPlayRequested() {
+        this.audio.pause();
+        this.indexOfPlayingTrack = this.playlist.findIndex(
+          el => el.trackId === this.track.trackId);
+        this.currentlyPlayingTrack = this.track;
+        this.audio.src = this.track.previewUrl;
         this.audio.play();
       },
+      playPressed() {
+        if (this.isPlaying) {
+          this.audio.pause();
+          this.isPlaying = false;
+        } else if (this.track) {
+          this.audio.play();
+          this.isPlaying = true;
+        } else {
+          this.newPlayRequested();
+        }
+      },
+      onDurationChange() {
+        if (this.audio.duration !== 1) {
+          this.audioDuration = this.audio.duration;
+        }
+      },
+      onTimeUpdate() {
+        this.audioCurrentTime = this.audio.currentTime;
+      },
+      initAudio() {
+        this.audio.addEventListener('durationchange', this.onDurationChange);
+        this.audio.addEventListener('timeupdate', this.onTimeUpdate);
+        this.audio.addEventListener('paused', this.onPaused);
+        this.audio.addEventListener('paused', this.onPaused);
+      }
+    },
+    mounted() {
+      this.initAudio();
+      this.$root.$on('newPlayRequested', this.newPlayRequested);
     },
   };
 </script>

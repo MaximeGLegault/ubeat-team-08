@@ -22,7 +22,7 @@
     methods: {
       ...mapActions([
         'createNewPlaylist',
-        'switchCurrentPlaylist'
+        'switchUserCurrentPlaylist'
       ]),
     },
     beforeCreate() {
@@ -46,11 +46,11 @@
               }
             }
           });
-          this.$store.state.playlists = listPlUser;
-          if (this.$store.state.playlists[0] !== undefined) {
-            this.$store.state.currentPlaylist = this.$store.state.playlists[0];
+          this.$store.state.userPlaylists = listPlUser;
+          if (this.$store.state.userPlaylists[0] !== undefined) {
+            this.$store.state.userCurrentSelectedPlaylist = this.$store.state.userPlaylists[0];
           }
-          console.log(this.$store.state.playlists[0]);
+          console.log(this.$store.state.userPlaylists[0]);
         }).catch(() => {
           this.$router.push('/login');
         });

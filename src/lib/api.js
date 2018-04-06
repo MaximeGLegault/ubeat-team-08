@@ -76,7 +76,7 @@ export default {
     });
   },
 
-  updatePlaylist(playlistWithChanges) {
+  updatePlaylistName(playlistWithChanges) {
     return axios({
       method: 'put',
       url: `${baseUrl}playlists/${playlistWithChanges.id}`,
@@ -90,6 +90,7 @@ export default {
       })
     });
   },
+
   getSearch(q) {
     return axios.get(`${baseUnsecureUrl}search`, {
       params: { q }
