@@ -135,8 +135,15 @@
         this.$router.push({ name: 'Search', query: { q: this.search1 } });
       }
     },
-    created() {
-      Cookies.set('token', '');
+    async created() {
+      await api.getTokenInfo()
+        .then((value) => {
+          this.$store.state.userName = value.name;
+          this.$store.state.email = value.email;
+        }).catch(() => {
+          console.log('noToken');
+          Cookies.set('token', '');
+        });
     }
   };
 </script>

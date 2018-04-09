@@ -38,7 +38,16 @@ const mutations = {
 
   EDIT_NAME(state, payload) {
     state.userCurrentSelectedPlaylist = payload;
-  }
+  },
+  UPDATE_PLAYLIST(state, { oldPlaylist, newPlaylist }) {
+    const index = state.userPlaylists.findIndex(el => el.id === oldPlaylist.id);
+    if (index !== -1) {
+      state.userPlaylists[index] = newPlaylist;
+      if (state.userCurrentSelectedPlaylist.id === oldPlaylist.id) {
+        state.userCurrentSelectedPlaylist = newPlaylist;
+      }
+    }
+  },
 };
 
 export default mutations;

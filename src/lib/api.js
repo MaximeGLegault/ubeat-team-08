@@ -54,14 +54,14 @@ export default {
       .then(value => value.data);
   },
 
-  createPlaylist(playlistName) {
+  createPlaylist(playlistName, userEmail) {
     return axios({
       method: 'post',
       url: `${baseUrl}playlists`,
       headers: {
         Authorization: Cookies.get('token')
       },
-      data: querystring.stringify({ name: playlistName })
+      data: querystring.stringify({ name: playlistName, owner: userEmail })
     });
   },
 
@@ -128,6 +128,34 @@ export default {
       url: `${baseUrl}signup`,
       data: querystring.stringify({ name: userName, email: userEmail, password: userPassword })
     });
-  }
+  },
+  getTokenInfo() {
+    return axios({
+      method: 'get',
+      url: `${baseUrl}tokenInfo`,
+      headers: {
+        Authorization: Cookies.get('token')
+      }
+    }).then(value => value.data);
+  },
+  getAllPlaylists() {
+    return axios({
+      method: 'get',
+      url: `${baseUrl}playlists`,
+      headers: {
+        Authorization: Cookies.get('token')
+      }
+    }).then(value => value.data);
+  },
+  editNamePlaylist(playlist, newName) {
+    return axios({
+      method: 'put',
+      url: `${baseUrl}playlists/${playlist}`,
+      headers: {
+        Authorization: Cookies.get('token')
+      },
+      data: querystring.stringify({ name: newName })
+    });
+  },
 // other things
 };

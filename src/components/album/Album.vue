@@ -8,11 +8,11 @@
 </template>
 
 <script>
+  import Cookies from 'js-cookie';
   import api from '@/lib/api';
   import util from '@/lib/util';
   import AlbumDescription from './AlbumDescription';
   import TrackList from './Tracklist';
-
 
   export default {
     name: 'album',
@@ -27,7 +27,11 @@
         trackList: []
       };
     },
-
+    beforeCreate() {
+      if (Cookies.get('token') === '') {
+        this.$router.push('/login');
+      }
+    },
     async created() {
       await api.getAlbum(this.$route.params.collectionId)
         .then((value) => {
@@ -36,7 +40,7 @@
           this.albumDescriptionDataObject = description;
         }).catch((error) => {
           if (error.response.status === 401) {
-            window.location = '#/login';
+            this.$router.push('/login');
           }
         });
       await api.getTracksOfAlbum(this.$route.params.collectionId)
@@ -51,7 +55,7 @@
           this.albumDescriptionDataObject.trackCount = this.trackList.length;
         }).catch((error) => {
           if (error.response.status === 401) {
-            window.location = '#/login';
+            this.$router.push('/login');
           }
         });
     }

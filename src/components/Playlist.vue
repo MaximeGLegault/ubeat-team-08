@@ -3,7 +3,7 @@
     <div id = "playlistName">
       <button id="addbutton" class="btn-floating waves-effect waves-light deep-purple accent-3" v-on:click="addPlaylist"><i id = "clickButtonId" class="material-icons">add</i></button>
       <button id="addbuttonSm" class="btn-floating waves-effect waves-light btn-large deep-purple accent-3" v-on:click="addPlaylist"><i class="material-icons">add</i></button>
-      <ul v-for="playlist in listPlaylistsStore">
+      <ul v-for="playlist in this.$store.state.userPlaylists">
         <li><a class="listPlName" v-bind:id="playlist.id" v-on:click="changePlaylist">{{playlist.name}}</a></li>
       </ul>
     </div>
@@ -50,6 +50,7 @@
   import util from '@/lib/util';
   import { mapActions } from 'vuex';
   import Cookies from 'js-cookie';
+  import api from '@/lib/api';
 
   export default {
     data: () => ({
@@ -64,22 +65,42 @@
         'switchUserCurrentPlaylist',
         'createNewPlaylist',
         'updatePlaylistName',
-        'addTrackToCurrentPlaylist'
+        'addTrackToCurrentPlaylist',
+        'editPlaylistName',
+        'addSongToCurrentPlaylist'
       ]),
       toggleEdit() {
         this.showSectionEdit = !this.showSectionEdit;
       },
       addPlaylist() {
-        this.createNewPlaylist('New Playlist');
+        this.createNewPlaylist('New Playlist', this.$store.state.email);
       },
       changePlaylist(event) {
         this.switchUserCurrentPlaylist(event.target.id);
       },
       async editNamePlaylist() {
-        await this.updatePlaylistName({
-          playlistId: this.$store.state.userCurrentSelectedPlaylist.id,
-          newName: this.inputNameEdit
+        const bkp = this.$store.state.userCurrentSelectedPlaylist.tracks;
+        await this.editPlaylistName({ playlistId: this.$store.state.userCurrentSelectedPlaylist.id,
+          newName: this.inputNameEdit });
+        bkp.forEach((track) => {
+          this.addSongToCurrentPlaylist(track);
         });
+        console.log(this.$store.state.userCurrentSelectedPlaylist);
+        await api.getAllPlaylists()
+          .then((value) => {
+            const list = value;
+            const listPlUser = [];
+            list.forEach((keys) => {
+              if (keys.owner !== undefined) {
+                if (keys.owner.email === this.$store.state.email) {
+                  listPlUser.push(keys);
+                }
+              }
+            });
+            this.$store.state.userPlaylists = listPlUser;
+          }).catch(() => {
+            this.$router.push('/login');
+          });
       },
       duration(time) {
         return util.getLength(time);
@@ -88,15 +109,11 @@
     computed: {
       currentPlaylist() {
         return this.$store.state.userCurrentSelectedPlaylist;
-      },
-      listPlaylistsStore() {
-        return this.$store.state.userPlaylists;
       }
     },
-    created() {
-      if (this.$store.state.userName === '') {
+    beforeCreate() {
+      if (Cookies.get('token') === '') {
         this.$router.push('/login');
-        Cookies.set('token', '');
       }
     }
   };
