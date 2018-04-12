@@ -1,9 +1,8 @@
 <template>
   <div>
     <!--{{results.globals[0].artistId}}-->
-    <result-by-global v-if="results.globals.length > 0"
+    <result-by-global v-if="results.globals"
             :key="this.searchTerm"
-            :searchTerm="searchTerm"
             :results="results.globals"
     />
     <!--<result-by-track v-else-if="this.results.tracks"-->
@@ -38,13 +37,7 @@
       components: { ResultByGlobal, ResultByUser, ResultByAlbum, ResultByArtist, ResultByTrack },
       props: {
         searchTerm: '',
-        results: {
-          globals: [],
-          artists: [],
-          albums: [],
-          tracks: [],
-          users: [],
-        }
+        results: {}
       }
     };
 </script>

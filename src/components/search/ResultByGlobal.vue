@@ -4,28 +4,28 @@
       <div class="resultType" v-if="result.wrapperType === 'track'" >
         <div class="resultJacket">
           <router-link :to="{ name : 'Album', params: { collectionId: result.collectionId }}">
-            <img :src="artwork(result.artworkUrl100)"/>
+            <img :src="artwork(result.artworkUrl100, 150)"/>
           </router-link>
         </div>
         <div class="resultName">
-        <div class="resultTitle">{{result.trackName}}</div>
+          <div class="resultTitle">{{result.trackName}}</div>
         </div>
       </div>
       <div class="resultType" v-else-if="result.wrapperType === 'collection'" >
         <div class="resultJacket">
           <router-link :to="{ name : 'Album', params: { collectionId: result.collectionId }}">
-            <img :src="artwork(result.artworkUrl100)"/>
+            <img :src="artwork(result.artworkUrl100, 150)"/>
           </router-link>
         </div>
         <div class="resultName">
-        <div class="resultTitle">{{result.collectionName}}</div>
+          <div class="resultTitle">{{result.collectionName}}</div>
         </div>
       </div>
       <div class="resultType" v-else="result.wrapperType === 'artist'" >
         <div class="resultJacket">
         </div>
         <div class="resultName">
-        <div class="resultTitle">{{result.artistName}}</div>
+          <div class="resultTitle">{{result.artistName}}</div>
         </div>
       </div>
     </div>
@@ -38,16 +38,15 @@
   export default {
     name: 'ResultByGlobals',
     props: {
-      searchTerm: '',
-      results: []
+      results: {
+        type: Array,
+        required: false
+      },
     },
     methods: {
-      artwork(artworkUrl) {
-        return util.getUrlOfBiggerAlbumArtwork(artworkUrl, 250);
+      artwork(artworkUrl, dimension) {
+        return util.getUrlOfBiggerAlbumArtwork(artworkUrl, dimension);
       }
-    },
-    async created() {
-      this.searchTerm = this.$route.query.q;
     }
   };
 </script>
@@ -65,14 +64,29 @@
     justify-content: center;
 
   }
-  .result{
-    margin: 20px 15px 15px 15px;
-    width: 50%;
+  .resultType {
+    margin: 20px 15px 15px 15px;//
+    width: 50%;//
     display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-items: flex-start;
-    align-content: flex-start;
+    flex-direction: row;//
+    flex-wrap: nowrap;//
+    align-items: flex-start;//
+    align-content: flex-start;//
+    justify-content: center;//
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: auto;
+    align-self: auto;
+  }
+  .result{
+    margin: 20px 15px 15px 15px;//
+    width: 100%;//
+    display: flex;
+    flex-direction: row;//
+    flex-wrap: wrap;//
+    align-items: flex-start;//
+    align-content: flex-start;//
+    justify-content: center;//
     flex-grow: 1;
     flex-shrink: 1;
     flex-basis: auto;
@@ -80,6 +94,10 @@
   }
   .resultJacket{
     margin-right: 10px;
+    max-width: 150px;
+    max-height: 150px;
+    min-height: 150px;
+    min-width: 150px;
   }
   .resultName{
     margin: 0 auto;

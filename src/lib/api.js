@@ -3,10 +3,7 @@ import querystring from 'querystring';
 import Cookies from 'js-cookie';
 
 
-// const baseUrl = 'https://ubeat.herokuapp.com/'; // TODO switch to baseUrl after TP2
-const baseUnsecureUrl = 'https://ubeat.herokuapp.com/unsecure/';
 const baseUrl = 'https://ubeat.herokuapp.com/';
-const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiI1YWJkMDQ2NTQwNjE3YzAwMDQ3MjY3YTEiLCJleHAiOjE1MjI0MjMzOTI2NDF9.qfT1CTi-NeSq9qVzxJfEIM4y5bpnoa5acXVDIPf-Bd0';
 
 export default {
   getTracksOfAlbum(collectionId) {
@@ -50,8 +47,13 @@ export default {
   },
 
   getPlaylists(playlistId) {
-    return axios.get(`${baseUnsecureUrl}playlists/${playlistId}`)
-      .then(value => value.data);
+    return axios({
+      method: 'get',
+      url: `${baseUrl}playlists/${playlistId}`,
+      headers: {
+        Authorization: Cookies.get('token')
+      }
+    }).then(value => value.data);
   },
 
   createPlaylist(playlistName) {
@@ -91,28 +93,84 @@ export default {
     });
   },
 
-  getSearch(q) {
-    return axios.get(`${baseUnsecureUrl}search`, {
-      params: { q },
-      headers: { 'Cache-Control': 'no-cache' }
+  getSearch(searchTerm, searchLimit = 10) {
+    return axios({
+      method: 'get',
+      url: `${baseUrl}search`,
+      headers: {
+        Authorization: Cookies.get('token')
+      },
+      params: {
+        q: searchTerm,
+        limit: searchLimit
+      }
     }).then(value => value.data);
+      // headers: { 'Cache-Control': 'no-cache' }
   },
-  getSearchByAlbums(album) {
-    return axios.get(`${baseUrl}${token}/search/albums?q=${album}`)
-      .then(value => value.data);
+
+  getGlobalData() {
+
   },
-  getSearchByArtists(artist) {
-    return axios.get(`${baseUrl}${token}/search/artists?q=${artist}`)
-      .then(value => value.data);
+
+  getSearchByTrack(searchTerm, searchLimit) {
+    return axios({
+      method: 'get',
+      url: `${baseUrl}search/tracks`,
+      headers: {
+        Authorization: Cookies.get('token')
+      },
+      params: {
+        q: searchTerm,
+        limit: searchLimit
+      }
+    }).then(value => value.data);
+    // headers: { 'Cache-Control': 'no-cache' }
   },
-  getSearchTracks(track) {
-    return axios.get(`${baseUrl}${token}/search/tracks?q=${track}`)
-      .then(value => value.data);
+
+  getSearchByArtist(searchTerm, searchLimit) {
+    return axios({
+      method: 'get',
+      url: `${baseUrl}search/artists`,
+      headers: {
+        Authorization: Cookies.get('token')
+      },
+      params: {
+        q: searchTerm,
+        limit: searchLimit
+      }
+    }).then(value => value.data);
+    // headers: { 'Cache-Control': 'no-cache' }
   },
-  getSearchByUsers(user) {
-    return axios.get(`${baseUrl}${token}/search/users?q=${user}`)
-      .then(value => value.data);
+
+  getSearchByAlbum(searchTerm, searchLimit) {
+    return axios({
+      method: 'get',
+      url: `${baseUrl}search/albums`,
+      headers: {
+        Authorization: Cookies.get('token')
+      },
+      params: {
+        q: searchTerm,
+        limit: searchLimit
+      }
+    }).then(value => value.data);
+    // headers: { 'Cache-Control': 'no-cache' }
   },
+
+  getSearchByUser(searchTerm) {
+    return axios({
+      method: 'get',
+      url: `${baseUrl}search/users`,
+      headers: {
+        Authorization: Cookies.get('token')
+      },
+      params: {
+        q: searchTerm
+      }
+    }).then(value => value.data);
+    // headers: { 'Cache-Control': 'no-cache' }
+  },
+
   loginUser(userEmail, userPassword) {
     return axios({
       method: 'post',

@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="main" v-bind:key="this.researchTerm">
     <h1>{{this.searchTerm}}</h1>
-    <search-bar/>
+    <search-bar v-on:update="searchTerm = search"/>
     <search-result v-if="this.results"
                    :key="this.searchTerm"
                    :searchTerm="this.searchTerm"
@@ -42,14 +42,14 @@
             this.resultCount = value.resultCount;
           });
       },
-      // async updated() {
-      //   this.searchTerm = this.$route.query.q;
-      //   await api.getSearch(this.$route.query.q)
-      //     .then((value) => {
-      //       this.results.globals = value.results;
-      //       this.resultCount = value.resultCount;
-      //     });
-      // },
+      async updated() {
+        this.searchTerm = this.$route.query.q;
+        await api.getSearch(this.$route.query.q)
+          .then((value) => {
+            this.results.globals = value.results;
+            this.resultCount = value.resultCount;
+          });
+      },
     };
 </script>
 

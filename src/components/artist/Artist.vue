@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="main">
   <artistDescription v-if="this.artist"
           :key="this.artist.artistId"
           :artist="this.artist"

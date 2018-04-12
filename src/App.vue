@@ -40,4 +40,8 @@
     padding: 0;
     margin: 0;
   }
+  .main {
+    margin-top: 60px;
+    margin-bottom: 100px;
+  }
 </style>
