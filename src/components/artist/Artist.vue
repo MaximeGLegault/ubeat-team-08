@@ -12,6 +12,7 @@
 </template>
 
 <script>
+  import Cookies from 'js-cookie';
   import api from '@/lib/api';
   import AlbumsList from './AlbumsList';
   import ArtistDescription from './ArtistDescription';
@@ -28,14 +29,18 @@
         albums: []
       };
     },
-
+    beforeCreate() {
+      if (Cookies.get('token') === '') {
+        this.$router.push('/login');
+      }
+    },
     async created() {
       await api.getArtist(this.$route.params.artistId)
         .then((value) => {
           this.artist = value.results[0];
         }).catch((error) => {
           if (error.response.status === 401) {
-            window.location = '#/login';
+            this.$router.push('/login');
           }
         });
       await api.getAlbums(this.$route.params.artistId)
@@ -45,7 +50,7 @@
             album2.releaseDate.slice(0, 4) - album1.releaseDate.slice(0, 4));
         }).catch((error) => {
           if (error.response.status === 401) {
-            window.location = '#/login';
+            this.$router.push('/login');
           }
         });
     }
