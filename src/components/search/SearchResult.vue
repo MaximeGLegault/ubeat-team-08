@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!--{{results.globals[0].artistId}}-->
     <result-by-global v-if="results.globals"
             :key="this.searchTerm"
             :results="results.globals"

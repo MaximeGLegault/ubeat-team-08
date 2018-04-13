@@ -4,28 +4,34 @@
       <div class="resultType" v-if="result.wrapperType === 'track'" >
         <div class="resultJacket">
           <router-link :to="{ name : 'Album', params: { collectionId: result.collectionId }}">
-            <img :src="artwork(result.artworkUrl100, 150)"/>
+            <img :src="artwork(result.artworkUrl100, 250)"/>
           </router-link>
         </div>
         <div class="resultName">
           <div class="resultTitle">{{result.trackName}}</div>
+          <div class="resultInfo">Track</div>
         </div>
       </div>
       <div class="resultType" v-else-if="result.wrapperType === 'collection'" >
         <div class="resultJacket">
           <router-link :to="{ name : 'Album', params: { collectionId: result.collectionId }}">
-            <img :src="artwork(result.artworkUrl100, 150)"/>
+            <img :src="artwork(result.artworkUrl100, 250)"/>
           </router-link>
         </div>
         <div class="resultName">
           <div class="resultTitle">{{result.collectionName}}</div>
+          <div class="resultInfo">Album</div>
         </div>
       </div>
       <div class="resultType" v-else="result.wrapperType === 'artist'" >
         <div class="resultJacket">
+          <router-link :to="{ name : 'Artist', params: { artistId: result.artistId }}">
+            <img/>
+          </router-link>
         </div>
         <div class="resultName">
           <div class="resultTitle">{{result.artistName}}</div>
+          <div class="resultInfo">Artist</div>
         </div>
       </div>
     </div>
@@ -46,7 +52,7 @@
     methods: {
       artwork(artworkUrl, dimension) {
         return util.getUrlOfBiggerAlbumArtwork(artworkUrl, dimension);
-      }
+      },
     }
   };
 </script>
@@ -59,48 +65,39 @@
     flex-direction: row;
     flex-wrap: wrap;
     align-items: flex-start;
-    align-content: flex-start;
-    text-align: center;
-    justify-content: center;
-
-  }
-  .resultType {
-    margin: 20px 15px 15px 15px;//
-    width: 50%;//
-    display: flex;
-    flex-direction: row;//
-    flex-wrap: nowrap;//
-    align-items: flex-start;//
-    align-content: flex-start;//
-    justify-content: center;//
-    flex-grow: 1;
-    flex-shrink: 1;
-    flex-basis: auto;
-    align-self: auto;
+    align-content: space-around;
+    justify-content: space-evenly;
   }
   .result{
     margin: 20px 15px 15px 15px;//
-    width: 100%;//
     display: flex;
-    flex-direction: row;//
-    flex-wrap: wrap;//
+    flex-direction: column;//
+    flex-wrap: nowrap;//
     align-items: flex-start;//
     align-content: flex-start;//
-    justify-content: center;//
     flex-grow: 1;
     flex-shrink: 1;
     flex-basis: auto;
     align-self: auto;
   }
+  .resultType {
+    margin: 20px 15px 15px 15px;//
+    width: 100%;//
+    display: block;
+    flex-direction: column;//
+    flex-wrap: nowrap;//
+    align-items: flex-start;//
+    align-content: flex-start;//
+    justify-content: flex-start;//
+    flex-grow: 1;
+    flex-shrink: 1;
+    align-self: auto;
+  }
   .resultJacket{
-    margin-right: 10px;
-    max-width: 150px;
-    max-height: 150px;
-    min-height: 150px;
-    min-width: 150px;
   }
   .resultName{
     margin: 0 auto;
+    width: 200px;
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
@@ -109,25 +106,30 @@
     flex-shrink: 1;
     flex-basis: auto;
     align-self: auto;
-    font-weight: bold;
   }
   .resultTitle{
-    width: 100%;
     font-size: 1rem;
     text-align: left;
     color: white;
     margin: 0;
+    font-weight: bold;
+  }
+  .resultInfo{
+    width: 100%;
+    color: #e5e5e5;
+    font-size: 0.8rem;
+    text-align: left;
   }
   img {
     object-fit: contain;
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 200px;
   }
 
   @media only screen and (min-device-width : 320px) and (max-device-width : 480px)
   and (orientation: portrait){
     .listSearch{
-      display: block;
+      flex-direction: column;
     }
     .result {
       flex-direction: row;
@@ -141,6 +143,9 @@
       margin-right: 10px
     }
     .resultTitle {
+      font-size: 2rem;
+    }
+    .resultInfo {
       font-size: 2rem;
     }
     img {
@@ -167,6 +172,9 @@
       height: 150px;
     }
     .resultTitle {
+      font-size: 1.5rem;
+    }
+    .resultInfo {
       font-size: 1.5rem;
     }
   }

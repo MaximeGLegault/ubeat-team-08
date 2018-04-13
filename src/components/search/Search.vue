@@ -1,6 +1,5 @@
 <template>
   <div class="main" v-bind:key="this.researchTerm">
-    <h1>{{this.searchTerm}}</h1>
     <search-bar v-on:update="searchTerm = search"/>
     <search-result v-if="this.results"
                    :key="this.searchTerm"
@@ -36,7 +35,7 @@
       },
       async created() {
         this.searchTerm = this.$route.query.q;
-        await api.getSearch(this.$route.query.q)
+        await api.getSearch(this.$route.query.q, 20)
           .then((value) => {
             this.results.globals = value.results;
             this.resultCount = value.resultCount;
@@ -54,5 +53,11 @@
 </script>
 
 <style scoped>
-
+  .info{
+    width: 100%;
+    font-size: 1.5rem;
+    text-align: left;
+    color: white;
+    margin: 0;
+  }
 </style>
