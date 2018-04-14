@@ -1,10 +1,9 @@
 <template>
-  <div class="main" v-bind:key="this.researchTerm">
-    <search-bar v-on:update="searchTerm = search"/>
+  <div class="main" v-bind:key="this.searchTerm">
+    <search-bar v-on:update="handler($event)"/>
     <search-result v-if="this.results"
-                   :key="this.searchTerm"
-                   :searchTerm="this.searchTerm"
-                   :results="this.results"
+                      :key="this.searchTerm"
+                      :results="results"
     />
   </div>
 </template>
@@ -20,35 +19,56 @@
         SearchResult,
         SearchBar
       },
+      methods: {
+        handler(event) {
+          this.searchTerm = event.searchTerm;
+          this.searchType = event.searchType;
+          this.limit = event.limit;
+        }
+      },
       data() {
         return {
           searchTerm: '',
-          resultCount: '',
-          results: {
-            globals: [],
-            artists: [],
-            albums: [],
-            tracks: [],
-            users: [],
-          }
+          searchType: 'global',
+          limit: '10',
+          results: []
         };
       },
       async created() {
         this.searchTerm = this.$route.query.q;
-        await api.getSearch(this.$route.query.q, 20)
+        await api.getSearch(this.searchTerm, this.limit)
           .then((value) => {
-            this.results.globals = value.results;
-            this.resultCount = value.resultCount;
+            this.results = value.results;
           });
       },
       async updated() {
-        this.searchTerm = this.$route.query.q;
-        await api.getSearch(this.$route.query.q)
-          .then((value) => {
-            this.results.globals = value.results;
-            this.resultCount = value.resultCount;
-          });
-      },
+        if (this.searchType === 'global') {
+          await api.getSearch(this.searchTerm, this.limit)
+            .then((value) => {
+              this.results = value.results;
+            });
+        } else if (this.searchType === 'artists') {
+          await api.getSearchByArtist(this.searchTerm, this.limit)
+            .then((value) => {
+              this.results = value.results;
+            });
+        } else if (this.searchType === 'albums') {
+          await api.getSearchByAlbum(this.searchTerm, this.limit)
+            .then((value) => {
+              this.results = value.results;
+            });
+        } else if (this.searchType === 'tracks') {
+          await api.getSearchByTrack(this.searchTerm, this.limit)
+            .then((value) => {
+              this.results = value.results;
+            });
+        } else if (this.searchType === 'users') {
+          await api.getSearchByUser(this.searchTerm)
+            .then((value) => {
+              this.results = value.results;
+            });
+        }
+      }
     };
 </script>
 

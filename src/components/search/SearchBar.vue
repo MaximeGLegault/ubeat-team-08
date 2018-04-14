@@ -1,14 +1,14 @@
 <template>
   <div class="searchBar">
     <div class="form">
-      <input autocomplete="off" @keyup.enter.prevent="goSearch" @keypress="searcher" v-model="search" id="search" type="text" :placeholder="this.$route.query.q">
+      <input autocomplete="off" @keyup.enter.prevent="goSearch" v-model="search" id="search" type="text" placeholder="Search...">
       <div><a @click="goSearch"><i class="material-icons">search</i></a></div>
     </div>
-    <span><input type="radio" id="global" value="global" v-model="picked"><label for="global">All result</label>
-      <input type="radio" id="albums" value="albums" v-model="picked"><label for="albums">Albums</label>
-      <input type="radio" id="artists" value="artists" v-model="picked"><label for="artists">Artists</label>
-      <input type="radio" id="tracks" value="tracks" v-model="picked"><label for="tracks">Tracks</label>
-      <input type="radio" id="users" value="users" v-model="picked"><label for="users">Users</label></span>
+    <span><input type="radio" id="global" name="searchType" value="global" v-model="picked" checked><label for="global">All result</label>
+      <input type="radio" id="albums" name="searchType" value="albums" v-model="picked"><label for="albums">Albums</label>
+      <input type="radio" id="artists" name="searchType" value="artists" v-model="picked"><label for="artists">Artists</label>
+      <input type="radio" id="tracks" name="searchType" value="tracks" v-model="picked"><label for="tracks">Tracks</label>
+      <input type="radio" id="users" name="searchType" value="users" v-model="picked"><label for="users">Users</label></span>
     <select v-model="limit">
       <option v-for="option in options" v-bind:value="option.value">
         {{ option.text }}
@@ -18,6 +18,7 @@
 </template>
 
 <script>
+  /* eslint-disable */
   export default {
     name: 'SearchBar',
     data() {
@@ -35,10 +36,14 @@
     },
     methods: {
       goSearch() {
-        this.$router.replace({ name: 'Search', query: { q: this.search }
+        this.$router.replace({
+          name: 'Search', query: { q: this.search, limit: this.limit }
         });
-        this.$emit('update', this.search);
+        this.$emit('update', {searchTerm: this.search, searchType: this.picked, limit: this.limit});
       }
+    },
+    created() {
+      this.search = this.$route.query.q;
     }
   };
 </script>

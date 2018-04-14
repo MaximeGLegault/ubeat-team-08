@@ -105,14 +105,9 @@ export default {
         limit: searchLimit
       }
     }).then(value => value.data);
-      // headers: { 'Cache-Control': 'no-cache' }
   },
 
-  getGlobalData() {
-
-  },
-
-  getSearchByTrack(searchTerm, searchLimit) {
+  getSearchByTrack(searchTerm, searchLimit = 10) {
     return axios({
       method: 'get',
       url: `${baseUrl}search/tracks`,
@@ -124,10 +119,9 @@ export default {
         limit: searchLimit
       }
     }).then(value => value.data);
-    // headers: { 'Cache-Control': 'no-cache' }
   },
 
-  getSearchByArtist(searchTerm, searchLimit) {
+  getSearchByArtist(searchTerm, searchLimit = 10) {
     return axios({
       method: 'get',
       url: `${baseUrl}search/artists`,
@@ -139,10 +133,9 @@ export default {
         limit: searchLimit
       }
     }).then(value => value.data);
-    // headers: { 'Cache-Control': 'no-cache' }
   },
 
-  getSearchByAlbum(searchTerm, searchLimit) {
+  getSearchByAlbum(searchTerm, searchLimit = 10) {
     return axios({
       method: 'get',
       url: `${baseUrl}search/albums`,
@@ -154,7 +147,6 @@ export default {
         limit: searchLimit
       }
     }).then(value => value.data);
-    // headers: { 'Cache-Control': 'no-cache' }
   },
 
   getSearchByUser(searchTerm) {
@@ -168,7 +160,6 @@ export default {
         q: searchTerm
       }
     }).then(value => value.data);
-    // headers: { 'Cache-Control': 'no-cache' }
   },
 
   loginUser(userEmail, userPassword) {
