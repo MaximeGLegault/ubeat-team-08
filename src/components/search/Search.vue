@@ -1,5 +1,5 @@
 <template>
-  <div class="main" v-bind:key="this.searchTerm">
+  <div class="main" v-bind:key="this">
     <search-bar v-on:update="handler($event)"/>
     <search-result v-if="this.results"
                       :key="this.searchTerm"
@@ -65,7 +65,7 @@
         } else if (this.searchType === 'users') {
           await api.getSearchByUser(this.searchTerm)
             .then((value) => {
-              this.results = value.results;
+              this.results = value;
             });
         }
       }

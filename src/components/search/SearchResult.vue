@@ -23,7 +23,7 @@
           <div class="resultInfo">Album</div>
         </div>
       </div>
-      <div class="resultType" v-else="result.wrapperType === 'artist'" >
+      <div class="resultType" v-else-if="result.wrapperType === 'artist'" >
         <div class="resultJacket">
           <router-link :to="{ name : 'Artist', params: { artistId: result.artistId }}">
             <img/>
@@ -32,6 +32,17 @@
         <div class="resultName">
           <div class="resultTitle">{{result.artistName}}</div>
           <div class="resultInfo">Artist</div>
+        </div>
+      </div>
+      <div class="resultType" v-else>
+        <div class="resultJacket">
+          <!--<router-link :to="{ name : 'Artist', params: { artistId: result.artistId }}">-->
+            <img/>
+          <!--</router-link>-->
+        </div>
+        <div class="resultName">
+          <div class="resultTitle">{{result.name}}</div>
+          <div class="resultInfo">Users</div>
         </div>
       </div>
     </div>

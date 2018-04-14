@@ -4,11 +4,11 @@
       <input autocomplete="off" @keyup.enter.prevent="goSearch" v-model="search" id="search" type="text" placeholder="Search...">
       <div><a @click="goSearch"><i class="material-icons">search</i></a></div>
     </div>
-    <span><input type="radio" id="global" name="searchType" value="global" v-model="picked" checked><label for="global">All result</label>
-      <input type="radio" id="albums" name="searchType" value="albums" v-model="picked"><label for="albums">Albums</label>
-      <input type="radio" id="artists" name="searchType" value="artists" v-model="picked"><label for="artists">Artists</label>
-      <input type="radio" id="tracks" name="searchType" value="tracks" v-model="picked"><label for="tracks">Tracks</label>
-      <input type="radio" id="users" name="searchType" value="users" v-model="picked"><label for="users">Users</label></span>
+    <span><input @change="goSearch" type="radio" id="global" name="searchType" value="global" v-model="picked" checked><label for="global">All result</label>
+      <input @change="goSearch" type="radio" id="albums" name="searchType" value="albums" v-model="picked"><label for="albums">Albums</label>
+      <input @change="goSearch" type="radio" id="artists" name="searchType" value="artists" v-model="picked"><label for="artists">Artists</label>
+      <input @change="goSearch" type="radio" id="tracks" name="searchType" value="tracks" v-model="picked"><label for="tracks">Tracks</label>
+      <input @change="goSearch" type="radio" id="users" name="searchType" value="users" v-model="picked"><label for="users">Users</label></span>
     <select v-model="limit">
       <option v-for="option in options" v-bind:value="option.value">
         {{ option.text }}
