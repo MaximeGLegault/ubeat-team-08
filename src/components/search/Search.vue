@@ -73,11 +73,5 @@
 </script>
 
 <style scoped>
-  .info{
-    width: 100%;
-    font-size: 1.5rem;
-    text-align: left;
-    color: white;
-    margin: 0;
-  }
+
 </style>

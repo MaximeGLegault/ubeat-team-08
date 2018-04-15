@@ -26,7 +26,7 @@
       <div class="resultType" v-else-if="result.wrapperType === 'artist'" >
         <div class="resultJacket">
           <router-link :to="{ name : 'Artist', params: { artistId: result.artistId }}">
-            <img/>
+            <img src="../../assets/empty-artist-photo.png"/>
           </router-link>
         </div>
         <div class="resultName">
@@ -37,7 +37,7 @@
       <div class="resultType" v-else>
         <div class="resultJacket">
           <!--<router-link :to="{ name : 'Artist', params: { artistId: result.artistId }}">-->
-            <img/>
+            <img src="../../assets/empty-user-photo.png"/>
           <!--</router-link>-->
         </div>
         <div class="resultName">
@@ -76,39 +76,27 @@
     flex-direction: row;
     flex-wrap: wrap;
     align-items: flex-start;
-    align-content: space-around;
-    justify-content: space-evenly;
+    align-content: flex-start;
+    text-align: center;
+    justify-content: center;
   }
-  .result{
-    margin: 20px 15px 15px 15px;//
-  display: flex;
-    flex-direction: column;//
-  flex-wrap: nowrap;//
-  align-items: flex-start;//
-  align-content: flex-start;//
-  flex-grow: 1;
+  .result {
+    margin: 20px 15px 15px 15px;
+    max-width: 250px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    align-content: flex-start;
+    flex-grow: 1;
     flex-shrink: 1;
     flex-basis: auto;
-    align-self: auto;
-  }
-  .resultType {
-    margin: 20px 15px 15px 15px;//
-  width: 100%;//
-  display: block;
-    flex-direction: column;//
-  flex-wrap: nowrap;//
-  align-items: flex-start;//
-  align-content: flex-start;//
-  justify-content: flex-start;//
-  flex-grow: 1;
-    flex-shrink: 1;
     align-self: auto;
   }
   .resultJacket{
   }
   .resultName{
     margin: 0 auto;
-    width: 200px;
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
@@ -117,13 +105,14 @@
     flex-shrink: 1;
     flex-basis: auto;
     align-self: auto;
+    font-weight: bold;
   }
   .resultTitle{
+    width: 100%;
     font-size: 1rem;
     text-align: left;
     color: white;
     margin: 0;
-    font-weight: bold;
   }
   .resultInfo{
     width: 100%;
@@ -133,14 +122,14 @@
   }
   img {
     object-fit: contain;
-    width: 200px;
-    height: 200px;
+    width: 250px;
+    height: 250px;
   }
 
   @media only screen and (min-device-width : 320px) and (max-device-width : 480px)
   and (orientation: portrait){
     .listSearch{
-      flex-direction: column;
+      display: block;
     }
     .result {
       flex-direction: row;
@@ -157,7 +146,7 @@
       font-size: 2rem;
     }
     .resultInfo {
-      font-size: 2rem;
+      font-size: 1.5rem;
     }
     img {
       width: 150px;
@@ -167,14 +156,6 @@
 
   @media only screen and (min-device-width : 568px) and (max-device-width : 853px)
   and (orientation: landscape){
-    .result{
-      flex-direction: row;
-      flex-wrap: nowrap;
-      width: 50%;
-      margin: 20px auto;
-      justify-content: center;
-      max-width: unset;
-    }
     .resultJacket {
       margin-right: 20px;
     }
@@ -186,7 +167,15 @@
       font-size: 1.5rem;
     }
     .resultInfo {
-      font-size: 1.5rem;
+      font-size: 1.15rem;
+    }
+    .result {
+      flex-direction: row;
+      flex-wrap: nowrap;
+      width: 50%;
+      margin: 20px auto;
+      justify-content: center;
+      max-width: unset;
     }
   }
 </style>
