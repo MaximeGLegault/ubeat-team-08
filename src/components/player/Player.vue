@@ -138,7 +138,7 @@
         this.newPlayRequested();
       },
       onEnded() {
-        this.playNextTrack(); 
+        this.playNextTrack();
       },
       initAudio() {
         this.audio.addEventListener('durationchange', this.onDurationChange);
