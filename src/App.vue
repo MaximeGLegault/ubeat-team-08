@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <nav-menu />
-    <player-bar/>
+    <player-bar v-show="showPlayer"/>
     <router-view/>
   </div>
 </template>
@@ -18,6 +18,11 @@
     components: {
       'nav-menu': Navigation,
       'player-bar': Player
+    },
+    data() {
+      return {
+        showPlayer: false
+      };
     },
     methods: {
       ...mapActions([
@@ -59,6 +64,11 @@
       //   const newPlaylistId = await this.createNewPlaylist('My playlist');
       //   this.switchCurrentPlaylist({ playlistId: newPlaylistId, isModifiable: true });
       // }
+    },
+    mounted() {
+      this.$root.$on('newPlayRequested', () => {
+        this.showPlayer = true;
+      });
     },
   };
 

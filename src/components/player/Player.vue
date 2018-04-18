@@ -21,7 +21,10 @@
 
           <div id="buttons">
             <div id="left_buttons">
-              <a class=" btn deep-purple accent-3 btn-floating"><i class="material-icons md-48">skip_previous</i></a>
+              <a class=" btn deep-purple accent-3 btn-floating"
+                 v-on:click="playPreviousTrack">
+                <i class="material-icons md-48">skip_previous</i>
+              </a>
             </div>
             <div id="middle_button">
 
@@ -38,7 +41,10 @@
               </a>
             </div>
             <div id="right_buttons">
-              <a class=" btn deep-purple accent-3 btn-floating"><i class="material-icons md-48">skip_next</i></a>
+              <a class=" btn deep-purple accent-3 btn-floating"
+                 v-on:click="playNextTrack">
+                <i class="material-icons md-48">skip_next</i>
+              </a>
             </div>
           </div>
 
@@ -54,6 +60,7 @@
 </template>
 
 <script>
+  import { mapActions } from 'vuex';
   import util from '@/lib/util';
   import Controller from './Player-Controller';
 
@@ -66,7 +73,7 @@
       return {
         audioDuration: 0,
         audioCurrentTime: 0,
-        isPlaying: true,
+        isPlaying: false,
         indexOfPlayingTrack: 0,
         currentlyPlayingTrack: {}
       };
@@ -95,19 +102,25 @@
       }
     },
     methods: {
+      ...mapActions([
+        'addTrackAsCurrentlyPlayingTrack'
+      ]),
       newPlayRequested() {
-        this.audio.pause();
-        this.indexOfPlayingTrack = this.playlist.findIndex(
-          el => el.trackId === this.track.trackId);
-        this.currentlyPlayingTrack = this.track;
-        this.audio.src = this.track.previewUrl;
-        this.audio.play();
+        if (this.track.previewUrl) {
+          this.audio.pause();
+          this.indexOfPlayingTrack = this.playlist.findIndex(
+            el => el.trackId === this.track.trackId);
+          this.currentlyPlayingTrack = this.track;
+          this.audio.src = this.track.previewUrl;
+          this.audio.play();
+          this.isPlaying = true;
+        }
       },
       playPressed() {
         if (this.isPlaying) {
           this.audio.pause();
           this.isPlaying = false;
-        } else if (this.track) {
+        } else if (this.track.previewUrl) {
           this.audio.play();
           this.isPlaying = true;
         } else {
@@ -122,11 +135,31 @@
       onTimeUpdate() {
         this.audioCurrentTime = this.audio.currentTime;
       },
+      playNextTrack() {
+        if (this.indexOfPlayingTrack >= (this.playlist.length - 1)) {
+          this.indexOfPlayingTrack = 0;
+        } else {
+          this.indexOfPlayingTrack += 1;
+        }
+        this.addTrackAsCurrentlyPlayingTrack(this.playlist[this.indexOfPlayingTrack]);
+        this.newPlayRequested();
+      },
+      playPreviousTrack() {
+        if (this.indexOfPlayingTrack === 0) {
+          this.indexOfPlayingTrack = this.playlist.length - 1;
+        } else {
+          this.indexOfPlayingTrack -= 1;
+        }
+        this.addTrackAsCurrentlyPlayingTrack(this.playlist[this.indexOfPlayingTrack]);
+        this.newPlayRequested();
+      },
+      onEnded() {
+        this.playNextTrack();
+      },
       initAudio() {
         this.audio.addEventListener('durationchange', this.onDurationChange);
         this.audio.addEventListener('timeupdate', this.onTimeUpdate);
-        this.audio.addEventListener('paused', this.onPaused);
-        this.audio.addEventListener('paused', this.onPaused);
+        this.audio.addEventListener('ended', this.onEnded);
       }
     },
     mounted() {
