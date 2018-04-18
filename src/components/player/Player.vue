@@ -20,7 +20,10 @@
 
           <div id="buttons">
             <div id="left_buttons">
-              <a class=" btn deep-purple accent-3 btn-floating"><i class="material-icons md-48">skip_previous</i></a>
+              <a class=" btn deep-purple accent-3 btn-floating"
+                 v-on:click="playPreviousTrack">
+                <i class="material-icons md-48">skip_previous</i>
+              </a>
             </div>
             <div id="middle_button">
 
@@ -37,7 +40,10 @@
               </a>
             </div>
             <div id="right_buttons">
-              <a class=" btn deep-purple accent-3 btn-floating"><i class="material-icons md-48">skip_next</i></a>
+              <a class=" btn deep-purple accent-3 btn-floating"
+                 v-on:click="playNextTrack">
+                <i class="material-icons md-48">skip_next</i>
+              </a>
             </div>
           </div>
 
@@ -133,6 +139,15 @@
           this.indexOfPlayingTrack = 0;
         } else {
           this.indexOfPlayingTrack += 1;
+        }
+        this.addTrackAsCurrentlyPlayingTrack(this.playlist[this.indexOfPlayingTrack]);
+        this.newPlayRequested();
+      },
+      playPreviousTrack() {
+        if (this.indexOfPlayingTrack === 0) {
+          this.indexOfPlayingTrack = this.playlist.length - 1;
+        } else {
+          this.indexOfPlayingTrack -= 1;
         }
         this.addTrackAsCurrentlyPlayingTrack(this.playlist[this.indexOfPlayingTrack]);
         this.newPlayRequested();
