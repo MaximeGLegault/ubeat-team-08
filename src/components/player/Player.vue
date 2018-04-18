@@ -4,6 +4,7 @@
       <img id="thumbnail"
            :src="this.currentlyPlayingTrack.artworkUrl100"/>
 
+
       <controller ref="progressController"
                   :audioCurrentTime="audioCurrentTime"
                   :audioDuration="audioDuration"/>

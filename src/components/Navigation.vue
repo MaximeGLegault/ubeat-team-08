@@ -45,10 +45,10 @@
               <h6 id="userName">{{this.$store.state.userName}}</h6>
             </div>
             <div id="menuSearch" class="menuSmSearch">
-              <form>
-                <input v-on:keyup.enter="goSearch" v-model="search1" id="search" type="text" placeholder="Search...">
+              <div class="form">
+                <input v-on:keyup.enter.prevent="goSearch" v-model="searchTerm" id="search" type="text" placeholder="Search...">
                 <a @click="goSearch"><i class="material-icons">search</i></a>
-              </form>
+              </div>
             </div>
           </div>
         </div>
@@ -72,10 +72,10 @@
           </div>
           <div id="menuSmUserSearch">
             <div class="menuSmSearch">
-              <form>
-                <input v-on:keyup.enter="goSearch" v-model="search1" type="text" placeholder="Search...">
+              <div class="form">
+                <input v-on:keyup.enter.prevent="goSearch" v-model="searchTerm" type="text" placeholder="Search...">
                 <a @click="goSearch"><i class="material-icons">search</i></a>
-              </form>
+              </div>
             </div>
           </div>
           <div v-show="showSectionUser" id="userOption">
@@ -111,10 +111,8 @@
 
     data: () => ({
       showSectionUser: false,
+      searchTerm: ''
     }),
-    props: {
-      search1: ''
-    },
     methods: {
       async logout() {
         await api.logout()
@@ -132,7 +130,7 @@
         this.showSectionUser = !this.showSectionUser;
       },
       goSearch() {
-        this.$router.push({ name: 'Search', query: { q: this.search1 } });
+        this.$router.push({ name: 'Search', query: { q: this.searchTerm } });
       }
     },
     async created() {
@@ -372,13 +370,13 @@
     width: 100%;
     padding: 0 0 0 15px;
   }
-  .menuSmSearch form{
+  .menuSmSearch .form{
     display: flex;
   }
-  .menuSmSearch form input{
+  .menuSmSearch .form input{
     width: 270px;
   }
-  .menuSmSearch form input:focus{
+  .menuSmSearch .form input:focus{
     border-bottom: 1px solid #fff;
     -webkit-box-shadow: 0 1px 0 0 #fff;
     -moz-box-shadow: 0 1px 0 0 #fff;
@@ -471,7 +469,7 @@
     #ulSmList{
       margin: 20px 0;
     }
-    #menuSmSearch form input{
+    #menuSmSearch .form input{
       font-size: 30px;
     }
     #ulSmList li{
