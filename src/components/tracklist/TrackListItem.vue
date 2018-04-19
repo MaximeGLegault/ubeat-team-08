@@ -27,6 +27,13 @@
       <i class="material-icons md-48">add</i>
     </td>
 
+    <td id="delete_track_from_playlist"
+        v-if="showRemoveTrackButton"
+        v-on:click="$emit('removeTrack', track.trackId)"
+        title="Remove song from current playlist">
+      <i class="material-icons md-48">remove</i>
+    </td>
+
   </tr>
 </template>
 
@@ -43,22 +50,27 @@
       },
       showTrackNumber: {
         type: Boolean,
-        require: false,
+        required: false,
         default: false,
       },
       showArtist: {
         type: Boolean,
-        require: false,
+        required: false,
         default: false,
       },
       showAlbum: {
         type: Boolean,
-        require: false,
+        required: false,
         default: false,
       },
       showAddToPlaylistButton: {
         type: Boolean,
-        require: false,
+        required: false,
+        default: false,
+      },
+      showRemoveTrackButton: {
+        type: Boolean,
+        required: false,
         default: false,
       },
     },

@@ -2,7 +2,8 @@
   <div id="playlistPage">
 
     <playlist-list :listOfPlaylist="listPlaylists"
-                   v-on:clickedCurrentlyPlaying="showCurrentlyPlayingPlaylist"/>
+                   v-on:clickedCurrentlyPlaying="showCurrentlyPlayingPlaylist"
+                   v-on:changePlaylist="changePlaylist"/>
 
 
     <div id = "playlist">
@@ -69,8 +70,9 @@
         this.createNewPlaylist('New Playlist', this.$store.state.email);
       },
 
-      changePlaylist(event) {
-        this.switchUserCurrentPlaylist(event.target.id);
+      changePlaylist(id) {
+        this.switchUserCurrentPlaylist(id);
+        this.tracks = this.$store.state.userCurrentSelectedPlaylist.tracks;
       },
 
       async editNamePlaylist() {

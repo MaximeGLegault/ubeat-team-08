@@ -9,10 +9,16 @@
         <th v-if="showArtist">ARTIST</th>
         <th v-if="showAlbum">ALBUM</th>
         <th>DURATION</th>
-        <th id="playlist_btn_column"
+        <th class="btn_column"
             v-if="showAddToPlaylistButton"
             v-on:click="addAlbumToPlaylist">
           <i class="material-icons md-48" title="Add album to current playlist">playlist_add</i>
+        </th>
+        <th class="btn_column"
+            v-if="showRemoveTrackButton"
+            v-on:click="removeTrack">
+          <i class="material-icons md-48" title="Add album to current playlist">clear_all</i>
+
         </th>
       </tr>
       </thead>
@@ -20,9 +26,10 @@
         <trackListItem v-for="track in tracks"
                        :track="track"
                        :showTrackNumber="showTrackNumber"
-                       :showAddToPlaylistButton="showAddToPlaylistButton"
                        :showArtist="showArtist"
                        :showAlbum="showAlbum"
+                       :showAddToPlaylistButton="showAddToPlaylistButton"
+                       :showRemoveTrackButton="showRemoveTrackButton"
                        :key="track.trackId"
                        v-on:playRequest="emitNewPlaylistToPlay" />
       </tbody>
@@ -47,22 +54,27 @@
       },
       showTrackNumber: {
         type: Boolean,
-        require: false,
+        required: false,
         default: false,
       },
       showArtist: {
         type: Boolean,
-        require: false,
+        required: false,
         default: false,
       },
       showAlbum: {
         type: Boolean,
-        require: false,
+        required: false,
         default: false,
       },
       showAddToPlaylistButton: {
         type: Boolean,
-        require: false,
+        required: false,
+        default: false,
+      },
+      showRemoveTrackButton: {
+        type: Boolean,
+        required: false,
         default: false,
       },
     },
@@ -119,7 +131,7 @@
     background-color: #1e1e1e;
   }
 
-  #playlist_btn_column {
+  .btn_column {
     padding: 0;
     background-color: Transparent;
     background-repeat: no-repeat;
