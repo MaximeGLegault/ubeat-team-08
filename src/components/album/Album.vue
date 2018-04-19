@@ -3,7 +3,9 @@
      <albumDescription v-if="albumDescriptionDataObject"
                        :key="albumDescriptionDataObject.collectionId"
                        :description="albumDescriptionDataObject"/>
-     <trackList :tracks="trackList"/>
+     <trackList :tracks="trackList"
+                :show-track-number="true"
+                :show-add-to-playlist-button="true"/>
    </div>
 </template>
 
@@ -12,7 +14,7 @@
   import api from '@/lib/api';
   import util from '@/lib/util';
   import AlbumDescription from './AlbumDescription';
-  import TrackList from './Tracklist';
+  import TrackList from '../tracklist/Tracklist';
 
   export default {
     name: 'album',

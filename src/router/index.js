@@ -3,7 +3,7 @@ import Router from 'vue-router';
 import Home from '@/components/Home';
 import Album from '@/components/album/Album';
 import Artist from '@/components/artist/Artist';
-import Playlist from '@/components/Playlist';
+import Playlist from '@/components/playlist/Playlist';
 import SignUp from '@/components/SignUp';
 import Login from '@/components/Login';
 import Search from '@/components/search/Search';

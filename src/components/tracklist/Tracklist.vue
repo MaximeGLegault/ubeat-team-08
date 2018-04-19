@@ -4,10 +4,14 @@
       <thead>
       <tr>
         <th id="play_btn_column"></th>
-        <th>#</th>
-        <th id="song_name_column">NAME</th>
-        <th>Duration</th>
-        <th id="playlist_btn_column" v-on:click="addAlbumToPlaylist">
+        <th v-if="showTrackNumber">#</th>
+        <th>NAME</th>
+        <th v-if="showArtist">ARTIST</th>
+        <th v-if="showAlbum">ALBUM</th>
+        <th>DURATION</th>
+        <th id="playlist_btn_column"
+            v-if="showAddToPlaylistButton"
+            v-on:click="addAlbumToPlaylist">
           <i class="material-icons md-48" title="Add album to current playlist">playlist_add</i>
         </th>
       </tr>
@@ -15,6 +19,10 @@
       <tbody v-if="tracks.length">
         <trackListItem v-for="track in tracks"
                        :track="track"
+                       :showTrackNumber="showTrackNumber"
+                       :showAddToPlaylistButton="showAddToPlaylistButton"
+                       :showArtist="showArtist"
+                       :showAlbum="showAlbum"
                        :key="track.trackId"
                        v-on:playRequest="emitNewPlaylistToPlay" />
       </tbody>
@@ -27,8 +35,8 @@
   import trackListItem from './TrackListItem';
 
   export default {
-    components: { trackListItem },
     name: 'tracklist',
+    components: { trackListItem },
     component: {
       trackListItem,
     },
@@ -36,6 +44,26 @@
       tracks: {
         type: Array,
         required: true
+      },
+      showTrackNumber: {
+        type: Boolean,
+        require: false,
+        default: false,
+      },
+      showArtist: {
+        type: Boolean,
+        require: false,
+        default: false,
+      },
+      showAlbum: {
+        type: Boolean,
+        require: false,
+        default: false,
+      },
+      showAddToPlaylistButton: {
+        type: Boolean,
+        require: false,
+        default: false,
       },
     },
     methods: {

@@ -3,15 +3,8 @@
     <div style="flex: 1"></div>
     <vue-slider style="flex: 2"
                 ref="slider"
-                v-model="value"
+                v-model="currentValue"
                 v-bind="options" />
-    <!--<input  id="range"-->
-            <!--class="browser-default"-->
-            <!--ref="range"-->
-            <!--type="range"-->
-            <!--:value="currentValue"-->
-            <!--@mousedown=""-->
-            <!--@touchstart=""/>-->
     <div style="flex: 1"></div>
   </div>
 </template>
@@ -27,7 +20,6 @@
     props: ['audioCurrentTime', 'audioDuration'],
     data() {
       return {
-        value: 0,
         options: {
           dotSize: 18,
           speed: 0,
@@ -50,9 +42,9 @@
       currentValue() {
         if (this.audioCurrentTime && this.audioDuration &&
           !Number.isNaN(this.audioCurrentTime) && !Number.isNaN(this.audioDuration)) {
-          this.value = ((this.audioCurrentTime / this.audioDuration) * 100);
+          return ((this.audioCurrentTime / this.audioDuration) * 100);
         }
-        this.value = 0;
+        return 0;
       }
     },
   };

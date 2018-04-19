@@ -1,16 +1,18 @@
 <template>
   <div id="playlistPage">
-    <div id = "playlistName">
-      <button id="addbutton" class="btn-floating waves-effect waves-light deep-purple accent-3" v-on:click="addPlaylist"><i id = "clickButtonId" class="material-icons">add</i></button>
-      <button id="addbuttonSm" class="btn-floating waves-effect waves-light btn-large deep-purple accent-3" v-on:click="addPlaylist"><i class="material-icons">add</i></button>
-      <ul v-for="playlist in this.$store.state.userPlaylists">
-        <li><a class="listPlName" v-bind:id="playlist.id" v-on:click="changePlaylist">{{playlist.name}}</a></li>
-      </ul>
-    </div>
+
+    <playlist-list :listOfPlaylist="listPlaylists"
+                   v-on:clickedCurrentlyPlaying="showCurrentlyPlayingPlaylist"/>
+
+
     <div id = "playlist">
       <div id="titlePl">
         <h1>{{this.$store.state.userCurrentSelectedPlaylist.name}} </h1>
-        <button v-on:click="toggleEdit" id="editBtn" class="btn-floating waves-effect waves-light black "><i class="material-icons">mode_edit</i></button>
+
+        <button v-on:click="toggleEdit" id="editBtn" class="btn-floating waves-effect waves-light black ">
+          <i class="material-icons">mode_edit</i>
+        </button>
+
         <div v-show="showSectionEdit" id = "editDiv">
           <div class="input-field col s6">
             <input id="pl_name" type="text" v-model="inputNameEdit" placeholder="Playlist's Name">
@@ -18,49 +20,38 @@
           <a id="checkBtn" class="waves-effect btn-flat " v-on:click="editNamePlaylist"><i class="material-icons left">check</i></a>
         </div>
       </div>
-      <div id="trackList">
-        <table id="trackListTable">
-          <thead>
-          <tr>
-            <th class="playBtn"></th>
-            <th class ="trackNameCol">NAME</th>
-            <th class="artistNameCol">ARTIST</th>
-            <th class="albumNameCol">ALBUM</th>
-            <th class="time">Duration</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr v-for="track in currentPlaylist.tracks">
-            <td class="playBtn">
-              <a class=" btn deep-purple accent-3"><i class="material-icons md-48">play_arrow</i></a>
-            </td>
-            <td class ="trackNameCol">{{track.trackName}}</td>
-            <td class="artistNameCol">{{track.artistName}}</td>
-            <td class="albumNameCol">{{track.collectionName}}</td>
-            <td class="time">{{duration(track.trackTimeMillis)}}</td>
-          </tr>
-          </tbody>
-        </table>
-      </div>
+
+      <tracklist :tracks="tracks"
+                 :show-artist="true"
+                 :show-album="true"/>
     </div>
   </div>
 </template>
 
 <script>
-  import util from '@/lib/util';
-  import { mapActions } from 'vuex';
   import Cookies from 'js-cookie';
+  import { mapActions } from 'vuex';
   import api from '@/lib/api';
+  import playlistList from './PlaylistList';
+  import tracklist from '../tracklist/Tracklist';
 
   export default {
+    name: 'playlist',
+
+    components: {
+      'playlist-list': playlistList,
+      tracklist,
+    },
+
     data: () => ({
-      test: {},
-      test2: {},
       listPlaylists: [],
       showSectionEdit: false,
-      inputNameEdit: ''
+      inputNameEdit: '',
+      tracks: [],
     }),
+
     methods: {
+
       ...mapActions([
         'switchUserCurrentPlaylist',
         'createNewPlaylist',
@@ -69,15 +60,19 @@
         'editPlaylistName',
         'addSongToCurrentPlaylist'
       ]),
+
       toggleEdit() {
         this.showSectionEdit = !this.showSectionEdit;
       },
-      addPlaylist() {
+
+      addNewPlaylist() {
         this.createNewPlaylist('New Playlist', this.$store.state.email);
       },
+
       changePlaylist(event) {
         this.switchUserCurrentPlaylist(event.target.id);
       },
+
       async editNamePlaylist() {
         const bkp = this.$store.state.userCurrentSelectedPlaylist.tracks;
         await this.editPlaylistName({ playlistId: this.$store.state.userCurrentSelectedPlaylist.id,
@@ -85,7 +80,6 @@
         bkp.forEach((track) => {
           this.addSongToCurrentPlaylist(track);
         });
-        console.log(this.$store.state.userCurrentSelectedPlaylist);
         await api.getAllPlaylists()
           .then((value) => {
             const list = value;
@@ -102,15 +96,18 @@
             this.$router.push('/login');
           });
       },
-      duration(time) {
-        return util.getLength(time);
-      }
+
+      showCurrentlyPlayingPlaylist() {
+
+      },
     },
+
     computed: {
       currentPlaylist() {
         return this.$store.state.userCurrentSelectedPlaylist;
       }
     },
+
     beforeCreate() {
       if (Cookies.get('token') === '') {
         this.$router.push('/login');
@@ -121,6 +118,13 @@
 </script>
 
 <style scoped>
+  #playlistPage{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    text-align: center;
+  }
+
   input[type=text]:not(.browser-default):focus:not([readonly])+label{
     color: white;
     border-bottom: white;
@@ -164,29 +168,7 @@
   .listPlName:hover{
     color: #651fff;
   }
-  #playlistName #addbutton{
-    margin-left: 0;
-  }
-  #playlistName ul{
-    padding-left: 10px;
-    margin-bottom: 0;
 
-  }
-  #playlistPage{
-    margin: 0;
-    padding: 0;
-    display: flex;
-  }
-  #playlistName{
-    border-right: solid 5px #111;
-    padding-left: 10px;
-    padding-top: 10px;
-    width: 250px;
-    min-width: 150px;
-    min-height: 100vh;
-    background-color: #191919 ;
-    font-size: 1.5em;
-  }
   #playlist{
     width: 100%;
   }

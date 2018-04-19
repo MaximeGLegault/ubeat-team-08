@@ -139,7 +139,6 @@
           this.$store.state.userName = value.name;
           this.$store.state.email = value.email;
         }).catch(() => {
-          console.log('noToken');
           Cookies.set('token', '');
         });
     }

@@ -15,7 +15,7 @@ const actions = {
         if (error.response.status === 401) {
           window.location = '#/login';
         } else if (error.response.status === 404) {
-          alert('Select a playlist before');
+          window.location = '#/playlist';
         }
       });
   },
