@@ -84,6 +84,13 @@ const actions = {
         commit('UPDATE_PLAYLIST', { oldPlaylist, newPlaylist: value.data });
       });
   },
+  removeTrackFromPlaylist({ commit, state }, { playlist, trackId }) {
+    return api.removeTrackFromPlaylist(playlist.id, trackId)
+      .then((value) => {
+        const oldPlaylist = state.userPlaylists.find(el => el.id === value.data.id);
+        commit('UPDATE_PLAYLIST', { oldPlaylist, newPlaylist: value.data });
+      });
+  }
 };
 
 export default actions;

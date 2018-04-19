@@ -31,7 +31,8 @@
                        :showAddToPlaylistButton="showAddToPlaylistButton"
                        :showRemoveTrackButton="showRemoveTrackButton"
                        :key="track.trackId"
-                       v-on:playRequest="emitNewPlaylistToPlay" />
+                       v-on:playRequest="emitNewPlaylistToPlay"
+                       v-on:removeTrack="removeTrack"/>
       </tbody>
     </table>
   </div>
@@ -100,6 +101,9 @@
       },
       async addAlbumToPlaylist() {
         this.tracks.forEach(track => this.addTrackToCurrentPlaylist(track));
+      },
+      removeTrack(id) {
+        this.$emit('removeTrack', id);
       }
     }
   };

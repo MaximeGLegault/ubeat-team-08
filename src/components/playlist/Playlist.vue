@@ -24,7 +24,9 @@
 
       <tracklist :tracks="tracks"
                  :show-artist="true"
-                 :show-album="true"/>
+                 :show-album="true"
+                 :show-remove-track-button="true"
+                 v-on:removeTrack="removeTrack"/>
     </div>
   </div>
 </template>
@@ -59,7 +61,8 @@
         'updatePlaylistName',
         'addTrackToCurrentPlaylist',
         'editPlaylistName',
-        'addSongToCurrentPlaylist'
+        'addSongToCurrentPlaylist',
+        'removeTrackFromPlaylist'
       ]),
 
       toggleEdit() {
@@ -101,6 +104,16 @@
 
       showCurrentlyPlayingPlaylist() {
 
+      },
+
+      removeTrack(id) {
+        this.removeTrackFromPlaylist({
+          playlist: this.$store.state.userCurrentSelectedPlaylist,
+          trackId: id,
+        })
+          .then(() => {
+            this.tracks = this.$store.state.userCurrentSelectedPlaylist.tracks;
+          });
       },
     },
 

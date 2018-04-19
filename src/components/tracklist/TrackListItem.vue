@@ -20,14 +20,14 @@
 
     <td id="duration_column">{{duration}}</td>
 
-    <td id="add_playlist"
+    <td class="extra_button"
         v-if="showAddToPlaylistButton"
         v-on:click="addTrackToPlaylist"
         title="Add song to current playlist">
       <i class="material-icons md-48">add</i>
     </td>
 
-    <td id="delete_track_from_playlist"
+    <td class="extra_button"
         v-if="showRemoveTrackButton"
         v-on:click="$emit('removeTrack', track.trackId)"
         title="Remove song from current playlist">
@@ -108,7 +108,7 @@
     width: 5em;
   }
 
-  #add_playlist {
+  .extra_button {
     padding: 0;
     background-color: Transparent;
     background-repeat: no-repeat;
