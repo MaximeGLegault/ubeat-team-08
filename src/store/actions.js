@@ -3,10 +3,10 @@ import api from '@/lib/api';
 const actions = {
 
   addTrackToCurrentPlaylist({ commit, state }, track) {
-    if (!track &&
-        !(state.userCurrentSelectedPlaylist.tracks.findIndex(el =>
+    if (!track ||
+        (state.userCurrentSelectedPlaylist.tracks.findIndex(el =>
           el.trackId === track.trackId) !== -1)) {
-      return Promise.reject(new Error('Can\'t add song to unmodifiable playlist'));
+      return Promise.reject(new Error('Can\'t add song to playlist'));
     }
     return api.addTrackToPlaylist(state.userCurrentSelectedPlaylist.id, track)
       .then((value) => {
