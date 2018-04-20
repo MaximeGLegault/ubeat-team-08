@@ -17,7 +17,7 @@
         <th class="btn_column"
             v-if="showRemoveTrackButton"
             v-on:click="removeTrack">
-          <i class="material-icons md-48" title="Add album to current playlist">clear_all</i>
+          <i class="material-icons md-48" title="Clear playlist">clear_all</i>
 
         </th>
       </tr>

@@ -3,7 +3,7 @@
     <div style="flex: 1"></div>
     <vue-slider style="flex: 2"
                 ref="slider"
-                v-model="currentValue"
+                :v-model="currentValue"
                 v-bind="options" />
     <div style="flex: 1"></div>
   </div>
@@ -37,15 +37,16 @@
       };
     },
     methods: {
+
     },
     computed: {
       currentValue() {
         if (this.audioCurrentTime && this.audioDuration &&
-          !Number.isNaN(this.audioCurrentTime) && !Number.isNaN(this.audioDuration)) {
+        !Number.isNaN(this.audioCurrentTime) && !Number.isNaN(this.audioDuration)) {
           return ((this.audioCurrentTime / this.audioDuration) * 100);
         }
         return 0;
-      }
+      },
     },
   };
 </script>

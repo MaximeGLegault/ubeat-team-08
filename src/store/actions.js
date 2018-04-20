@@ -60,6 +60,7 @@ const actions = {
       return api.updatePlaylistName(playlistWithChanges)
         .then((value) => {
           commit('UPDATE_PLAYLIST_NAME', value.data);
+          return value.data;
         }).catch((error) => {
           if (error.response.status === 401) {
             window.location = '#/login';
@@ -68,15 +69,7 @@ const actions = {
     }
     return Promise.reject(new Error('unmodifiable playlist'));
   },
-  editPlaylistName(context, { playlistId, newName }) {
-    if (playlistId) {
-      return api.editNamePlaylist(playlistId, newName)
-        .then((value) => {
-          context.commit('EDIT_NAME', value.data);
-        });
-    }
-    return Promise.reject(new Error('unmodifiable playlist'));
-  },
+
   addSongToCurrentPlaylist({ commit, state }, track) {
     return api.addTrackToPlaylist(state.userCurrentSelectedPlaylist.id, track)
       .then((value) => {
@@ -90,7 +83,10 @@ const actions = {
         const oldPlaylist = state.userPlaylists.find(el => el.id === value.data.id);
         commit('UPDATE_PLAYLIST', { oldPlaylist, newPlaylist: value.data });
       });
-  }
+  },
+  // clearPlaylistOfTracks({commit, state}, playlist) {
+  //   return api.editNamePlaylist(playlist.id, playlist.name);
+  // }
 };
 
 export default actions;

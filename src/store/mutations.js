@@ -36,9 +36,6 @@ const mutations = {
     state.current_playlist.current_request = payload;
   },
 
-  EDIT_NAME(state, payload) {
-    state.userCurrentSelectedPlaylist = payload;
-  },
   UPDATE_PLAYLIST(state, { oldPlaylist, newPlaylist }) {
     const index = state.userPlaylists.findIndex(el => el.id === oldPlaylist.id);
     if (index !== -1) {
