@@ -1,7 +1,8 @@
 <template>
   <div id="playlistPage">
 
-    <playlist-list v-on:clickedCurrentlyPlaying="showCurrentlyPlayingPlaylist"
+    <playlist-list ref="playlist_list"
+                   v-on:clickedCurrentlyPlaying="showCurrentlyPlayingPlaylist"
                    v-on:changePlaylist="changePlaylist"
                    v-on:addNewPlaylist="addNewPlaylist"/>
 
@@ -92,11 +93,9 @@
         await this.updatePlaylistName({ playlistId: this.$store.state.userCurrentSelectedPlaylist.id,
           newName: this.inputNameEdit
         })
-          .then((playlist) => {
-            const oldPlaylist = this.$store.state.userPlaylists.find(el => el.id === playlist.id);
-            if (oldPlaylist) {
-              oldPlaylist.name = playlist.name;
-            }
+          .then(() => {
+            this.playlistTitle = this.$store.state.userCurrentSelectedPlaylist.name;
+            this.showSectionEdit = false;
           })
           .catch(() => {
             this.$router.push('/login');
