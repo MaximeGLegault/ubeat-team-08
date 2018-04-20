@@ -1,9 +1,9 @@
 <template>
   <div id="playlistPage">
 
-    <playlist-list :listOfPlaylist="listPlaylists"
-                   v-on:clickedCurrentlyPlaying="showCurrentlyPlayingPlaylist"
-                   v-on:changePlaylist="changePlaylist"/>
+    <playlist-list v-on:clickedCurrentlyPlaying="showCurrentlyPlayingPlaylist"
+                   v-on:changePlaylist="changePlaylist"
+                   v-on:addNewPlaylist="addNewPlaylist"/>
 
 
     <div id = "playlist">

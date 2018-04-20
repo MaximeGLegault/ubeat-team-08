@@ -36,12 +36,6 @@
 <script>
     export default {
       name: 'playlistList',
-      props: {
-        listOfPlaylist: {
-          required: true,
-          type: Array,
-        }
-      }
     };
 </script>
 
