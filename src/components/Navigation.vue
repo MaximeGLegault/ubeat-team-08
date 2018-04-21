@@ -504,6 +504,13 @@
     #playlistLink i{
       padding-top: 10px;
     }
+    li{
+      font-size: 2em;
+    }
+    nav ul a {
+      font-size: 1em;
+      margin-top: 10px;
+    }
   }
 </style>
 
