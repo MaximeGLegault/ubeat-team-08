@@ -27,25 +27,31 @@
 </template>
 
 <script>
-import Avatar from 'vue-avatar';
-import util from '@/lib/util';
+  import Cookies from 'js-cookie';
+  import Avatar from 'vue-avatar';
+  import util from '@/lib/util';
 
-export default {
-  name: 'ResultByGlobal',
-  props: {
-    results: {
-      type: Array,
-      required: false
+  export default {
+    name: 'ResultByGlobal',
+    props: {
+      results: {
+        type: Array,
+        required: false
+      },
     },
-  },
-  methods: {
-    artwork(artworkUrl, dimension) {
-      return util.getUrlOfBiggerAlbumArtwork(artworkUrl, dimension);
+    methods: {
+      artwork(artworkUrl, dimension) {
+        return util.getUrlOfBiggerAlbumArtwork(artworkUrl, dimension);
+      },
     },
-  },
-  components: {
-    Avatar
-  },
+    components: {
+      Avatar
+    },
+    beforeCreate() {
+      if (Cookies.get('token') === '') {
+        this.$router.push('/login');
+      }
+    }
 };
 </script>
 
