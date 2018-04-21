@@ -86,4 +86,36 @@
     color: #651fff;
     font-size: 1.2em;
   }
+  @media only screen and (min-device-width : 320px) and (max-device-width : 480px)
+  and (orientation: portrait){
+    h1{
+      margin-top: 100px;
+    }
+    p{
+      font-size: 2.5em;
+    }
+    input[type=text]:not(.browser-default){
+      font-size: 2em;
+      height: 4rem;
+    }
+    .input-field label{
+      font-size: 2em;
+    }
+    input[type=password]:not(.browser-default){
+      font-size: 2em;
+      height: 4rem;
+    }
+    #btnLogin{
+      font-size: 2em;
+    }
+    .btn{
+      height: 50px;
+      margin-top: 20px;
+    }
+    .input-field label:not(.label-icon).active{
+      transform: translateY(-25px) scale(0.8);
+    }
+
+
+  }
 </style>
