@@ -90,6 +90,7 @@
       },
 
       async editNamePlaylist() {
+        this.showSectionEdit = !this.showSectionEdit;
         await this.updatePlaylistName({ playlistId: this.$store.state.userCurrentSelectedPlaylist.id,
           newName: this.inputNameEdit
         })
@@ -128,6 +129,18 @@
     beforeCreate() {
       if (Cookies.get('token') === '') {
         this.$router.push('/login');
+      }
+    },
+    created() {
+      this.tracks = this.$store.state.userCurrentSelectedPlaylist.tracks;
+      this.playlistTitle = this.$store.state.userCurrentSelectedPlaylist.name;
+      console.log(this.playlistTitle);
+      if (this.playlistTitle !== undefined) {
+        this.showTracklist = true;
+        this.showEditButton = true;
+      } else {
+        this.showTracklist = false;
+        this.showEditButton = false;
       }
     }
   };

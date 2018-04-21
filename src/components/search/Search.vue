@@ -9,6 +9,7 @@
 </template>
 
 <script>
+    import Cookies from 'js-cookie';
     import api from '@/lib/api';
     import SearchBar from './SearchBar';
     import SearchResult from './SearchResult';
@@ -67,6 +68,11 @@
             .then((value) => {
               this.results = value;
             });
+        }
+      },
+      beforeCreate() {
+        if (Cookies.get('token') === '') {
+          this.$router.push('/login');
         }
       }
     };
