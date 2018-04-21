@@ -115,7 +115,5 @@
     .input-field label:not(.label-icon).active{
       transform: translateY(-25px) scale(0.8);
     }
-
-
   }
 </style>
