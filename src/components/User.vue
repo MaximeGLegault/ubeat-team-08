@@ -1,12 +1,8 @@
 <template>
   <div id="userOverview">
-    <avatar id="gravatar" username="Random" src="http://i0.wp.com/www.spidermancrawlspace.com/wp-content/uploads/2016/05/cropped-5a1bccb02a1b404f215945f82fa73378.jpg"></avatar>
-
-    <!--username utilise les initials du nom pour les afficher. j'essaye de lui passer
-     {{this.$store.state.userName}}, mais ne marche pas...-->
-    <avatar username="Ta chanka"></avatar>
-    <h1>Username: {{this.$store.state.userName}} </h1>
-    <h1>Email: {{this.$store.state.email}} </h1>
+    <avatar :username="this.$store.state.connectedUser.name"></avatar>
+    <h1>Username: {{this.$store.state.connectedUser.name}} </h1>
+    <h1>Email: {{this.$store.state.connectedUser.email}} </h1>
 
     <!--show playlist-->
     <h1>Public playlists</h1>
@@ -22,7 +18,9 @@
     </ul>
 
     <!--follow btn-->
-     <a id="followBtn" class="waves-effect waves-light btn">Follow</a>
+     <a id="followBtn"
+        class="waves-effect waves-light btn"
+        v-if="this.$route.params.userId">Follow</a>
 
 
     <!--List of friends -->
@@ -44,27 +42,34 @@
 <script>
   import Cookies from 'js-cookie';
   import Avatar from 'vue-avatar';
+  import api from '@/lib/api';
   import util from '@/lib/util';
 
   export default {
-    name: 'ResultByGlobal',
-    props: {
-      results: {
-        type: Array,
-        required: false
-      },
-    },
-    methods: {
-      artwork(artworkUrl, dimension) {
-        return util.getUrlOfBiggerAlbumArtwork(artworkUrl, dimension);
-      },
-    },
+    name: 'User',
+
     components: {
       Avatar
     },
+
+    data: () => ({
+      playlists: ''
+    }),
+
     beforeCreate() {
       if (Cookies.get('token') === '') {
         this.$router.push('/login');
+      }
+    },
+
+    async created() {
+      if (this.$route.params.userId !== 0) {
+        await api.getAllPlaylists()
+          .then((value) => {
+            this.playlists = util.getPlaylistsOfUser(value, this.$route.params.userId);
+          });
+      } else {
+        this.playlists = this.$store.state.userPlaylists;
       }
     }
 };

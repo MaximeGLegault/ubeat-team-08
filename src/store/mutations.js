@@ -7,8 +7,6 @@ const mutations = {
       state.userPlaylists.splice(index, 1, newPlaylist);
       if (state.userCurrentSelectedPlaylist.id === newPlaylist.id) {
         state.userCurrentSelectedPlaylist = newPlaylist;
-        // TODO check if we can separate this in a different mutations functions
-        // TODO and add the thing if currentlyPlayingPlaylist
       }
     }
   },
@@ -28,13 +26,6 @@ const mutations = {
   SAVE_PLAYLIST(state, playlist) {
     state.userPlaylists.push(playlist);
   },
-  changeCurrentPlaylist(state, payload) {
-    state.current_playlist = payload;
-  },
-
-  playCurrent(state, payload) {
-    state.current_playlist.current_request = payload;
-  },
 
   UPDATE_PLAYLIST(state, { oldPlaylist, newPlaylist }) {
     const index = state.userPlaylists.findIndex(el => el.id === oldPlaylist.id);
@@ -45,6 +36,10 @@ const mutations = {
       }
     }
   },
+
+  UPDATE_USER(state, newUser) {
+    state.connectedUser = newUser;
+  }
 };
 
 export default mutations;

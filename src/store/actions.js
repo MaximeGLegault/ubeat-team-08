@@ -1,3 +1,4 @@
+import Cookies from 'js-cookie';
 import api from '@/lib/api';
 
 const actions = {
@@ -84,6 +85,24 @@ const actions = {
         commit('UPDATE_PLAYLIST', { oldPlaylist, newPlaylist: value.data });
       });
   },
+
+  updateUserFromToken({ commit }) {
+    return api.getTokenInfo()
+      .then((value) => {
+        const newUser = value;
+        delete newUser.token;
+        commit('UPDATE_USER', newUser);
+      });
+  },
+
+  logOutUser({ commit }) {
+    return api.logout()
+      .then(() => {
+        commit('UPDATE_USER', {});
+        Cookies.set('token', '');
+      });
+  }
+
   // clearPlaylistOfTracks({commit, state}, playlist) {
   //   return api.editNamePlaylist(playlist.id, playlist.name);
   // }

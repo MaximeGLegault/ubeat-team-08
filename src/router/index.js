@@ -7,7 +7,7 @@ import Playlist from '@/components/playlist/Playlist';
 import SignUp from '@/components/SignUp';
 import Login from '@/components/Login';
 import Search from '@/components/search/Search';
-import PageUser from '@/components/PageUser';
+import User from '@/components/User';
 import Parameter from '@/components/Parameter';
 
 
@@ -45,9 +45,9 @@ export default new Router({
       component: Search
     },
     {
-      path: '/pageuser',
-      name: 'PageUser',
-      component: PageUser
+      path: '/user/:userId',
+      name: 'User',
+      component: User
     },
     {
       path: '/parameter',

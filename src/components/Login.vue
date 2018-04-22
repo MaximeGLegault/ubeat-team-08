@@ -38,7 +38,7 @@
       async login() {
         await api.loginUser(this.user_email, this.user_password)
           .then((value) => {
-            this.$store.state.userName = value.data.name;
+            this.$store.state.connectedUser = value.data.name;
             this.messageErr = '';
             this.messageLog = 'You\'re now log in';
             Cookies.set('token', value.data.token);
@@ -46,7 +46,7 @@
           }).catch(() => {
             this.messageErr = 'User not found, check your username and password';
             this.messageLog = '';
-            this.$store.state.userName = '';
+            this.$store.state.connectedUser = '';
           });
       }
     }

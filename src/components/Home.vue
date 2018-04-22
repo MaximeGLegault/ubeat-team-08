@@ -31,16 +31,13 @@
   import Cookies from 'js-cookie';
 
   export default {
-    data: () => ({
-      userName: 'test'
-    }),
     beforeCreate() {
       if (Cookies.get('token') === '') {
         this.$router.push('/login');
       }
     },
     async created() {
-      this.userName = this.$store.state.userName;
+      this.userName = this.$store.state.connectedUser.name;
     }
   };
 </script>

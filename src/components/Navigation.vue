@@ -32,10 +32,10 @@
           </div>
           <div id="menuRight">
             <div id="menuUser">
-              <h6 id="userName">{{this.$store.state.userName}}</h6>
+              <h6 id="userName">{{this.$store.state.connectedUser.name}}</h6>
               <a class='dropdown-button btn-floating deep-purple accent-3' href='#' data-activates='dropdown1'><i class="material-icons">person</i></a>
               <ul id='dropdown1' class='dropdown-content'>
-                <li><router-link to="/PageUser">profil</router-link></li>
+                <li><router-link :to="{name: 'User', params: {userId: 0}}">profil</router-link></li>
                 <li class="divider"></li>
                 <li><router-link to="/Parameter">parameter</router-link></li>
                 <li class="divider"></li>
@@ -103,6 +103,7 @@
     </nav>
 </template>
 <script>
+  import { mapActions } from 'vuex';
   import Cookies from 'js-cookie';
   import api from '@/lib/api';
 
@@ -113,35 +114,36 @@
       showSectionUser: false,
       searchTerm: ''
     }),
+
     methods: {
+      ...mapActions([
+        'logOutUser'
+      ]),
+
       async logout() {
-        await api.logout()
+        await this.logOutUser()
           .then(() => {
-            window.location = '#/login';
-            Cookies.set('token', '');
-            this.$store.state.userName = '';
-            this.$store.state.email = '';
-            this.$store.state.password = '';
+            this.$router.push('login');
           }).catch(() => {
-            window.location = '/login';
+            this.$router.push('login');
           });
       },
+
       toggleUser() {
         this.showSectionUser = !this.showSectionUser;
       },
+
       goSearch() {
         this.$router.push({ name: 'Search', query: { q: this.searchTerm } });
       }
     },
+
     async created() {
       await api.getTokenInfo()
-        .then((value) => {
-          this.$store.state.userName = value.name;
-          this.$store.state.email = value.email;
-        }).catch(() => {
+        .catch(() => {
           Cookies.set('token', '');
         });
-    }
+    },
   };
 </script>
 <style>

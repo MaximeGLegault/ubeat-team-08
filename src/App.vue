@@ -26,20 +26,14 @@
     },
     methods: {
       ...mapActions([
-        'createNewPlaylist',
-        'switchUserCurrentPlaylist'
+        'updateUserFromToken'
       ]),
     },
-    beforeCreate() {
-      api.getTokenInfo()
-        .then((value) => {
-          this.$store.state.userName = value.name;
-          this.$store.state.email = value.email;
-        }).catch(() => {
+    async created() {
+      await this.updateUserFromToken()
+        .catch(() => {
           this.$router.push('/login');
         });
-    },
-    async created() {
       await api.getAllPlaylists()
         .then((value) => {
           const list = value;
@@ -58,11 +52,6 @@
         }).catch(() => {
           this.$router.push('/login');
         });
-      // todo search for playlist before creating an empty one
-      // if (this.$store.state.playlists.size === 0) {
-      //   const newPlaylistId = await this.createNewPlaylist('My playlist');
-      //   this.switchCurrentPlaylist({ playlistId: newPlaylistId, isModifiable: true });
-      // }
     },
     mounted() {
       this.$root.$on('newPlayRequested', () => {
