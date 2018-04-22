@@ -36,7 +36,7 @@
       </div>
       <div class="resultType" v-else>
         <div class="resultJacket">
-          <!--<router-link :to="{ name : 'Artist', params: { artistId: result.artistId }}">-->
+          <!--<router-link :to="{ name : 'User', params: { artistId: result.userId }}">-->
             <img src="../../assets/empty-user-photo.png"/>
           <!--</router-link>-->
         </div>
@@ -46,6 +46,7 @@
         </div>
       </div>
     </div>
+    <div class="button"><a class="btn"@click="update2"><span class="textAlign">More Results...</span></a></div>
   </div>
 </template>
 
@@ -55,12 +56,18 @@
   export default {
     name: 'ResultByGlobal',
     props: {
+      limit: '',
+      searchType: '',
+      searchTerm: '',
       results: {
         type: Array,
         required: false
       },
     },
     methods: {
+      update2() {
+        this.$emit('update2', { limit: this.limit });
+      },
       artwork(artworkUrl, dimension) {
         return util.getUrlOfBiggerAlbumArtwork(artworkUrl, dimension);
       },
@@ -69,6 +76,42 @@
 </script>
 
 <style scoped>
+  .btn {
+    background: #651fff;
+    background-image: -webkit-linear-gradient(top, #651fff, #651fff);
+    background-image: -moz-linear-gradient(top, #651fff, #651fff);
+    background-image: -ms-linear-gradient(top, #651fff, #651fff);
+    background-image: -o-linear-gradient(top, #651fff, #651fff);
+    background-image: linear-gradient(to bottom, #651fff, #651fff);
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    width: 90vw;
+    height: 25px;
+    vertical-align: middle;
+    line-height: 25px;
+  }
+  .textAlign {
+    font-size: 1rem;
+    vertical-align: middle;
+    text-align: center;
+  }
+  .btn:hover {
+    background: #651fff;
+    background-image: -webkit-linear-gradient(top, #651fff, #651fff);
+    background-image: -moz-linear-gradient(top, #651fff, #651fff);
+    background-image: -ms-linear-gradient(top, #651fff, #651fff);
+    background-image: -o-linear-gradient(top, #651fff, #651fff);
+    background-image: linear-gradient(to bottom, #651fff, #651fff);
+    text-decoration: none;
+  }
+  .button {
+    bottom: 0;
+    width: 90vw;
+    display: inline-block;
+  }
   .listSearch{
     margin: auto;
     width: 90vw;
@@ -80,7 +123,7 @@
     text-align: center;
     justify-content: center;
   }
-  .result {
+  .resultType {
     margin: 20px 15px 15px 15px;
     max-width: 250px;
     display: flex;
@@ -131,7 +174,7 @@
     .listSearch{
       display: block;
     }
-    .result {
+    .resultType {
       flex-direction: row;
       flex-wrap: nowrap;
       width: 100%;
@@ -145,6 +188,13 @@
     .resultTitle {
       font-size: 2rem;
     }
+    .textAlign {
+      font-size: 2rem;
+    }
+    .btn {
+      height: 35px;
+      line-height: 35px;
+    }
     .resultInfo {
       font-size: 1.5rem;
     }
@@ -156,6 +206,18 @@
 
   @media only screen and (min-device-width : 568px) and (max-device-width : 853px)
   and (orientation: landscape){
+    .result {
+      display: flex;
+      width: 50%;
+    }
+    .resultType {
+      flex-direction: row;
+      flex-wrap: nowrap;
+      width: 50%;
+      margin: 20px auto;
+      justify-content: center;
+      max-width: unset;
+    }
     .resultJacket {
       margin-right: 20px;
     }
@@ -166,16 +228,15 @@
     .resultTitle {
       font-size: 1.5rem;
     }
+    .btn {
+      height: 30px;
+      line-height: 30px;
+    }
+    .textAlign {
+      font-size: 1.5rem;
+    }
     .resultInfo {
       font-size: 1.15rem;
-    }
-    .result {
-      flex-direction: row;
-      flex-wrap: nowrap;
-      width: 50%;
-      margin: 20px auto;
-      justify-content: center;
-      max-width: unset;
     }
   }
 </style>
