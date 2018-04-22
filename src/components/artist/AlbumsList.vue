@@ -42,7 +42,6 @@
     align-content: flex-start;
     text-align: center;
     justify-content: center;
-
   }
   .album{
     margin: 20px 15px 15px 15px;

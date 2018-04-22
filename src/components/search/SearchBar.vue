@@ -59,7 +59,7 @@
   }
   .form{
     height: 36px;
-    width: 40%;
+    width: 50%;
     display: flex;
     flex-direction: row;
   }
@@ -71,8 +71,18 @@
     flex-direction: column;
     align-items: center;
   }
+  #search{
+    width: 100%;
+  }
   [type="radio"]:not(:checked)+label, [type="radio"]:checked+label {
     font-size: 1rem;
+  }
+  [type="radio"]:checked+label:after, [type="radio"].with-gap:checked+label:after {
+    background-color: #651fff;
+  }
+
+  [type="radio"]:checked+label:after, [type="radio"].with-gap:checked+label:before, [type="radio"].with-gap:checked+label:after {
+    border: 2px solid #651fff;
   }
   @media only screen and (min-device-width : 320px) and (max-device-width : 480px)
   and (orientation: portrait){

@@ -1,9 +1,13 @@
 <template>
   <div class="main" v-bind:key="this">
     <search-bar v-on:update="handler($event)"/>
-    <search-result v-if="this.results"
+    <search-result v-on:update2="handler2($event)"
+                   v-if="this.results"
                       :key="this.searchTerm"
                       :results="results"
+                      :limit="limit"
+                      :searchTerm="searchTerm"
+                      :searchType="searchType"
     />
   </div>
 </template>
@@ -25,6 +29,12 @@
           this.searchTerm = event.searchTerm;
           this.searchType = event.searchType;
           this.limit = event.limit;
+        },
+        handler2(event) {
+          this.limit = +event.limit + +10;
+          this.$router.replace({
+            name: 'Search', query: { q: this.searchTerm, limit: this.limit }
+          });
         }
       },
       data() {

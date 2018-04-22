@@ -209,6 +209,7 @@
   }
 
   #text_info {
+    margin-left: 10px;
     flex: 1;
     display: flex;
     flex-flow: column nowrap;
