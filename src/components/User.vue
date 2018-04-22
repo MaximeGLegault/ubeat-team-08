@@ -62,8 +62,9 @@
       }
     },
 
-    async created() {
-      if (this.$route.params.userId !== 0) {
+    async mounted() {
+      if (this.$route.params.userId !== 0 ||
+        this.$route.params.userId !== this.$store.state.connectedUser) {
         await api.getAllPlaylists()
           .then((value) => {
             this.playlists = util.getPlaylistsOfUser(value, this.$route.params.userId);

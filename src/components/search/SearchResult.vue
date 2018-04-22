@@ -36,9 +36,9 @@
       </div>
       <div class="resultType" v-else>
         <div class="resultJacket">
-          <!--<router-link :to="{ name : 'User', params: { artistId: result.userId }}">-->
+          <router-link :to="{ name : 'User', params: { userId: result.id }}">
             <img src="../../assets/empty-user-photo.png"/>
-          <!--</router-link>-->
+          </router-link>
         </div>
         <div class="resultName">
           <div class="resultTitle">{{result.name}}</div>

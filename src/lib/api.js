@@ -56,14 +56,14 @@ export default {
     }).then(value => value.data);
   },
 
-  createPlaylist(playlistName, userEmail) {
+  createPlaylist(playlistName) {
     return axios({
       method: 'post',
       url: `${baseUrl}playlists`,
       headers: {
         Authorization: Cookies.get('token')
       },
-      data: querystring.stringify({ name: playlistName, owner: userEmail })
+      data: querystring.stringify({ name: playlistName })
     });
   },
 

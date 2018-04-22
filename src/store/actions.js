@@ -28,8 +28,8 @@ const actions = {
     }
   },
 
-  createNewPlaylist({ commit, state }, playlistName, userName) {
-    return api.createPlaylist(playlistName, userName)
+  createNewPlaylist({ commit, state }, playlistName) {
+    return api.createPlaylist(playlistName)
       .then((value) => {
         commit('SAVE_PLAYLIST', value.data);
         return value.data.id;

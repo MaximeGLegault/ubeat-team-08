@@ -78,7 +78,7 @@
       },
 
       addNewPlaylist() {
-        this.createNewPlaylist('New Playlist', this.$store.state.email);
+        this.createNewPlaylist('New Playlist', this.$store.state.connectedUser.email);
       },
 
       changePlaylist(id) {

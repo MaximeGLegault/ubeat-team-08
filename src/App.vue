@@ -11,6 +11,7 @@
   import Navigation from '@/components/Navigation';
   import Player from '@/components/player/Player';
   import api from '@/lib/api';
+  import util from '@/lib/util';
 
   export default {
     name: 'app',
@@ -31,25 +32,14 @@
     },
     async created() {
       await this.updateUserFromToken()
+        .then(() => {
+          api.getAllPlaylists()
+            .then((value) => {
+              this.$store.state.userPlaylists =
+                util.getPlaylistsOfUser(value, this.$store.state.connectedUser.id);
+            });
+        })
         .catch(() => {
-          this.$router.push('/login');
-        });
-      await api.getAllPlaylists()
-        .then((value) => {
-          const list = value;
-          const listPlUser = [];
-          list.forEach((keys) => {
-            if (keys.owner !== undefined) {
-              if (keys.owner.email === this.$store.state.email) {
-                listPlUser.push(keys);
-              }
-            }
-          });
-          this.$store.state.userPlaylists = listPlUser;
-          if (this.$store.state.userPlaylists[0] !== undefined) {
-            this.$store.state.userCurrentSelectedPlaylist = this.$store.state.userPlaylists[0];
-          }
-        }).catch(() => {
           this.$router.push('/login');
         });
     },
