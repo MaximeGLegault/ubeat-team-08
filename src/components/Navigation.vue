@@ -32,6 +32,7 @@
           </div>
           <div id="menuRight">
             <div id="menuUser">
+              <h6 id="userName">{{this.$store.state.userName}}</h6>
               <a class='dropdown-button btn-floating deep-purple accent-3' href='#' data-activates='dropdown1'><i class="material-icons">person</i></a>
               <ul id='dropdown1' class='dropdown-content'>
                 <li><router-link to="/PageUser">profil</router-link></li>
@@ -42,12 +43,11 @@
                 <li><router-link to="/login">login</router-link></li>
                 <li><a href="#" v-on:click="logout">log out</a></li>
               </ul>
-              <h6 id="userName">{{this.$store.state.userName}}</h6>
             </div>
             <div id="menuSearch" class="menuSmSearch">
               <div class="form">
                 <input v-on:keyup.enter.prevent="goSearch" v-model="searchTerm" id="search" type="text" placeholder="Search...">
-                <a @click="goSearch"><i class="material-icons">search</i></a>
+                <a id = "searchBtn" @click="goSearch"><i class="material-icons">search</i></a>
               </div>
             </div>
           </div>
@@ -139,7 +139,6 @@
           this.$store.state.userName = value.name;
           this.$store.state.email = value.email;
         }).catch(() => {
-          console.log('noToken');
           Cookies.set('token', '');
         });
     }
@@ -196,6 +195,12 @@
     padding-left: 5px;
     font-weight: bold;
   }
+  #searchBtn{
+    margin-top: 15px;
+  }
+  .dropdown-button{
+    margin-left: 5px;
+  }
   #dropdown1 li:hover{
     background-color: #651fff;
   }
@@ -244,6 +249,7 @@
     align-self: center;
     margin-top: 15px;
     padding-top: 5px;
+    width: unset;
   }
   #search:focus{
     border-bottom: 1px solid #fff;
@@ -497,6 +503,13 @@
     }
     #playlistLink i{
       padding-top: 10px;
+    }
+    li{
+      font-size: 2em;
+    }
+    nav ul a {
+      font-size: 1em;
+      margin-top: 10px;
     }
   }
 </style>

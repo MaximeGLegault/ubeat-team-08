@@ -4,19 +4,35 @@
       <thead>
       <tr>
         <th id="play_btn_column"></th>
-        <th>#</th>
-        <th id="song_name_column">NAME</th>
-        <th>Duration</th>
-        <th id="playlist_btn_column" v-on:click="addAlbumToPlaylist">
+        <th v-if="showTrackNumber">#</th>
+        <th>NAME</th>
+        <th v-if="showArtist">ARTIST</th>
+        <th v-if="showAlbum">ALBUM</th>
+        <th>DURATION</th>
+        <th class="btn_column"
+            v-if="showAddToPlaylistButton"
+            v-on:click="addAlbumToPlaylist">
           <i class="material-icons md-48" title="Add album to current playlist">playlist_add</i>
+        </th>
+        <th class="btn_column"
+            v-if="showRemoveTrackButton"
+            v-on:click="removeTrack">
+          <i class="material-icons md-48" title="Clear playlist">clear_all</i>
+
         </th>
       </tr>
       </thead>
       <tbody v-if="tracks.length">
         <trackListItem v-for="track in tracks"
                        :track="track"
+                       :showTrackNumber="showTrackNumber"
+                       :showArtist="showArtist"
+                       :showAlbum="showAlbum"
+                       :showAddToPlaylistButton="showAddToPlaylistButton"
+                       :showRemoveTrackButton="showRemoveTrackButton"
                        :key="track.trackId"
-                       v-on:playRequest="emitNewPlaylistToPlay" />
+                       v-on:playRequest="emitNewPlaylistToPlay"
+                       v-on:removeTrack="removeTrack"/>
       </tbody>
     </table>
   </div>
@@ -27,8 +43,8 @@
   import trackListItem from './TrackListItem';
 
   export default {
-    components: { trackListItem },
     name: 'tracklist',
+    components: { trackListItem },
     component: {
       trackListItem,
     },
@@ -36,6 +52,31 @@
       tracks: {
         type: Array,
         required: true
+      },
+      showTrackNumber: {
+        type: Boolean,
+        required: false,
+        default: false,
+      },
+      showArtist: {
+        type: Boolean,
+        required: false,
+        default: false,
+      },
+      showAlbum: {
+        type: Boolean,
+        required: false,
+        default: false,
+      },
+      showAddToPlaylistButton: {
+        type: Boolean,
+        required: false,
+        default: false,
+      },
+      showRemoveTrackButton: {
+        type: Boolean,
+        required: false,
+        default: false,
       },
     },
     methods: {
@@ -60,6 +101,9 @@
       },
       async addAlbumToPlaylist() {
         this.tracks.forEach(track => this.addTrackToCurrentPlaylist(track));
+      },
+      removeTrack(id) {
+        this.$emit('removeTrack', id);
       }
     }
   };
@@ -91,7 +135,7 @@
     background-color: #1e1e1e;
   }
 
-  #playlist_btn_column {
+  .btn_column {
     padding: 0;
     background-color: Transparent;
     background-repeat: no-repeat;

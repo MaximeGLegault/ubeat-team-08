@@ -3,10 +3,10 @@ import api from '@/lib/api';
 const actions = {
 
   addTrackToCurrentPlaylist({ commit, state }, track) {
-    if (!track &&
-        !(state.userCurrentSelectedPlaylist.tracks.findIndex(el =>
+    if (!track ||
+        (state.userCurrentSelectedPlaylist.tracks.findIndex(el =>
           el.trackId === track.trackId) !== -1)) {
-      return Promise.reject(new Error('Can\'t add song to unmodifiable playlist'));
+      return Promise.reject(new Error('Can\'t add song to playlist'));
     }
     return api.addTrackToPlaylist(state.userCurrentSelectedPlaylist.id, track)
       .then((value) => {
@@ -15,7 +15,7 @@ const actions = {
         if (error.response.status === 401) {
           window.location = '#/login';
         } else if (error.response.status === 404) {
-          alert('Select a playlist before');
+          window.location = '#/playlist';
         }
       });
   },
@@ -60,6 +60,7 @@ const actions = {
       return api.updatePlaylistName(playlistWithChanges)
         .then((value) => {
           commit('UPDATE_PLAYLIST_NAME', value.data);
+          return value.data;
         }).catch((error) => {
           if (error.response.status === 401) {
             window.location = '#/login';
@@ -68,15 +69,7 @@ const actions = {
     }
     return Promise.reject(new Error('unmodifiable playlist'));
   },
-  editPlaylistName(context, { playlistId, newName }) {
-    if (playlistId) {
-      return api.editNamePlaylist(playlistId, newName)
-        .then((value) => {
-          context.commit('EDIT_NAME', value.data);
-        });
-    }
-    return Promise.reject(new Error('unmodifiable playlist'));
-  },
+
   addSongToCurrentPlaylist({ commit, state }, track) {
     return api.addTrackToPlaylist(state.userCurrentSelectedPlaylist.id, track)
       .then((value) => {
@@ -84,6 +77,16 @@ const actions = {
         commit('UPDATE_PLAYLIST', { oldPlaylist, newPlaylist: value.data });
       });
   },
+  removeTrackFromPlaylist({ commit, state }, { playlist, trackId }) {
+    return api.removeTrackFromPlaylist(playlist.id, trackId)
+      .then((value) => {
+        const oldPlaylist = state.userPlaylists.find(el => el.id === value.data.id);
+        commit('UPDATE_PLAYLIST', { oldPlaylist, newPlaylist: value.data });
+      });
+  },
+  // clearPlaylistOfTracks({commit, state}, playlist) {
+  //   return api.editNamePlaylist(playlist.id, playlist.name);
+  // }
 };
 
 export default actions;

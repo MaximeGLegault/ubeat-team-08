@@ -11,7 +11,7 @@
   import Navigation from '@/components/Navigation';
   import Player from '@/components/player/Player';
   import api from '@/lib/api';
-  // import Cookies from 'js-cookie';
+
   export default {
     name: 'app',
 
@@ -55,7 +55,6 @@
           if (this.$store.state.userPlaylists[0] !== undefined) {
             this.$store.state.userCurrentSelectedPlaylist = this.$store.state.userPlaylists[0];
           }
-          console.log(this.$store.state.userPlaylists[0]);
         }).catch(() => {
           this.$router.push('/login');
         });

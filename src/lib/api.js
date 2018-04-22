@@ -207,5 +207,14 @@ export default {
       data: querystring.stringify({ name: newName })
     });
   },
+  removeTrackFromPlaylist(playlistId, trackId) {
+    return axios({
+      method: 'delete',
+      url: `${baseUrl}playlists/${playlistId}/tracks/${trackId}`,
+      headers: {
+        Authorization: Cookies.get('token')
+      },
+    });
+  },
 // other things
 };

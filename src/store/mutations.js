@@ -4,7 +4,7 @@ const mutations = {
   UPDATE_PLAYLIST_NAME(state, newPlaylist) {
     const index = state.userPlaylists.findIndex(el => el.id === newPlaylist.id);
     if (index !== -1) {
-      state.userPlaylists[index] = newPlaylist;
+      state.userPlaylists.splice(index, 1, newPlaylist);
       if (state.userCurrentSelectedPlaylist.id === newPlaylist.id) {
         state.userCurrentSelectedPlaylist = newPlaylist;
         // TODO check if we can separate this in a different mutations functions
@@ -36,9 +36,6 @@ const mutations = {
     state.current_playlist.current_request = payload;
   },
 
-  EDIT_NAME(state, payload) {
-    state.userCurrentSelectedPlaylist = payload;
-  },
   UPDATE_PLAYLIST(state, { oldPlaylist, newPlaylist }) {
     const index = state.userPlaylists.findIndex(el => el.id === oldPlaylist.id);
     if (index !== -1) {
