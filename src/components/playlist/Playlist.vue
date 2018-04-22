@@ -134,7 +134,6 @@
     created() {
       this.tracks = this.$store.state.userCurrentSelectedPlaylist.tracks;
       this.playlistTitle = this.$store.state.userCurrentSelectedPlaylist.name;
-      console.log(this.playlistTitle);
       if (this.playlistTitle !== undefined) {
         this.showTracklist = true;
         this.showEditButton = true;

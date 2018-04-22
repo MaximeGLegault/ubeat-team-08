@@ -169,9 +169,11 @@ export default {
       data: querystring.stringify({ email: userEmail, password: userPassword })
     });
   },
+
   logout() {
     return axios.get(`${baseUrl}logout`);
   },
+
   signUp(userName, userEmail, userPassword) {
     return axios({
       method: 'post',
@@ -179,6 +181,7 @@ export default {
       data: querystring.stringify({ name: userName, email: userEmail, password: userPassword })
     });
   },
+
   getTokenInfo() {
     return axios({
       method: 'get',
@@ -188,6 +191,7 @@ export default {
       }
     }).then(value => value.data);
   },
+
   getAllPlaylists() {
     return axios({
       method: 'get',
@@ -197,6 +201,7 @@ export default {
       }
     }).then(value => value.data);
   },
+
   editNamePlaylist(playlist, newName) {
     return axios({
       method: 'put',
@@ -207,6 +212,7 @@ export default {
       data: querystring.stringify({ name: newName })
     });
   },
+
   removeTrackFromPlaylist(playlistId, trackId) {
     return axios({
       method: 'delete',
@@ -215,6 +221,16 @@ export default {
         Authorization: Cookies.get('token')
       },
     });
+  },
+
+  getUser(userId) {
+    return axios({
+      method: 'get',
+      url: `${baseUrl}users/${userId}`,
+      headers: {
+        Authorization: Cookies.get('token')
+      }
+    }).then(value => value.data);
   },
 // other things
 };
