@@ -1,6 +1,10 @@
 <template>
   <div id="userOverview">
     <avatar id="gravatar" username="Random" src="http://i0.wp.com/www.spidermancrawlspace.com/wp-content/uploads/2016/05/cropped-5a1bccb02a1b404f215945f82fa73378.jpg"></avatar>
+
+    <!--username utilise les initials du nom pour les afficher. j'essaye de lui passer
+     {{this.$store.state.userName}}, mais ne marche pas...-->
+    <avatar username="Ta chanka"></avatar>
     <h1>Username: {{this.$store.state.userName}} </h1>
     <h1>Email: {{this.$store.state.email}} </h1>
 
@@ -21,23 +25,19 @@
      <a id="followBtn" class="waves-effect waves-light btn">Follow</a>
 
 
-
-    <!--friends-->
-    <div class="result" v-for="result of results" :key="result.index">
-      <div class="resultType">
-        <div class="resultJacket">
-          <!--<router-link :to="{ name : 'Artist', params: { artistId: result.artistId }}">-->
-          <img src="../assets/empty-user-photo.png"/>
-          <!--</router-link>-->
-        </div>
-        <div class="resultName">
-          <div class="resultTitle">{{result.name}}</div>
-          <div class="resultInfo">Users</div>
-        </div>
-      </div>
-    </div>
-    <!--end of friends-->
+    <!--List of friends -->
+    <ul id="friends"
+        v-for="PageUserFriends in this.$store.state.PageUserFriends">
+      <li>
+        <a class="listFriends"
+           v-bind:id="PageUserFriends.id"
+           v-on:click="$emit('changePlaylist', PageUserFriends.id)">
+          {{PageUserFriends.name}}
+        </a>
+      </li>
+    </ul>
   </div>
+    <!--end of friends-->
 
 </template>
 
