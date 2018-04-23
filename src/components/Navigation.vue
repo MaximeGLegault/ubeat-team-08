@@ -35,7 +35,7 @@
               <h6 id="userName">{{this.$store.state.user.name}}</h6>
               <a class='dropdown-button btn-floating deep-purple accent-3' href='#' data-activates='dropdown1'><i class="material-icons">person</i></a>
               <ul id='dropdown1' class='dropdown-content'>
-                <li><router-link :to="{name: 'User', params: {userId: this.$store.state.user.id}}">profil</router-link></li>
+                <li><router-link :to="{name: 'User', params: {userId: this.$store.state.connectedUser.id}}">profil</router-link></li>
                 <li class="divider"></li>
                 <li><router-link to="/Parameter">parameter</router-link></li>
                 <li class="divider"></li>

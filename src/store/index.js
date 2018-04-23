@@ -12,6 +12,7 @@ export const state = {
   currentlyPlayingTrack: {},
   bkpList: {},
   user: {},
+  connectedUser: {}
 };
 
 export default new Vuex.Store({
