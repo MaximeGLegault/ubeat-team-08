@@ -3,11 +3,11 @@
     <img src="../../assets/empty-user-photo.png"/>
     <h1>{{user.name}}</h1>
     <p>EMail : {{user.email}}</p>
-    <div v-if="this.playlist">
-      <router-link :to="{ name : 'Playlist', params: { userId: this.id }}">
-        <a></a>
-      </router-link>
-    </div>
+    <!--<div v-if="this.user.playlist">-->
+      <!--<router-link :to="{ name : 'Playlist', params: { userId: this.id }}">-->
+        <!--<a></a>-->
+      <!--</router-link>-->
+    <!--</div>-->
     <div v-if="this.user">
       <a id="followBtn"
          class="waves-effect waves-light btn"

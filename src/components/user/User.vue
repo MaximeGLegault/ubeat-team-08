@@ -2,11 +2,9 @@
 <div class="main">
   <user-description v-if="this.user"
                     :user="this.user"
-                    :key="this.user.id"
   />
-  <user-follower v-if="this.user.following"
+  <user-follower v-if="this.user"
                  :user="this.user"
-                 :key="this.user.id"
   />
 </div>
 </template>
