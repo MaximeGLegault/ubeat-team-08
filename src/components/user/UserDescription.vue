@@ -1,6 +1,6 @@
 <template>
   <div class="artist">
-    <img src="../../assets/empty-user-photo.png"/>
+    <avatar username="Jane Doe" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTS56W3sj7MxVhLhja_ybGDMl7PnZoBjgoImQ8i_bvU3GycPgh1OA"></avatar>
     <h1>{{this.name}}</h1>
     <p>EMail : <a :HREF="'mailto:{{email}}'">{{email}}</a></p>
     <div v-if="this.playlist">
@@ -12,7 +12,7 @@
       <a @click="follow" id="followBtn"
          class="waves-effect waves-light btn">Follow</a>
       <router-link :to="{ name : 'Playlist', params: { userId: id }}">
-        <a id="followBtn"
+        <a id="playlistBtn"
            class="waves-effect waves-light btn">Playlist</a>
       </router-link>
     </div>
@@ -21,6 +21,7 @@
 
 <script>
   import api from '@/lib/api';
+  import Avatar from 'vue-avatar';
 
   export default {
     name: 'UserDescription',
@@ -30,6 +31,10 @@
       name: '',
       email: ''
     },
+    components: {
+      Avatar
+    },
+
     methods: {
       follow() {
         api.postFollow(this.id);
