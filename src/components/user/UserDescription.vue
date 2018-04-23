@@ -11,6 +11,10 @@
     <div v-if="this.connectedUser===false">
       <a @click="follow" id="followBtn"
          class="waves-effect waves-light btn">Follow</a>
+      <router-link :to="{ name : 'Playlist', params: { userId: id }}">
+        <a id="followBtn"
+           class="waves-effect waves-light btn">Playlist</a>
+      </router-link>
     </div>
   </div>
 </template>
