@@ -226,7 +226,7 @@ export default {
     return axios({
       method: 'post',
       url: `${baseUrl}follow`,
-      data: querystring.stringify({ id: followId }),
+      data: { id: followId },
       headers: {
         Authorization: Cookies.get('token')
       }

@@ -1,14 +1,22 @@
 <template>
   <div class="artist">
+<<<<<<< HEAD
     <avatar username="Jane Doe" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTS56W3sj7MxVhLhja_ybGDMl7PnZoBjgoImQ8i_bvU3GycPgh1OA"></avatar>
     <h1>{{this.name}}</h1>
     <p>EMail : <a :HREF="'mailto:{{email}}'">{{email}}</a></p>
     <div v-if="this.playlist">
       <router-link :to="{ name : 'Playlist', params: { userId: this.id }}">
+=======
+    <img src="../../assets/empty-user-photo.png"/>
+    <h1>{{user.name}}</h1>
+    <p>EMail : <a :HREF="'mailto:{{user.email}}'">{{user.email}}</a></p>
+    <div v-if="this.user.playlist">
+      <router-link :to="{ name : 'Playlist', params: { userId: this.user.id }}">
+>>>>>>> 9dfc12ffa27eadab8562bb4f2b23a5f3751415a4
         <a></a>
       </router-link>
     </div>
-    <div v-if="this.connectedUser===false">
+    <div v-if="this.user.id !== this.$store.state.connectedUser.id">
       <a @click="follow" id="followBtn"
          class="waves-effect waves-light btn">Follow</a>
       <router-link :to="{ name : 'Playlist', params: { userId: id }}">
@@ -26,10 +34,7 @@
   export default {
     name: 'UserDescription',
     props: {
-      connectedUser: false,
-      id: '',
-      name: '',
-      email: ''
+      user: undefined,
     },
     components: {
       Avatar
@@ -37,7 +42,7 @@
 
     methods: {
       follow() {
-        api.postFollow(this.id);
+        api.postFollow(this.user.id);
       }
     }
   };

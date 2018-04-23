@@ -1,6 +1,6 @@
 <template>
   <div class="listAlbums">
-    <div class="album" v-for="follower of following">
+    <div class="album" v-for="follower of user.following">
       <div class="albumJacket">
         <router-link :to="{ name : 'User', params: { userId: follower.id }}">
           <img src="../../assets/empty-user-photo.png"/>
@@ -20,11 +20,7 @@
   export default {
     name: 'UserFollowing',
     props: {
-      id: '',
-      following: {
-        type: Array,
-        required: true,
-      }
+      user: undefined
     },
     methods: {
       artwork(artworkUrl) {
