@@ -7,7 +7,7 @@ import Playlist from '@/components/playlist/Playlist';
 import SignUp from '@/components/SignUp';
 import Login from '@/components/Login';
 import Search from '@/components/search/Search';
-import User from '@/components/User';
+import User from '@/components/user/User';
 import Parameter from '@/components/Parameter';
 
 

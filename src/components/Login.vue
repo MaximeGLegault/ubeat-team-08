@@ -44,7 +44,7 @@
             Cookies.set('token', value.data.token);
             window.location = '/';
           }).catch(() => {
-            this.messageErr = 'User not found, check your username and password';
+            this.messageErr = 'user not found, check your username and password';
             this.messageLog = '';
             this.$store.state.connectedUser = '';
           });
