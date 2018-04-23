@@ -8,7 +8,7 @@
       </div>
       <div class="albumTitle">
         <div class="diskTitle">{{follower.name}}</div>
-        <div class="year">{{follower.email}}</div>
+        <div class="year"><a :HREF="'mailto:{{following.email}}'">{{follower.email}}</a></div>
       </div>
     </div>
   </div>

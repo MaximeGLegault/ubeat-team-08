@@ -2,13 +2,19 @@
   <div class="artist">
     <img src="../../assets/empty-user-photo.png"/>
     <h1>{{user.name}}</h1>
-    <p>EMail : {{user.email}}</p>
-    <div v-if="this.user">
-      <div v-if="this.user.id !== this.$store.state.connectedUser.id">
-        <a @click="follow" id="followBtn"
-           class="waves-effect waves-light btn"
-           v-if="this.$route.params.userId">Follow</a>
-      </div>
+    <p>EMail : <a :HREF="'mailto:{{user.email}}'">{{user.email}}</a></p>
+    <div v-if="this.user.playlist">
+      <router-link :to="{ name : 'Playlist', params: { userId: this.user.id }}">
+        <a></a>
+      </router-link>
+    </div>
+    <div v-if="this.user.id !== this.$store.state.connectedUser.id">
+      <a @click="follow" id="followBtn"
+         class="waves-effect waves-light btn">Follow</a>
+      <router-link :to="{ name : 'Playlist', params: { userId: id }}">
+        <a id="followBtn"
+           class="waves-effect waves-light btn">Playlist</a>
+      </router-link>
     </div>
   </div>
 </template>
