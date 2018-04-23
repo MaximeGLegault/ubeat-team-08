@@ -36,7 +36,7 @@
           api.getAllPlaylists()
             .then((value) => {
               this.$store.state.userPlaylists =
-                util.getPlaylistsOfUser(value, this.$store.state.connectedUser.id);
+                util.getPlaylistsOfUser(value, this.$store.state.user.id);
             });
         })
         .catch(() => {

@@ -37,7 +37,7 @@
       }
     },
     async created() {
-      this.userName = this.$store.state.connectedUser.name;
+      this.userName = this.$store.state.user.name;
     }
   };
 </script>

@@ -1,14 +1,12 @@
 <template>
 <div class="main">
-  <user-description v-if="this.id"
-          :key="this.id"
-          :name="this.name"
-                    :email="this.email"
-                    :connectedUser="this.connectedUser"
+  <user-description v-if="this.user"
+                    :user="this.user"
+                    :key="this.user.id"
   />
-  <user-follower v-if="this.following"
-              :key="this.id"
-              :following="this.following"
+  <user-follower v-if="this.user.following"
+                 :user="this.user"
+                 :key="this.user.id"
   />
 </div>
 </template>
@@ -27,11 +25,7 @@
     },
     data() {
       return {
-        connectedUser: false,
-        id: '',
-        name: '',
-        email: '',
-        following: []
+        user: undefined,
       };
     },
     beforeCreate() {
@@ -40,21 +34,18 @@
       }
     },
     async created() {
-      if (this.$route.params.userId === this.$store.state.connectedUser) {
-        this.connectedUser = true;
+      if (this.$route.params.userId === this.$store.state.user) {
+        this.user = this.$store.state.user;
       } else {
-        this.connectedUser = false;
+        await api.getUser(this.$route.params.userId)
+          .then((value) => {
+            this.user = value;
+          }).catch((error) => {
+            if (error.response.status === 401) {
+              this.$router.push('/login');
+            }
+          });
       }
-      await api.getUser(this.$route.params.userId)
-        .then((value) => {
-          this.id = value.id;
-          this.email = value.email;
-          this.following = value.following;
-        }).catch((error) => {
-          if (error.response.status === 401) {
-            this.$router.push('/login');
-          }
-        });
     }
   };
 </script>
