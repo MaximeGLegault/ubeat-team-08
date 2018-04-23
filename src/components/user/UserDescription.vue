@@ -2,7 +2,7 @@
   <div class="artist">
     <img src="../../assets/empty-user-photo.png"/>
     <h1>{{this.name}}</h1>
-    <p>EMail : {{email}}</p>
+    <p>EMail : <a :HREF="'mailto:{{email}}'">{{email}}</a></p>
     <div v-if="this.playlist">
       <router-link :to="{ name : 'Playlist', params: { userId: this.id }}">
         <a></a>
@@ -10,8 +10,7 @@
     </div>
     <div v-if="this.connectedUser===false">
       <a @click="follow" id="followBtn"
-         class="waves-effect waves-light btn"
-         v-if="this.$route.params.userId">Follow</a>
+         class="waves-effect waves-light btn">Follow</a>
     </div>
   </div>
 </template>
