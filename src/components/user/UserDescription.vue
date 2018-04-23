@@ -1,7 +1,7 @@
 <template>
   <div class="artist">
     <img src="../../assets/empty-user-photo.png"/>
-    <h1>{{name}}</h1>
+    <h1>{{this.name}}</h1>
     <p>EMail : {{email}}</p>
     <div v-if="this.playlist">
       <router-link :to="{ name : 'Playlist', params: { userId: this.id }}">
@@ -9,7 +9,7 @@
       </router-link>
     </div>
     <div v-if="this.connectedUser===false">
-      <a id="followBtn"
+      <a @click="follow" id="followBtn"
          class="waves-effect waves-light btn"
          v-if="this.$route.params.userId">Follow</a>
     </div>
@@ -17,6 +17,8 @@
 </template>
 
 <script>
+  import api from '@/lib/api';
+
   export default {
     name: 'UserDescription',
     props: {
@@ -24,6 +26,11 @@
       id: '',
       name: '',
       email: ''
+    },
+    methods: {
+      follow() {
+        api.postFollow(this.id);
+      }
     }
   };
 </script>

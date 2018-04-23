@@ -49,6 +49,7 @@
         .then((value) => {
           this.id = value.id;
           this.email = value.email;
+          this.name = value.name;
           this.following = value.following;
         }).catch((error) => {
           if (error.response.status === 401) {

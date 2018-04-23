@@ -222,7 +222,16 @@ export default {
       },
     });
   },
-
+  postFollow(followId) {
+    return axios({
+      method: 'post',
+      url: `${baseUrl}follow`,
+      data: querystring.stringify({ id: followId }),
+      headers: {
+        Authorization: Cookies.get('token')
+      }
+    }).then(value => value.data);
+  },
   getUser(userId) {
     return axios({
       method: 'get',
